@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {ReactLenis} from "@/lib/lenis";
+import { NextSeo } from "next-seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,11 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ReactLenis root>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        >
         {children}
       </body>
+        </ReactLenis>
     </html>
   );
 }
