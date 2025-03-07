@@ -7,7 +7,7 @@ export default function FooterFooter() {
       <div className="p-4">
         <Image
         
-          src="logo.png"
+          src="/logo.png"
           width={150}
           height={150}
           alt=""

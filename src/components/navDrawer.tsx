@@ -1,12 +1,10 @@
 "use client";
 
 import * as React from "react";
-
+import Link from "next/link";
 import {
   Drawer,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -15,7 +13,7 @@ import {
 export function DrawerNav() {
   return (
     <Drawer direction="right">
-      <DrawerTrigger>
+      <DrawerTrigger aria-label="Open navigation menu">
         <svg
           className="block size-6"
           fill="none"
@@ -32,12 +30,30 @@ export function DrawerNav() {
           />
         </svg>
       </DrawerTrigger>
-      <DrawerContent className="bg-amber-50">
+      <DrawerContent className="bg-amber-50 p-6">
         <DrawerHeader>
-          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+          <DrawerTitle className="text-lg font-semibold">Navigation</DrawerTitle>
         </DrawerHeader>
-        <DrawerFooter>footer</DrawerFooter>
+        <nav>
+          <ul className="flex flex-col gap-4">
+            {[
+              { name: "Services", href: "#our-services" },
+              { name: "Blogs", href: "#blogs" },
+              { name: "Projects", href: "#projects" },
+              { name: "About", href: "#about" },
+              { name: "Contact", href: "#contact" },
+            ].map(({ name, href }) => (
+              <li key={name}>
+                <Link
+                  href={href}
+                  className="block text-lg font-medium text-gray-700 hover:text-[#7F6456] transition-colors"
+                >
+                  {name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </DrawerContent>
     </Drawer>
   );

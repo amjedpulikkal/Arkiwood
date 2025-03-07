@@ -138,7 +138,7 @@ export default function Home() {
             {/* <img src="/Group 2233.png" className="h-[580px] w-[1000px]" alt="" /> */}
             <Image
               className=" sm:ml-[260px] sm:-mt-52"
-              src="logo.png"
+              src="/logo.png"
               width={350}
               height={400}
               alt=""

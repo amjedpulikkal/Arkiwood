@@ -72,7 +72,7 @@ function DivComponents({
             animate={{ visibility: "visible" }}
             style={{ y }}
           >{`#0${index}`}</motion.p>
-          <Image
+          <img
             src={data.name}
             className="-mt-20  "
             width="600"
@@ -106,7 +106,7 @@ function useParallax(value: MotionValue<number>, distance: number) {
 export default function OurServices() {
   const [data] = useState([
     {
-      name: "Group 2249.png",
+      name: "/Group 2249.png",
       handing: "Landscaping",
       body: `Transform outdoor spaces into stunning, functional environments.
           From lush gardens to modern hardscapes, we design landscapes
@@ -114,7 +114,7 @@ export default function OurServices() {
           .`,
     },
     {
-      name: "Group 2250.png",
+      name: "/Group 2250.png",
       handing: "3D Visualisation",
       body: `Experience your project before it’s built. Our advanced 3D
           visualisation services provide realistic renderings, allowing
@@ -122,7 +122,7 @@ export default function OurServices() {
           precision.`,
     },
     {
-      name: "Group 2251 (1).png",
+      name: "/Group 2251 (1).png",
       handing: "Interior Designing",
       body: `   Transform your interiors into inspirational spaces. Our interior
                 design team blends aesthetics with functionality to create
@@ -130,21 +130,21 @@ export default function OurServices() {
                 needs.`,
     },
     {
-      name: "Group 2252 (1).png",
+      name: "/Group 2252 (1).png",
       handing: "Interior Fit Out",
       body: `Seamlessly transition from design to reality. Our interior fit
       out services ensure every detail is executed with precision,
       delivering high-quality finishes and a flawless final look.`,
     },
     {
-      name: "Group 2253.png",
+      name: "/Group 2253.png",
       handing: "Authority Approvals",
       body: `     Navigate the complexities of regulatory compliance with ease. We
                   manage all aspects of authority approvals, ensuring your project
                   meets every legal and safety standard.`,
     },
     {
-      name: "Group 2254.png",
+      name: "/Group 2254.png",
       handing: "MEP & Architectural Drawing",
       body: `Rely on our technical expertise for your project’s backbone.
   Our comprehensive MEP (Mechanical, Electrical, and Plumbing)

@@ -457,7 +457,7 @@ const Accordion = ({
             {data.items.map((item, i) => (
               <li className="flex items-center" key={i}>
                 <svg
-                  className="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 shrink-0"
+                  className="w-3.5 h-3.5 me-2 text-[#7F6456]  shrink-0"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -554,7 +554,7 @@ export default accordionIds;
 export const Example = () => {
   // This approach is if you only want max one section open at a time. If you want multiple
   // sections to potentially be open simultaneously, they can all be given their own `useState`.
-  const [expanded, setExpanded] = useState<false | number>(0);
+  const [expanded, setExpanded] = useState<false | number>(-1);
   return (
     <>
       <div className="w-full sm:px-40 px-2.5">
