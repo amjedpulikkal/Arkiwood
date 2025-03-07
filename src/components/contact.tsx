@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 export default function ContactCom() {
   return (
-    <div id="contact" className="flex justify-between flex-wrap bgImage bg-black gap-2  sm:gap-0 sm:p-10 p-5 pt-20 text-white">
+    <div id="contact" className="flex justify-between flex-wrap bgImage bg-black gap-2  sm:gap-0 sm:p-10 p-5 sm:pt-20 text-white">
       <div className="sm:w-2/5 w-full mt-14 flex flex-col gap-6 text-xl sm:pr-5">
         <div className="flex gap-1.5">
           <Image
