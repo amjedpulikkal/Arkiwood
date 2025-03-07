@@ -72,7 +72,7 @@ function DivComponents({
             animate={{ visibility: "visible" }}
             style={{ y }}
           >{`#0${index}`}</motion.p>
-          <img
+          <Image
             src={data.name}
             className="-mt-20  "
             width="600"

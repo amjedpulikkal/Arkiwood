@@ -18,8 +18,8 @@ export default function ContactCom() {
         </div>
         <div className="flex gap-1.5">
           <Image
-               width={30}
-               height={30}
+            width={30}
+            height={30}
             src="/images-removebg-preview (1).png"
             alt="images-removebg-preview"
           />
