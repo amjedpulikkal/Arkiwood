@@ -1,30 +1,32 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import React from "react";
-
 export default function ContactCom() {
   return (
     <div className="flex justify-between flex-wrap bgImage bg-black gap-2  sm:gap-0 p-10 pt-20 text-white">
       <div className="sm:w-2/5 w-full mt-14 flex flex-col gap-6 text-xl sm:pr-5">
         <div className="flex gap-1.5">
-          <img
+          <Image
             src="/images-removebg-preview.png"
             width={30}
+            height={30}
             alt="images-removebg-preview"
           />
           <p> info@arkiwooduae.com</p>
         </div>
         <div className="flex gap-1.5">
-          <img
+          <Image
             src="/images-removebg-preview (1).png"
-            width={30}
             alt="images-removebg-preview"
           />
           <p> +971 457 599 06</p>
         </div>
         <div className="flex gap-1.5">
-          <img
+          <Image
+            width={30}
+            height={30}
             src="/images-removebg-preview (2).png"
             className="h-10 w-10"
             alt="images-removebg-preview"

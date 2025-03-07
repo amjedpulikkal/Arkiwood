@@ -9,10 +9,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Navbar from "@/components/navbar";
+import Image from "next/image";
+type tParams = Promise<{ services: string }>;
+export default async function page({ params }: { params: tParams}) {
 
-export default function page({ params }: { params: { services: string } }) {
+    const p = decodeURIComponent((await params)?.services || "");
 
-    const p = decodeURIComponent(params.services)
   return (
     <>
       <Navbar />
@@ -37,7 +39,7 @@ export default function page({ params }: { params: { services: string } }) {
                 key={index}
                 className="md:basis-1/3 h-96 lg:basis-1/3 "
               >
-                <img src="https://placehold.co/500" alt="" />
+                <Image src="https://placehold.co/500" width={500} height={500} alt="" />
               </CarouselItem>
             ))}
           </CarouselContent>

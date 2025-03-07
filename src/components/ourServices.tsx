@@ -4,9 +4,10 @@ import {
   motion,
   MotionValue,
   useScroll,
-  useSpring,
+
   useTransform,
 } from "motion/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
@@ -51,7 +52,7 @@ function DivComponents({
             animate={{ visibility: "visible" }}
             style={{ y }}
           >{`#0${index}`}</motion.p>
-          <img
+          <Image
             src={data.name}
             className="sm:-mt-20 "
             width="600"
@@ -71,7 +72,7 @@ function DivComponents({
             animate={{ visibility: "visible" }}
             style={{ y }}
           >{`#0${index}`}</motion.p>
-          <img
+          <Image
             src={data.name}
             className="-mt-20  "
             width="600"
@@ -153,12 +154,12 @@ export default function OurServices() {
     },
   ]);
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
+  // const { scrollYProgress } = useScroll();
+  // const scaleX = useSpring(scrollYProgress, {
+  //   stiffness: 100,
+  //   damping: 30,
+  //   restDelta: 0.001,
+  // });
 
   return (
     <div id="our-services" className="pb-14">

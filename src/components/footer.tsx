@@ -1,13 +1,15 @@
+import Image from "next/image";
 import React from "react";
 
 export default function FooterFooter() {
   return (
     <footer className="bg-black">
       <div className="p-4">
-        <img
-          className=" "
+        <Image
+        
           src="logo.png"
           width={150}
+          height={150}
           alt=""
         />
       </div>

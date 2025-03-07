@@ -1,5 +1,6 @@
-"use client";
-import React, { useEffect, useState } from "react";
+"use client"
+
+import React, { useEffect, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function Index() {
@@ -38,46 +39,43 @@ export default function Index() {
   }, []);
 
   // Update cursor position on mouse move
-  const manageMouseMove = (e: MouseEvent) => {
+  const manageMouseMove = useCallback((e: MouseEvent) => {
     const { clientX, clientY } = e;
     mouse.x.set(clientX - cursorSize / 2);
     mouse.y.set(clientY - cursorSize / 2);
     subMouse.x.set(clientX - subCursorSize / 2);
     subMouse.y.set(clientY - subCursorSize / 2);
-  };
+  },  [mouse.x, mouse.y, subMouse.x, subMouse.y] );
 
   // Hide the cursor if the pointer leaves the window
-  const handleMouseOut = (e: MouseEvent) => {
-    // If relatedTarget is null or the HTML element, the mouse is leaving the viewport
-    if (
-      !e.relatedTarget ||
-      (e.relatedTarget as HTMLElement).nodeName === "HTML"
-    ) {
+  const handleMouseOut = useCallback((e: MouseEvent) => {
+    if (!e.relatedTarget || (e.relatedTarget as HTMLElement).nodeName === "HTML") {
       setCursorVisible(false);
     }
-  };
+  }, []);
 
   // Show the cursor when the mouse re-enters the window
-  const handleMouseOver = () => {
+  const handleMouseOver = useCallback(() => {
     setCursorVisible(true);
-  };
+  }, []);
 
   useEffect(() => {
     if (isMouse) {
       window.addEventListener("mousemove", manageMouseMove);
       window.addEventListener("mouseout", handleMouseOut);
       window.addEventListener("mouseover", handleMouseOver);
+  
       return () => {
         window.removeEventListener("mousemove", manageMouseMove);
         window.removeEventListener("mouseout", handleMouseOut);
         window.removeEventListener("mouseover", handleMouseOver);
       };
     }
-  }, [isMouse]);
+  }, [isMouse, manageMouseMove, handleMouseOut, handleMouseOver]);
 
   // Render the custom cursor only if a mouse is detected and the cursor should be visible
   if (!isMouse || !cursorVisible) return null;
-  console.log(smoothMouse.x.get(), smoothMouse.y);
+
   return (
     <>
       <motion.div
@@ -85,7 +83,7 @@ export default function Index() {
           left: smoothMouse.x.get() == 0 ? "-45px" : smoothMouse.x,
           top: smoothMouse.y,
         }}
-        className="w-10  h-10  fixed z-50 outline-1 outline-offset-1 outline-black/30  rounded-full pointer-events-none"
+        className="w-10 h-10 fixed z-50 outline-1 outline-offset-1 outline-black/30 rounded-full pointer-events-none"
       ></motion.div>
       <motion.div
         style={{ left: subSmoothMouse.x, top: subSmoothMouse.y }}

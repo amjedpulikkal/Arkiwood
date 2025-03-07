@@ -6,8 +6,7 @@ import Cursor from "@/components/Cursor";
 import OurClients from "@/components/ourClients";
 import Footer from "@/components/footer";
 import { Example } from "@/components/regulatory";
-import { NextSeo } from "next-seo";
-import Head from "next/head";
+
 import type { Metadata } from 'next'
  
 export const metadata: Metadata = {
@@ -137,10 +136,11 @@ export default function Home() {
             }}
           >
             {/* <img src="/Group 2233.png" className="h-[580px] w-[1000px]" alt="" /> */}
-            <img
+            <Image
               className=" sm:ml-[260px] sm:-mt-52"
               src="logo.png"
               width={350}
+              height={400}
               alt=""
             />
           </div>
