@@ -30,7 +30,7 @@ export function DrawerNav() {
           />
         </svg>
       </DrawerTrigger>
-      <DrawerContent className="bg-amber-50 p-6">
+      <DrawerContent className="">
         <DrawerHeader>
           <DrawerTitle className="text-lg font-semibold">Navigation</DrawerTitle>
         </DrawerHeader>
