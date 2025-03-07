@@ -7,7 +7,7 @@ import { DrawerNav } from "./navDrawer";
 export default function Navbar() {
   return (
     <nav className=" h-16 md:h-20 flex justify-between items-center px-4  " >
-      <div  >
+      <div className="sm;p-0 p-8"  >
         <Link href={"/"}>
         <Image
           className="dark:invert"

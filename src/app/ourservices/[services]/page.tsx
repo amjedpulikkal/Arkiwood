@@ -124,6 +124,7 @@ import Image from "next/image";
 //     }
 //   ];
   
+//   console.log(interiorDesignFitouts);
   
 
 
