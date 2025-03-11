@@ -40,9 +40,9 @@ export default function ContactCom() {
           </p>
         </div>
         <iframe
-          className="rounded-2xl"
+          className="rounded-2xl h-full"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28863.266637976303!2d55.33414840390514!3d25.27366900801435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d9eb53dae23%3A0xb67c5e75a9851be1!2sDar%20Al%20Nahda%20Building%20%23%2041!5e0!3m2!1sen!2sin!4v1741098838758!5m2!1sen!2sin"
-          height="400"
+          height="450"
           style={{ border: 0 }}
           loading="lazy"
         ></iframe>

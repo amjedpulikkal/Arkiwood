@@ -7,13 +7,15 @@ import OurClients from "@/components/ourClients";
 import Footer from "@/components/footer";
 import { Example } from "@/components/regulatory";
 
-import type { Metadata } from 'next'
- 
+import type { Metadata } from "next";
+import Review from "@/components/review";
+
 export const metadata: Metadata = {
   title: "Arkiwood",
-  description: "Discover top-quality services and solutions tailored to your needs. Stay ahead with our innovative platform and expert insights."
-}
- 
+  description:
+    "Discover top-quality services and solutions tailored to your needs. Stay ahead with our innovative platform and expert insights.",
+};
+
 export default function Home() {
   return (
     // <div className="">
@@ -113,7 +115,6 @@ export default function Home() {
     // </div>
 
     <>
-          
       <Cursor />
       <Navbar />
       <main className="h-[1999px]">
@@ -145,17 +146,6 @@ export default function Home() {
             />
           </div>
         </div>
-        {/* <div className="h-36 bg-black/80 flex justify-center items-center">
-          <div className="flex justify-between items-center text-2xl text-primary gap-1">
-            <Image
-              src={"/logo-instagram.png"}
-              width={23}
-              height={23}
-              alt={"logo-instagram.png"}
-            />
-            <p>@arkiwood.uae</p>
-          </div>
-        </div> */}
 
         <div className="pt-10" id="about">
           <div className=" w-full flex  h-[500px]  ">
@@ -193,9 +183,63 @@ export default function Home() {
           </div>
         </div>
 
+        <div className="h-36 bg-black bgImage flex text-white gap-2 justify-center items-center flex-col">
+          <div className="flex justify-between items-center text-2xl text-primary gap-1">
+            <Image
+              src={"/logo-instagram.png"}
+              width={23}
+              height={23}
+              alt={"logo-instagram.png"}
+            />
+            <p>@arkiwood.uae</p>
+          </div>
+
+          <div className="flex gap-1.5 ">
+            <div className="flex items-center gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+              >
+                <circle cx="12" cy="12" r="4" />
+              </svg>
+              <p>See our latest projects</p>
+            </div>
+
+            <div className="flex items-center gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+              >
+                <circle cx="12" cy="12" r="4" />
+              </svg>
+              <p>Get exclusive design tips</p>
+            </div>
+
+            <div className="flex items-center gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+              >
+                <circle cx="12" cy="12" r="4" />
+              </svg>
+              <p>Be inspired by our creative process</p>
+            </div>
+          </div>
+        </div>
+
         <OurServices />
         <Example />
         <OurClients />
+        {/* <Review /> */}
         <ContactCom />
         <Footer />
       </main>

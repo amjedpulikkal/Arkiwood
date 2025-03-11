@@ -69,6 +69,7 @@ function DivComponents({
           <motion.p
             className="absolute   right-40 top-10 font-border text-[#7F6456] font-extrabold   text-9xl p-4 inline-block group-hover:bg-clip-text group-hover:bg-[#7F6456] "
             initial={{ visibility: "hidden" }}
+            
             animate={{ visibility: "visible" }}
             style={{ y }}
           >{`#0${index}`}</motion.p>
@@ -81,7 +82,7 @@ function DivComponents({
           />
         </div>
         <div className="sm:w-1/2 flex justify-center items-center -mt-5">
-          <div className=" flex  flex-col  gap-7 p-10 ">
+          <motion.div initial={{opacity:0}}  whileInView={{opacity:1}} className=" flex  flex-col  gap-7 p-10 ">
             <p className="nasalization  text-center  text-3xl text-[#7F6456]">
               {data.handing}
             </p>
@@ -92,7 +93,7 @@ function DivComponents({
             >
               KNOW MORE
             </motion.button>
-          </div>
+          </motion.div>
         </div>
       </div>
     );
