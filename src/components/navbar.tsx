@@ -8,10 +8,10 @@ export default function Navbar() {
       <div className=" ">
         <Link href={"/"}>
           <Image
-            className="w-28 md:w-36 lg:w-40 dark:invert"
+            className="w-28 md:w-16 lg:w-28 dark:invert"
             src="/logo.png"
             alt="logo"
-            width={140}
+            width={240}
             height={100}
             priority
           />
@@ -22,7 +22,7 @@ export default function Navbar() {
         <DrawerNav />
       </div>
       <div className="w-1/2 text-xl nasalization hidden sm:block text-[#7f6456d7]">
-        <ul className="flex justify-between md:justify-around gap-x-6">
+        <ul className="flex justify-end  gap-x-6">
           <li className="hover-underline-animation center hover:text-[#7F6456] transition-colors">
             <Link href={"#our-services"}>Services</Link>
           </li>

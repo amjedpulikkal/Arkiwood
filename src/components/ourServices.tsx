@@ -163,7 +163,7 @@ export default function OurServices() {
 
   return (
     <div id="our-services" className="pb-14">
-      <p className="nasalization pt-24   text-4xl text-[#7F6456] text-center">
+      <p className="nasalization py-24   text-4xl text-[#7F6456] text-center">
         Our Services
       </p>
       {data.map((data, index) => (

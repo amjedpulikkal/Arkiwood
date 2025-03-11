@@ -6,20 +6,20 @@ import React from "react";
 export default function ContactCom() {
   return (
     <div id="contact" className="flex justify-between flex-wrap bgImage bg-black gap-2  sm:gap-0 sm:p-10 p-5 sm:pt-20 text-white">
-      <div className="sm:w-2/5 w-full mt-14 flex flex-col gap-6 text-xl sm:pr-5">
-        <div className="flex gap-1.5">
+      <div className="sm:w-2/5 w-full mt-14 flex flex-col gap-6  sm:pr-5">
+        <div className="flex gap-3">
           <Image
             src="/images-removebg-preview.png"
-            width={30}
-            height={30}
+            width={28}
+            height={28}
             alt="images-removebg-preview"
           />
-          <p> info@arkiwooduae.com</p>
+          <p>{" "}info@arkiwooduae.com</p>
         </div>
-        <div className="flex gap-1.5">
+        <div className="flex gap-3">
           <Image
-            width={30}
-            height={30}
+            width={28}
+            height={28}
             src="/images-removebg-preview (1).png"
             alt="images-removebg-preview"
           />
@@ -27,8 +27,8 @@ export default function ContactCom() {
         </div>
         <div className="flex gap-1.5">
           <Image
-            width={30}
-            height={30}
+            width={28}
+            height={28}
             src="/images-removebg-preview (2).png"
             className="h-10 w-10"
             alt="images-removebg-preview"

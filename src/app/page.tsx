@@ -157,7 +157,7 @@ export default function Home() {
           </div>
         </div> */}
 
-        <div className="pt-10">
+        <div className="pt-10" id="about">
           <div className=" w-full flex  h-[500px]  ">
             <div className="sm:w-[600px] w-full">
               <Image
