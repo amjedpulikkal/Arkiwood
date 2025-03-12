@@ -8,7 +8,7 @@ import Footer from "@/components/footer";
 import { Example } from "@/components/regulatory";
 
 import type { Metadata } from "next";
-import Review from "@/components/review";
+// import Review from "@/components/review";
 
 export const metadata: Metadata = {
   title: "Arkiwood",

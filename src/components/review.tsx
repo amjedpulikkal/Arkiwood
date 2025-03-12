@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-let data = [
+const data = [
   `Arkiwood transformed our outdoor space into a breathtaking retreat. Their attention to detail and creativity exceeded our expectations!" – Sarah M., Homeowner
     `,
   ` "The interior fit-out for our office was seamless and professional. The team handled everything with precision, and the results speak for themselves!" – David R., Business Owner`,
