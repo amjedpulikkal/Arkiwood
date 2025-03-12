@@ -4,7 +4,7 @@ import Link from "next/link";
 import { DrawerNav } from "./navDrawer";
 export default function Navbar() {
   return (
-    <nav className=" h-16 md:h-20 flex justify-between items-center px-4  ">
+    <nav className=" h-16 md:h-20 flex justify-between items-center px-8  ">
       <div className=" ">
         <Link href={"/"}>
           <Image

@@ -26,7 +26,7 @@ function DivComponents({
   if (index % 2 === 1) {
     return (
       <div className="flex justify-between items-start sm:items-stretch">
-        <div className="sm:w-1/2 flex  flex-col  gap-7 p-10">
+        <div className="sm:w-1/2 flex  justify-center flex-col  gap-7 p-10">
           <p className="nasalization  text-center  text-3xl text-[#7F6456]">
             {data.handing}
           </p>
