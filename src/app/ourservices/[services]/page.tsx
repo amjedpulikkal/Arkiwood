@@ -57,6 +57,7 @@ import Cursor from "@/components/Cursor";
 type tParams = Promise<{ services: string }>;
 export default async function page({ params }: { params: tParams }) {
   const p = decodeURIComponent((await params)?.services || "");
+  // const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
     <>
@@ -82,7 +83,7 @@ export default async function page({ params }: { params: tParams }) {
       </div>
 
       <div className="flex justify-center items-center py-10 ">
-        <h1 className="nasalization hover-underline-animation center text-4xl text-[#7F6456]">
+        <h1 className="nasalization hover-underline-animation text-center text-4xl text-[#7F6456]">
           {p}
         </h1>
       </div>
@@ -172,7 +173,7 @@ export default async function page({ params }: { params: tParams }) {
                   height={500}
                   alt=""
                 />
-                <div className=" absolute flex  justify-center items-center w-full h-[90%] ">
+                <div className=" absolute flex   justify-center items-center w-full h-[90%] ">
                   <div className="">
                     <div className="flex gap-2 justify-center w-full">
                       <div className=" rounded-4xl h-10 w-10 relative">
