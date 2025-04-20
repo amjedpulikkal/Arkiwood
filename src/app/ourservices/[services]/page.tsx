@@ -118,7 +118,7 @@ export default async function page({ params }: { params: tParams }) {
         <p>{(data as unknown as Data)[p][2]?.body}</p>
       </div>
 
-      <div className="px-10 py-10 flex justify-evenly text-[#7F6456]">
+      <div className="px-10 py-10 flex justify-evenly flex-wrap text-[#7F6456]">
         {Object.entries((data as unknown as Data)[p][0]).map(
           ([category, topics]: [string, string[] | undefined], index: number) => (
             <div
@@ -153,12 +153,12 @@ export default async function page({ params }: { params: tParams }) {
         )}
       </div>
       <div className="p-10">
-        <p className="flex text-xl pb-10 text-[#7F6456] items-center">
-          <span className="text-4xl nasalization ">ProjectNest</span> – A
-          collective showcase of our completed works.
+        <p className="sm:flex text-xl pb-10 text-[#7F6456] items-center">
+          <span className="text-4xl nasalization ">ProjectNest – </span>
+          A collective showcase of our completed works.
         </p>
 
-        <div className="flex justify-evenly  gap-2">
+        <div className="sm:flex justify-evenly flex-wrap gap-2">
           {(data as unknown as Data)[p][1]?.image?.map((image: string, index: number) => (
             <div
               key={index}
