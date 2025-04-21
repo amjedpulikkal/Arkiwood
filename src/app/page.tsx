@@ -87,7 +87,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="h-36 bg-black bgImage flex text-white gap-2 justify-center items-center flex-col">
+        <div className="h-36 bg-black  flex text-white gap-2 justify-center items-center flex-col">
           <div className="flex justify-between items-center text-2xl text-primary gap-1">
             <Image
               src={"/logo-instagram.png"}
