@@ -27,7 +27,7 @@ const Imagecom: React.FC<Props> = ({ data }) => {
   }, []);
 
   return (
-    <div className="sm:flex justify-evenly flex-wrap gap-2">
+    <div className="sm:flex justify-evenly flex-wrap gap-6 p-10">
       {data[1]?.image?.map((image: string, index: number) => (
         <div
           key={index}

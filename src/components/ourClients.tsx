@@ -57,7 +57,7 @@ export default function OurClients() {
       <div className="px-10 pt-10">
         <div className="flex justify-center flex-wrap gap-4">
           {logos1.map((src, index) => (
-           <motion.div whileHover={{scale:1.05}} key={index} className="w-[120px] h-[120px] relative">
+           <motion.div whileHover={{scale:1.05}} key={index}  className="w-[120px] h-[120px] relative">
               <Image
                 src={src}
                 fill

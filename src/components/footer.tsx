@@ -5,13 +5,7 @@ export default function FooterFooter() {
   return (
     <footer className="bg-black">
       <div className="p-4">
-        <Image
-        
-          src="/logo.png"
-          width={150}
-          height={150}
-          alt=""
-        />
+        <Image src="/logo.png" width={150} height={150} alt="" />
       </div>
       <div className="mx-auto w-full max-w-screen-xl">
         <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
@@ -128,6 +122,9 @@ export default function FooterFooter() {
               </li>
             </ul>
           </div>
+        </div>
+        <div className="w-full text-center text-gray-500 dark:text-gray-400  p-5 -pt-5">
+          <p>© {new Date().getFullYear()} Arkiwood. All rights reserved.</p>
         </div>
       </div>
     </footer>

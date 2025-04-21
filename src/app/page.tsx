@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import { Example } from "@/components/regulatory";
 
 import type { Metadata } from "next";
+import CallCpmponent from "@/components/callCpmponent";
 // import Review from "@/components/review";
 
 export const metadata: Metadata = {
@@ -21,7 +22,8 @@ export default function Home() {
     <>
       <Cursor />
       <Navbar />
-      <main className="h-[1999px]">
+      <CallCpmponent/>
+      <main className="  w-full  overflow-hidden">
         <div className="flex h-[580px] w-full relative overflow-hidden">
           <div className="w-4/5 hidden sm:block">
             <Image
@@ -33,11 +35,29 @@ export default function Home() {
             />
           </div>
           <div
-            className="absolute right-0 flex justify-center items-center sm:w-4/5 w-full h-full"
+            className="absolute right-0 flex opacity-0 sm:opacity-100 justify-center items-center sm:w-4/5 w-full h-full"
             style={{
               backgroundImage: "url('/Group 2233.png')",
               backgroundSize: "cover",
               backgroundPosition: "center",
+            }}
+          >
+            {/* <img src="/Group 2233.png" className="h-[580px] w-[1000px]" alt="" /> */}
+            <Image
+              className=" sm:ml-[260px] sm:-mt-52"
+              src="/logo.png"
+              width={350}
+              height={400}
+              alt=""
+            />
+          </div>
+          <div
+            className="absolute right-0 flex opacity-100 sm:opacity-0 justify-center items-center sm:w-4/5 w-full h-full"
+            style={{
+              backgroundImage: "url('/Vector 3.png')",
+              // backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundSize: "170%",
             }}
           >
             {/* <img src="/Group 2233.png" className="h-[580px] w-[1000px]" alt="" /> */}

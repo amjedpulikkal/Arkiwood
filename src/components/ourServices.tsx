@@ -18,15 +18,34 @@ function DivComponents({
   const y = useParallax(scrollYProgress, 300);
   if (index % 2 === 1) {
     return (
-      <div className="flex justify-between items-start sm:items-stretch">
-        <div className="sm:w-1/2 flex  justify-center flex-col  gap-7 p-10">
-          <p className="nasalization  text-center  text-3xl text-[#7F6456]">
+      <div className="flex justify-between items-start sm:items-stretch ">
+        <div className="sm:w-1/2 flex  justify-center flex-col  gap-7  p-10">
+          <motion.p
+            initial={{ x: -500 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="nasalization  text-center  text-3xl text-[#7F6456]"
+          >
             {data.heading}
-          </p>
-          <p>{data.body}</p>
+          </motion.p>
+          <motion.p
+            initial={{ x: -500 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.25 }}
+          >
+            {data.body}
+          </motion.p>
 
           {/* <div className="flex justify-center"> */}
-          <div className="">
+          <motion.div
+            initial={{ x: -500 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.35 }}
+            className=""
+          >
             {data.nav &&
               data.nav.map((d) => (
                 <div className="flex items-center gap-1" key={d}>
@@ -48,7 +67,7 @@ function DivComponents({
                   <p className="whitespace-nowrap">{d}</p>
                 </div>
               ))}
-          </div>
+          </motion.div>
 
           <motion.button
             onClick={() => router.push(`/ourservices/${data.heading}`)}
@@ -60,7 +79,13 @@ function DivComponents({
 
           {/* </div> */}
         </div>
-        <div className="group relative hidden sm:block">
+        <motion.div
+          initial={{ x: 500 }}
+          whileInView={{ x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, type: "easeInOut" }}
+          className="group relative hidden sm:block"
+        >
           <motion.p
             className={`absolute  hidden left-16 font-border text-[#7F6456] font-extrabold  ${
               index === 1 ? "top-28" : ""
@@ -76,13 +101,19 @@ function DivComponents({
             height="460"
             alt={data.heading}
           />
-        </div>
+        </motion.div>
       </div>
     );
   } else {
     return (
       <div className="flex justify-between items-end sm:items-stretch">
-        <div className="group relative  w-1/2 hidden sm:block">
+        <motion.div
+          initial={{ x: -500 }}
+          whileInView={{ x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, type: "easeInOut" }}
+          className="group relative  w-1/2 hidden sm:block"
+        >
           <motion.p
             className="absolute   right-40 top-10 font-border text-[#7F6456] font-extrabold   text-9xl p-4 inline-block group-hover:bg-clip-text group-hover:bg-[#7F6456] "
             initial={{ visibility: "hidden" }}
@@ -96,18 +127,37 @@ function DivComponents({
             height="460"
             alt={data.name}
           />
-        </div>
+        </motion.div>
         <div className="sm:w-1/2 flex justify-center items-center -mt-5">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             className=" flex  flex-col  gap-7 p-10 "
           >
-            <p className="nasalization  text-center  text-3xl text-[#7F6456]">
+            <motion.p
+              initial={{ x: 500 }}
+              whileInView={{ x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="nasalization  text-center  text-3xl text-[#7F6456]"
+            >
               {data.heading}
-            </p>
-            <p>{data.body}</p>
-            <div className="">
+            </motion.p>
+            <motion.p
+              initial={{ x: 500 }}
+              whileInView={{ x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.25 }}
+            >
+              {data.body}
+            </motion.p>
+            <motion.div
+              initial={{ x: 500 }}
+              whileInView={{ x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
+              className=""
+            >
               {data.nav &&
                 data.nav.map((d) => (
                   <div className="flex items-center gap-1" key={d}>
@@ -129,7 +179,7 @@ function DivComponents({
                     <p className="whitespace-nowrap">{d}</p>
                   </div>
                 ))}
-            </div>
+            </motion.div>
             <motion.button
               onClick={() => router.push(`/ourservices/${data.heading}`)}
               whileHover={{ scale: 1.2 }}
@@ -284,10 +334,12 @@ export default function OurServices() {
   // });
 
   return (
-    <div id="our-services" className="pb-14">
-      <p className="nasalization py-24   text-4xl text-[#7F6456] text-center">
-        Our Services
-      </p>
+    <div id="our-services" className="pb-14 ">
+      <div className="py-24 flex justify-center ">
+        <p className="nasalization hover-underline-animation   text-4xl text-[#7F6456] text-center">
+          Our Services
+        </p>
+      </div>
       {data.map((data, index) => (
         <DivComponents key={index} data={data} index={index + 1} />
       ))}
