@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Data, ServiceArray } from "./types";
+import React, { useEffect } from "react";
+import { ServiceArray } from "./types";
 import Image from "next/image";
 
 type Props = {
@@ -10,11 +10,21 @@ type Props = {
 
 const SubCat: React.FC<Props> = ({ data }) => {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const [isMobile, setMobile] = React.useState<boolean>(false);
   const handleTap = (index: number) => {
-    console.log(index)
-    setActiveIndex(index);
-    // your logic here
+    console.log(index);
+    if (isMobile) {
+      setActiveIndex(index);
+    }
   };
+
+  useEffect(() => {
+    if (window.innerWidth < 1024) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  }, []);
 
   return (
     <div className="px-10 py-10 flex justify-evenly flex-wrap text-[#7F6456]">
@@ -29,16 +39,20 @@ const SubCat: React.FC<Props> = ({ data }) => {
             </div>
             <p className="py-4 text-center nasalization text-xl">{category}</p>
 
-            <div
-              
-              className="w-60 h-60 group  relative  rounded-3xl overflow-clip "
-            >
-              <div onClick={() => handleTap(-1)} className="w-60 h-60 flex justify-center items-center p-4 text-center">
-                <ul className="list-disc list-inside text-sm text-gray-700">
-                  {topics?.map((topic: string, i: number) => (
-                    <li key={i}>{topic}</li>
-                  ))}
-                </ul>
+            <div className="w-60 h-60 group  relative  rounded-3xl overflow-clip ">
+              <div
+                onClick={() => handleTap(-1)}
+                className={`${
+                  activeIndex == index ? "block" : "hidden"
+                } w-60 h-60  group-hover:block  `}
+              >
+                <div className="flex justify-center items-center p-4 text-center w-full h-full ">
+                  <ul className="list-disc list-inside text-sm text-gray-700">
+                    {topics?.map((topic: string, i: number) => (
+                      <li key={i}>{topic}</li>
+                    ))}
+                  </ul>
+                </div>
                 {/* <p className="text-lg absolute bottom-0"> tap to know more</p> */}
               </div>
 

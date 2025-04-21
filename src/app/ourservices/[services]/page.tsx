@@ -89,8 +89,8 @@ export default async function page({ params }: { params: tParams }) {
               )
             )}
           </CarouselContent>
-          <CarouselPrevious className=" border-0  rounded-none outline-none shadow-none " />
-          <CarouselNext className="border-0 rounded-none outline-none shadow-none " />
+          <CarouselPrevious className=" border-0  rounded-none outline-none shadow-none hidden sm:block " />
+          <CarouselNext className="border-0 rounded-none outline-none shadow-none   hidden sm:block" />
         </Carousel>
       </div>
       <div className="px-4 text-xl text-center sm:mt-10 text-[#7F6456]">
@@ -103,7 +103,7 @@ export default async function page({ params }: { params: tParams }) {
           <span className="text-4xl nasalization ">ProjectNest – </span>A
           collective showcase of our completed works.
         </p>
-        <Imagecom data={(data as unknown as Data)[p]} p={p} />
+        <Imagecom data={(data as unknown as Data)[p]}  />
 
 
       </div>
