@@ -31,7 +31,7 @@ const Imagecom: React.FC<Props> = ({ data }) => {
       {data[1]?.image?.map((image: string, index: number) => (
         <div
           key={index}
-          className="md:basis-1/3 h-96 relative overflow-clip group lg:basis-1/3 "
+          className="md:basis-1/3 h-96 relative  group lg:basis-1/3 "
         >
           <div className=" w-full h-full absolute ">
             <Image
