@@ -12,46 +12,53 @@ function DivComponents({
   data: { name: string; heading: string; body: string; nav: string[] };
   index: number;
 }) {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Delay between children
+      },
+    },
+  };
+  const leftVariants = {
+    hidden: { x: -500, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+  const itemVariants = {
+    hidden: { x: 500, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
   const router = useRouter();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useParallax(scrollYProgress, 300);
   if (index % 2 === 1) {
     return (
-      <div className="flex justify-between items-start sm:items-stretch ">
-        <div className="sm:w-1/2 flex  justify-center flex-col  gap-7  p-10">
+      <motion.div
+        className="flex justify-between items-start sm:items-stretch"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <div className="sm:w-1/2 flex justify-center flex-col gap-7 p-10">
           <motion.p
-            initial={{ x: -500 }}
-            whileInView={{ x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="nasalization  text-center  text-3xl text-[#7F6456]"
+            variants={leftVariants}
+            className="nasalization text-center text-3xl text-[#7F6456]"
           >
             {data.heading}
           </motion.p>
-          <motion.p
-            initial={{ x: -500 }}
-            whileInView={{ x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.25 }}
-          >
-            {data.body}
-          </motion.p>
 
-          {/* <div className="flex justify-center"> */}
-          <motion.div
-            initial={{ x: -500 }}
-            whileInView={{ x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.35 }}
-            className=""
-          >
+          <motion.p variants={leftVariants}>{data.body}</motion.p>
+
+          <motion.div variants={leftVariants}>
             {data.nav &&
               data.nav.map((d) => (
                 <div className="flex items-center gap-1" key={d}>
                   <svg
                     className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-                    aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 14 10"
@@ -72,124 +79,90 @@ function DivComponents({
           <motion.button
             onClick={() => router.push(`/ourservices/${data.heading}`)}
             whileHover={{ scale: 1.2 }}
-            className="border-2 border-[#7F6456] hover:text-white text-[#7F6456] hover:bg-[#7F6456]  transition-colors w-32 p-3 rounded-full"
+            variants={leftVariants}
+            className="border-2 border-[#7F6456] hover:text-white text-[#7F6456] hover:bg-[#7F6456] transition-colors w-32 p-3 rounded-full"
           >
             KNOW MORE
           </motion.button>
-
-          {/* </div> */}
         </div>
+
         <motion.div
+          className="group relative hidden sm:block"
           initial={{ x: 500 }}
           whileInView={{ x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, type: "easeInOut" }}
-          className="group relative hidden sm:block"
         >
           <motion.p
-            className={`absolute  hidden left-16 font-border text-[#7F6456] font-extrabold  ${
+            className={`absolute hidden left-16 font-border text-[#7F6456] font-extrabold  ${
               index === 1 ? "top-28" : ""
-            }   text-9xl p-4 inline-block group-hover:bg-clip-text group-hover:bg-[#7F6456] `}
+            } text-9xl p-4 inline-block group-hover:bg-clip-text group-hover:bg-[#7F6456] `}
             initial={{ visibility: "hidden" }}
             animate={{ visibility: "visible" }}
             style={{ y }}
           >{`#0${index}`}</motion.p>
+
           <Image
             src={data.name}
-            className="sm:-mt-20 "
+            className="sm:-mt-20"
             width="600"
             height="460"
             alt={data.heading}
           />
         </motion.div>
-      </div>
+      </motion.div>
     );
   } else {
     return (
-      <div className="flex justify-between items-end sm:items-stretch">
-        <motion.div
-          initial={{ x: -500 }}
-          whileInView={{ x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, type: "easeInOut" }}
-          className="group relative  w-1/2 hidden sm:block"
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="flex flex-col gap-7 p-10"
+      >
+        <motion.p
+          variants={itemVariants}
+          className="nasalization text-center text-3xl text-[#7F6456]"
         >
-          <motion.p
-            className="absolute   right-40 top-10 font-border text-[#7F6456] font-extrabold   text-9xl p-4 inline-block group-hover:bg-clip-text group-hover:bg-[#7F6456] "
-            initial={{ visibility: "hidden" }}
-            animate={{ visibility: "visible" }}
-            style={{ y }}
-          >{`#0${index}`}</motion.p>
-          <Image
-            src={data.name}
-            className="-mt-20  "
-            width="600"
-            height="460"
-            alt={data.name}
-          />
+          {data.heading}
+        </motion.p>
+
+        <motion.p variants={itemVariants}>{data.body}</motion.p>
+
+        <motion.div variants={itemVariants} className="">
+          {data.nav &&
+            data.nav.map((d) => (
+              <div className="flex items-center gap-1" key={d}>
+                <svg
+                  className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9"
+                  />
+                </svg>
+                <p className="whitespace-nowrap">{d}</p>
+              </div>
+            ))}
         </motion.div>
-        <div className="sm:w-1/2 flex justify-center items-center -mt-5">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className=" flex  flex-col  gap-7 p-10 "
-          >
-            <motion.p
-              initial={{ x: 500 }}
-              whileInView={{ x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="nasalization  text-center  text-3xl text-[#7F6456]"
-            >
-              {data.heading}
-            </motion.p>
-            <motion.p
-              initial={{ x: 500 }}
-              whileInView={{ x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.25 }}
-            >
-              {data.body}
-            </motion.p>
-            <motion.div
-              initial={{ x: 500 }}
-              whileInView={{ x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
-              className=""
-            >
-              {data.nav &&
-                data.nav.map((d) => (
-                  <div className="flex items-center gap-1" key={d}>
-                    <svg
-                      className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                      />
-                    </svg>
-                    <p className="whitespace-nowrap">{d}</p>
-                  </div>
-                ))}
-            </motion.div>
-            <motion.button
-              onClick={() => router.push(`/ourservices/${data.heading}`)}
-              whileHover={{ scale: 1.2 }}
-              className="border-2 border-[#7F6456] hover:text-white text-[#7F6456] hover:bg-[#7F6456]  transition-colors w-32 p-3 rounded-full"
-            >
-              KNOW MORE
-            </motion.button>
-          </motion.div>
-        </div>
-      </div>
+
+        <motion.button
+          variants={itemVariants}
+          onClick={() => router.push(`/ourservices/${data.heading}`)}
+          whileHover={{ scale: 1.2 }}
+          className="border-2 border-[#7F6456] hover:text-white text-[#7F6456] hover:bg-[#7F6456] transition-colors w-32 p-3 rounded-full"
+        >
+          KNOW MORE
+        </motion.button>
+      </motion.div>
     );
   }
 }
