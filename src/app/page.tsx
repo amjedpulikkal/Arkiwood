@@ -22,7 +22,7 @@ export default function Home() {
     <>
       <Cursor />
       <Navbar />
-      <CallCpmponent/>
+      <CallCpmponent />
       <main className="  w-full  overflow-hidden">
         <div className="flex h-[580px] w-full relative overflow-hidden">
           <div className="w-4/5 hidden sm:block">
@@ -74,13 +74,27 @@ export default function Home() {
         <div className="pt-10" id="about">
           <div className=" w-full flex  h-[500px]  ">
             <div className="sm:w-[600px] w-full">
-              <Image
-                className="hidden sm:block"
-                src={"/Group 2248 (3).png"}
-                width={600}
-                height={460}
-                alt="My Image"
-              />
+              <div className=" relative">
+                <video
+                  className="absolute  w-[250px] right-48 rounded-t-full border-2 border-white "
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                >
+                  <source
+                    src="/1a0249c7f295d5dae9001bd0c8563e20.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+                <Image
+                  className="hidden sm:block -mr-12"
+                  src={"/Vector 5.png"}
+                  width={500}
+                  height={460}
+                  alt="My Image"
+                />
+              </div>
             </div>
             <div className="flex justify-center items-center sm:w-3/5 pr-10">
               <div>
@@ -106,8 +120,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-       
 
         <OurServices />
         <Example />
