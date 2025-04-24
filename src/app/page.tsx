@@ -76,7 +76,7 @@ export default function Home() {
             <div className="sm:w-[600px] w-full">
               <div className=" relative">
                 <video
-                  className="absolute  w-[250px] right-48 rounded-t-full border-2 border-white "
+                  className="absolute hidden sm:block  w-[250px] right-48 rounded-t-full border-2 border-white "
                   muted
                   loop
                   playsInline
