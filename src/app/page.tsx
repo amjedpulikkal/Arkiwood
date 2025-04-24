@@ -107,58 +107,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="h-36 bg-black  flex text-white gap-2 justify-center items-center flex-col">
-          <div className="flex justify-between items-center text-2xl text-primary gap-1">
-            <Image
-              src={"/logo-instagram.png"}
-              width={23}
-              height={23}
-              alt={"logo-instagram.png"}
-            />
-            <p>@arkiwood.uae</p>
-          </div>
-
-          <div className="flex gap-1.5 ">
-            <div className="flex items-center gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-              >
-                <circle cx="12" cy="12" r="4" />
-              </svg>
-              <p>See our latest projects</p>
-            </div>
-
-            <div className="flex items-center gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-              >
-                <circle cx="12" cy="12" r="4" />
-              </svg>
-              <p>Get exclusive design tips</p>
-            </div>
-
-            <div className="flex items-center gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-              >
-                <circle cx="12" cy="12" r="4" />
-              </svg>
-              <p>Be inspired by our creative process</p>
-            </div>
-          </div>
-        </div>
+       
 
         <OurServices />
         <Example />

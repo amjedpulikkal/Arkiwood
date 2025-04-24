@@ -11,8 +11,14 @@ import {
 } from "@/components/ui/drawer";
 
 export function DrawerNav() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <Drawer direction="right">
+    <Drawer direction="right" open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger aria-label="Open navigation menu">
         <svg
           className="block size-6"
@@ -37,16 +43,17 @@ export function DrawerNav() {
         <nav>
           <ul className="flex flex-col gap-4">
             {[
-              { name: "Services", href: "#our-services" },
-              { name: "Blogs", href: "#blogs" },
-              { name: "Projects", href: "#projects" },
-              { name: "About", href: "#about" },
-              { name: "Contact", href: "#contact" },
+              { name: "Services", href: "/#our-services" },
+              { name: "Blogs", href: "/#blogs" },
+              { name: "Projects", href: "/#projects" },
+              { name: "About", href: "/#about" },
+              { name: "Contact", href: "/#contact" },
             ].map(({ name, href }) => (
               <li key={name}>
                 <Link
                   href={href}
                   className="block text-lg font-medium text-gray-700 hover:text-[#7F6456] transition-colors"
+                  onClick={handleLinkClick}
                 >
                   {name}
                 </Link>
