@@ -664,7 +664,6 @@ export default function OurServices() {
         "Space Planning & Concepts",
         "Material and Finish Selection",
         "Lighting & Furniture Design",
-        "Kitchen and Bathroom Design",
       ],
     },
     {
