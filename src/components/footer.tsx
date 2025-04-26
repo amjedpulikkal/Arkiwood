@@ -42,23 +42,23 @@ export default function FooterFooter() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Discord Server
+                <a href="https://www.instagram.com/arkiwood.uae?igsh=eXN1aW1ubDMybnow" className="hover:underline">
+                 Instagram
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Twitter
+                <a href="https://www.linkedin.com/company/arkiwooduae/" className="hover:underline">
+                  LInkdin
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <a href="https://x.com/arkiwoodua4518" className="hover:underline">
+                 X(Twitter)
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="https://www.facebook.com/profile.php?id=61573591764228" className="hover:underline">
                   Facebook
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Contact Us
                 </a>
               </li>
             </ul>
