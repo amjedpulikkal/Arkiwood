@@ -404,7 +404,7 @@ function DivComponents({
   const router = useRouter();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
-  const y = useParallax(scrollYProgress, 300);
+  // const y = useParallax(scrollYProgress, 300);
 
   // Define variants for parent-child animations
   const containerVariants = {
