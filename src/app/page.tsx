@@ -98,7 +98,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center items-center sm:w-3/5 pr-10">
               <div>
-                <p className=" nasalization hover-underline-animation center text-4xl text-[#7F6456]">
+                <p className=" nasalization hover-underline-animation center text-4xl  text-[#7F6456]">
                   About Us
                 </p>
                 <p className="text-[#704e3c]">

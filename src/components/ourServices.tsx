@@ -513,7 +513,7 @@ function DivComponents({
           variants={rightImageVariants}
           className="group relative hidden sm:block"
         >
-          <motion.p
+          {/* <motion.p
             className={`absolute hidden left-16 font-border text-[#7F6456] font-extrabold ${
               index === 1 ? "top-28" : ""
             } text-9xl p-4 inline-block group-hover:bg-clip-text group-hover:bg-[#7F6456]`}
@@ -521,7 +521,7 @@ function DivComponents({
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.7 }}
             style={{ y }}
-          >{`#0${index}`}</motion.p>
+          >{`#0${index}`}</motion.p> */}
           <Image
             src={data.name}
             className="sm:-mt-20"
@@ -542,13 +542,13 @@ function DivComponents({
           variants={leftImageVariants}
           className="group relative w-1/2 hidden sm:block"
         >
-          <motion.p
+          {/* <motion.p
             className="absolute right-40 top-10 font-border text-[#7F6456] font-extrabold text-9xl p-4 inline-block group-hover:bg-clip-text group-hover:bg-[#7F6456]"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.7 }}
             style={{ y }}
-          >{`#0${index}`}</motion.p>
+          >{`#0${index}`}</motion.p> */}
           <Image
             src={data.name}
             className="-mt-20"
