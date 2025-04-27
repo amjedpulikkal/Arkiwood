@@ -387,7 +387,7 @@
 
 "use client";
 
-import { motion, useInView, MotionValue, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, MotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -402,8 +402,8 @@ function DivComponents({
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
   const router = useRouter();
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref });
+  // const ref = useRef(null);
+  // const { scrollYProgress } = useScroll({ target: ref });
   // const y = useParallax(scrollYProgress, 300);
 
   // Define variants for parent-child animations
@@ -615,9 +615,6 @@ function DivComponents({
   }
 }
 
-function useParallax(value: MotionValue<number>, distance: number) {
-  return useTransform(value, [0, 1], [-distance, distance]);
-}
 
 export default function OurServices() {
   const [data] = useState([
