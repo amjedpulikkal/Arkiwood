@@ -4,11 +4,11 @@ import Link from "next/link";
 import { DrawerNav } from "./navDrawer";
 export default function Navbar() {
   return (
-    <nav className=" h-16 md:h-20 flex justify-between items-center px-8  ">
-      <div className=" ">
+    <nav className=" h-16 w-full md:h-20   z-50 shadow-md flex justify-between items-center px-8  ">
+      <div className=" p-5 ">
         <Link href={"/"}>
           <Image
-            className="w-28 md:w-16 lg:w-28 dark:invert"
+            className="w-28    dark:invert"
             src="/logo.png"
             alt="logo"
             width={240}

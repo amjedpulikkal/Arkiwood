@@ -9,6 +9,7 @@ import { Example } from "@/components/regulatory";
 
 import type { Metadata } from "next";
 import CallCpmponent from "@/components/callCpmponent";
+import {Banner} from "@/components/banner";
 // import Review from "@/components/review";
 
 export const metadata: Metadata = {
@@ -21,55 +22,11 @@ export default function Home() {
   return (
     <>
       <Cursor />
-      <Navbar />
       <CallCpmponent />
+      <Navbar />
+      <Banner/>
       <main className="  w-full  overflow-hidden">
-        <div className="flex h-[580px] w-full relative overflow-hidden">
-          <div className="w-4/5 hidden sm:block">
-            <Image
-              src="/DALL·E 2025-02-27.png"
-              fill
-              className="w-[817px] "
-              priority
-              alt=""
-            />
-          </div>
-          <div
-            className="absolute right-0 flex opacity-0 sm:opacity-100 justify-center items-center sm:w-4/5 w-full h-full"
-            style={{
-              backgroundImage: "url('/Group 2233.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            {/* <img src="/Group 2233.png" className="h-[580px] w-[1000px]" alt="" /> */}
-            <Image
-              className=" sm:ml-[260px] sm:-mt-52"
-              src="/logo.png"
-              width={350}
-              height={400}
-              alt=""
-            />
-          </div>
-          <div
-            className="absolute right-0 flex opacity-100 sm:opacity-0 justify-center items-center sm:w-4/5 w-full h-full"
-            style={{
-              backgroundImage: "url('/Vector 3.png')",
-              // backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundSize: "170%",
-            }}
-          >
-            {/* <img src="/Group 2233.png" className="h-[580px] w-[1000px]" alt="" /> */}
-            <Image
-              className=" sm:ml-[260px] sm:-mt-52"
-              src="/logo.png"
-              width={350}
-              height={400}
-              alt=""
-            />
-          </div>
-        </div>
+        
 
         <div className="pt-10" id="about">
           <div className=" w-full flex  h-[500px]  ">
