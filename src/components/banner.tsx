@@ -159,7 +159,7 @@ export function Banner() {
         <div className="w-screen top-0 absolute h-screen flex sm:justify-evenly justify-center  z-0 pointer-events-none">
           
 
-          <div className="sm:w-1/2 px-28 sm:py-0 mt-20    break-words">
+          <div className="sm:w-1/2 px-16 sm:py-0 mt-20    break-words">
           
             <AnimatePresence mode="wait">
               <motion.div
