@@ -41,21 +41,30 @@ export default function CallCpmponent() {
   };
   return (
     <div className="fixed right-0 bottom-0 z-10">
-      <motion.div {...imgAnimation2} onClick={handleCall} className="-pr-0.5 cursor-pointer  -mt-3 ">
+      <motion.div
+        {...imgAnimation2}
+        onClick={handleCall}
+        className=" cursor-pointer  -mt-3 "
+      >
         <Image
-          src="/istockphoto-1494579261-1024x1024.jpg"
+          inlist={{ x: 300 }}
+          src="/telephone-call_3059561.png"
           alt="review.png"
-          width={60}
-          height={60}
-          className="rounded-full"
+          width={50}
+          height={50}
+          className="rounded-full bg-white"
         ></Image>
       </motion.div>
-      <motion.div onClick={sendMessage} className="cursor-pointer " {...imgAnimation3}>
+      <motion.div
+        onClick={sendMessage}
+        className="cursor-pointer  "
+        {...imgAnimation3}
+      >
         <Image
           src="/download-removebg-preview.png"
           alt="review.png"
-          width={70}
-          height={70}
+          width={60}
+          height={60}
         ></Image>
       </motion.div>
     </div>
