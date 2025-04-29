@@ -181,6 +181,7 @@ export function Banner() {
                           {char === " " ? "\u00A0" : char}
                         </motion.span>
                       ))}
+                      {"\u00A0"}
                     </motion.span>
                   ))}
               </motion.div>
