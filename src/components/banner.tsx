@@ -22,11 +22,6 @@ export function Banner() {
         "From stunning landscapes to flawless interiors, we craft spaces that inspire and endure.",
     },
     {
-      headline: "Complete Solutions for Every Space",
-      subheadline:
-        "Architecture, Interiors, Engineering & More — tailored expertly to your vision and needs.",
-    },
-    {
       headline: "Where Innovation Meets Craftsmanship",
       subheadline:
         "Delivering excellence in design, engineering, and construction — with quality you can trust.",
@@ -92,10 +87,10 @@ export function Banner() {
   };
 
   const image = [
-    "/WhatsApp Image 2025-04-22 at 7.51.47 AM.jpeg",
-    "/b194ee73982fd0fa136d5841c73bf907.jpg",
-    "/pixlr-image-generator-e83016fe-ee2f-4685-9355-18df006e4190.png",
-    "/pixlr-image-generator-73290afe-3db3-4fb4-a78b-fabd467c23ad.png",
+    "/pexels-janetrangdoan-1024248.jpg",
+    "/pexels-pixabay-280232.jpg",
+    "/pexels-chaitaastic-1918291.jpg",
+    "/pexels-home-decor-interiors-634144-1827054.jpg",
   ];
 
   const nextSlide = () => {
@@ -104,7 +99,6 @@ export function Banner() {
   };
 
   useEffect(() => {
-    // Update cIndex and key when time changes
     setCIndex((prevIndex) => (prevIndex + 1) % textData.length);
   }, [time, textData.length]);
 
@@ -120,7 +114,9 @@ export function Banner() {
     <>
       <div className="relative overflow-hidden">
         <div className="flex">
-          {/* <div className="w-40 h-screen bg-black hidden sm:block">d</div> */}
+          {/* <div className="w-40 h-screen relative overflow-hidden bg-black hidden sm:block">
+          
+          </div> */}
           <Carousel
             opts={{
               align: "start",
@@ -156,11 +152,8 @@ export function Banner() {
           </Carousel>
         </div>
 
-        <div className="w-screen top-0 absolute h-screen flex sm:justify-evenly justify-center  z-0 pointer-events-none">
-          
-
-          <div className="sm:w-1/2 px-16 sm:py-0 mt-20    break-words">
-          
+        <div className="w-screen top-0 absolute h-screen flex sm:justify-evenly justify-center items-center  z-0 pointer-events-none">
+          <div className="sm:w-1/2 px-16 sm:py-0    break-words">
             <AnimatePresence mode="wait">
               <motion.div
                 className="inline-block" // Changed from flex-wrap
@@ -181,7 +174,7 @@ export function Banner() {
                     >
                       {word.split("").map((char, charIndex) => (
                         <motion.span
-                          className="sm:text-8xl text-5xl drop-shadow-cyan-500/50 font-extrabold text-gray-200"
+                          className="sm:text-6xl text-5xl drop-shadow-cyan-500/50 font-extrabold text-gray-200"
                           key={charIndex}
                           variants={characterVariants}
                         >
@@ -209,7 +202,7 @@ export function Banner() {
               </motion.p>
             </AnimatePresence>
           </div>
-          <div className="h-full mt-36 hidden sm:block">
+          <div className=" hidden sm:block">
             <Image
               className=" drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]"
               src="/logo.png"
