@@ -533,7 +533,7 @@ function DivComponents({
       </div>
     );
   } else {
-    // Even index layout
+   
     return (
       <div ref={containerRef} className="flex justify-between items-end sm:items-stretch">
         <motion.div
@@ -619,19 +619,6 @@ function DivComponents({
 export default function OurServices() {
   const [data] = useState([
     {
-      name: "/Group 2249.png",
-      heading: "Landscaping",
-      body: `Transform outdoor spaces into stunning, functional environments.
-  From lush gardens to modern hardscapes, we design landscapes
-  that harmonize with architecture and nature.`,
-      nav: [
-        "Garden Design",
-        "Landscape Architecture",
-        "Landscaping for Climate",
-        "Sustainable Landscaping",
-      ],
-    },
-    {
       name: "/Group 2250.png",
       heading: "Architectural Design",
       body: `Innovative and practical architectural solutions tailored to your vision. From concept to construction, we ensure designs that inspire and perform.`,
@@ -665,7 +652,7 @@ export default function OurServices() {
     },
     {
       name: "/Group 2253.png",
-      heading: "Civil & Fit-Out Works",
+      heading: "Civil & Interior Fit out",
       body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution.
   From partitions to finishes, we build with precision.`,
       nav: [
@@ -673,6 +660,19 @@ export default function OurServices() {
         "Flooring & Wall Finishes",
         "Electrical & HVAC Installations",
         "Plumbing & Sanitary Works",
+      ],
+    },
+    {
+      name: "/Group 2249.png",
+      heading: "Landscaping",
+      body: `Transform outdoor spaces into stunning, functional environments.
+  From lush gardens to modern hardscapes, we design landscapes
+  that harmonize with architecture and nature.`,
+      nav: [
+        "Garden Design",
+        "Landscape Architecture",
+        "Landscaping for Climate",
+        "Sustainable Landscaping",
       ],
     },
     {
