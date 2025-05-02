@@ -619,7 +619,7 @@ function DivComponents({
 export default function OurServices() {
   const [data] = useState([
     {
-      name: "/Group 2250.png",
+      name: "/Group 2251 (1).png",
       heading: "Architectural Design",
       body: `Innovative and practical architectural solutions tailored to your vision. From concept to construction, we ensure designs that inspire and perform.`,
       nav: [
@@ -630,7 +630,8 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2251 (1).png",
+
+      name: "/Group 2250.png",
       heading: "MEP Engineering",
       body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
       nav: [
@@ -641,7 +642,7 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2252.png",
+      name: "/Group 2253.png",
       heading: "Interior Design",
       body: `Bring life and function into your spaces with creative and client-centric interiors. We blend style with comfort to create environments that speak to you.`,
       nav: [
@@ -651,7 +652,8 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2253.png",
+
+      name: "/Group 2252.png",
       heading: "Civil & Interior Fit out",
       body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution.
   From partitions to finishes, we build with precision.`,
