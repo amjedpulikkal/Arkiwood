@@ -665,7 +665,7 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2249.png",
+      name: "/Group 2251.png",
       heading: "Landscaping",
       body: `Transform outdoor spaces into stunning, functional environments.
   From lush gardens to modern hardscapes, we design landscapes
