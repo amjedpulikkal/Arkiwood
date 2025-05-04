@@ -7,7 +7,7 @@ export default function ContactCom() {
   return (
     <div
       id="contact"
-      className="flex justify-between flex-wrap bgImage bg-black gap-2  sm:gap-0 sm:p-10 p-5 sm:pt-20 text-white"
+      className="flex justify-between flex-wrap bgImage  bg-black gap-2  sm:gap-0 sm:p-10 p-5 sm:pt-20 text-white"
     >
       <div className="sm:w-2/5 w-full mt-14 flex flex-col gap-6  sm:pr-5">
         <div className="flex gap-3">
@@ -53,16 +53,16 @@ export default function ContactCom() {
           loading="lazy"
         ></iframe>
       </div>
-      <div className=" h-full sm:w-3/5 w-full bg-[#7F6456] rounded-4xl ">
-        <div className="p-10 sm:pr-20 pt-10">
-          <p className="sm:text-6xl text-3xl font-extrabold ">
+      <div className=" h-full sm:w-3/5 w-full bg-[#543d32] rounded-4xl ">
+        <div className="p-10 pt-10">
+          <p className="sm:text-6xl text-3xl  sm:pr-20 font-extrabold ">
             Let’s Build Your Dream Together
           </p>
           <p className=" text-xl font-extralight mt-5">
             Your perfect space is just a call away.
           </p>
-          <div className="mt-10 sm:pr-32 sm:text-xl">
-            <form className="flex flex-col gap-2 ">
+          <div className="mt-10  sm:text-xl">
+            <form className="flex flex-col gap-5 ">
               <label htmlFor="">Full name</label>
               <input
                 type="text"
@@ -98,7 +98,7 @@ export default function ContactCom() {
                 whileHover={{ scale: 1.05 }}
                 type="submit"
                 value={"Send message"}
-                className="w-[%80] rounded-4xl h-10 bg-[#63493c] hover:bg-[#4e392e]"
+                className="w-[%80] rounded-4xl h-15 border hover:bg-[#4e392e]"
               />
             </form>
           </div>
