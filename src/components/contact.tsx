@@ -7,7 +7,7 @@ export default function ContactCom() {
   return (
     <div
       id="contact"
-      className="flex justify-between flex-wrap bgImage  bg-black gap-2  sm:gap-0 sm:p-10 p-5 sm:pt-20 text-white"
+      className="flex justify-between flex-wrap gradientC gap-2  sm:gap-0 sm:p-10 p-5 sm:pt-20 text-white"
     >
       <div className="sm:w-2/5 w-full mt-14 flex flex-col gap-6  sm:pr-5">
         <div className="flex gap-3">
@@ -53,7 +53,7 @@ export default function ContactCom() {
           loading="lazy"
         ></iframe>
       </div>
-      <div className=" h-full sm:w-3/5 w-full bg-[#543d32] rounded-4xl ">
+      <div className=" h-full sm:w-3/5 w-full bg-[#543d32]/40 rounded-4xl ">
         <div className="p-10 pt-10">
           <p className="sm:text-6xl text-3xl  sm:pr-20 font-extrabold ">
             Let’s Build Your Dream Together

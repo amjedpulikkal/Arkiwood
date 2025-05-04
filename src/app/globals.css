@@ -223,8 +223,7 @@
 } */
 
 .bgImage {
-  background-image: linear-gradient( rgba(11, 16, 18, 1) 10%, transparent 100%),
-
+  background-image: linear-gradient(rgba(11, 16, 18, 1) 10%, transparent 100%),
     radial-gradient(#a38272 2px, transparent 1px),
     radial-gradient(#a38272 2px, transparent 1px);
 
@@ -234,11 +233,31 @@
 }
 
 .servicesBgImage {
-  background-image: linear-gradient(#ffffff,99%, transparent 100%),
+  background-image: linear-gradient(#ffffff, 99%, transparent 100%),
     radial-gradient(#567f7d 2px, transparent 1px),
     radial-gradient(#7f6456 2px, transparent 1px);
 
   background-position: 0 0, 0 0, 10px 10px;
   background-size: 100% 100%, 20px 20px, 20px 20px;
   background-color: rgb(255, 255, 255);
+}
+
+.gradientC {
+  background:
+        /* Orange glow at top-right */ radial-gradient(
+      circle at top right,
+      rgba(255, 115, 0, 0.6),
+      rgba(255, 115, 0, 0) 40%
+    ),
+    /* Deep purple center */
+      radial-gradient(
+        circle at 40% 60%,
+        rgba(75, 0, 130, 0.6),
+        rgba(75, 0, 130, 0) 60%
+      ),
+    /* Black at bottom */
+      radial-gradient(circle at bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 50%),
+    /* Solid fallback */ #000;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
