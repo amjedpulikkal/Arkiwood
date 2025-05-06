@@ -60,8 +60,8 @@ const SubCat: React.FC<Props> = ({ data }) => {
                 onClick={() => handleTap(index)}
                 width={250}
                 height={250}
-                className={`absolute top-0 transition-opacity duration-500  group-hover:opacity-0 ${
-                  activeIndex == index ? "opacity-0" : "opacity-100"
+                className={`absolute top-0 transition-opacity duration-500 group-hover:border  group-hover:opacity-0 ${
+                  activeIndex == index ? "opacity-0 border" : "opacity-100 "
                 }`}
                 src={`/${data[1].image[index]}`}
                 alt="pixlr-image-generator-f4f6ebb2-fab9-4458-bd2a-6c9aa7001e36.png"

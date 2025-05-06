@@ -90,7 +90,7 @@ export function Banner() {
     "/pexels-janetrangdoan-1024248.jpg",
     "/pexels-pixabay-280232.jpg",
     "/pexels-chaitaastic-1918291.jpg",
-    "/pexels-home-decor-interiors-634144-1827054.jpg",
+    "/wmremove-transformed.webp",
   ];
 
   const nextSlide = () => {
