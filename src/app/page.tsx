@@ -81,7 +81,7 @@ export default function Home() {
 
         <OurServices />
         <Example />
-        <OurCertifications/>
+        {/* <OurCertifications/> */}
         <OurClients />
         {/* <Review /> */}
         <ContactCom />
