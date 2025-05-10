@@ -10,6 +10,7 @@ import { Example } from "@/components/regulatory";
 import type { Metadata } from "next";
 import CallCpmponent from "@/components/callCpmponent";
 import {Banner} from "@/components/banner";
+import OurCertifications from "@/components/ourCertifications";
 // import Review from "@/components/review";
 
 export const metadata: Metadata = {
@@ -80,6 +81,7 @@ export default function Home() {
 
         <OurServices />
         <Example />
+        <OurCertifications/>
         <OurClients />
         {/* <Review /> */}
         <ContactCom />

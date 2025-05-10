@@ -525,8 +525,8 @@ function DivComponents({
           <Image
             src={data.name}
             className="sm:-mt-20"
-            width="600"
-            height="460"
+           width="640"
+            height="500"
             alt={data.heading}
           />
         </motion.div>
@@ -552,8 +552,8 @@ function DivComponents({
           <Image
             src={data.name}
             className="-mt-20"
-            width="600"
-            height="460"
+            width="640"
+            height="500"
             alt={data.name}
           />
         </motion.div>

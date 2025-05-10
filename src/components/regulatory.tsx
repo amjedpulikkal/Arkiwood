@@ -158,7 +158,7 @@ export const Example = () => {
   return (
     <>
       <div className="flex justify-center w-full  pb-10 px-2.5">
-        <h1 className=" hover-underline-animation center nasalization  text-4xl text-[#7F6456]">
+        <h1 className=" hover-underline-animation text-center nasalization  text-4xl text-[#7F6456]">
           Authorities & Approvals We Work With
         </h1>
       </div>
