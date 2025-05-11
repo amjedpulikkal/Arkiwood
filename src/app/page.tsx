@@ -55,7 +55,7 @@ export default function Home() {
                 /> */}
               </div>
             </div>
-            <div className="flex justify-center items-center sm:w-3/5 pr-10">
+            <div className="flex justify-center items-center sm:mt-0 mt-72 sm:w-3/5 pr-10">
               <div>
                 <p className=" nasalization hover-underline-animation center text-4xl  text-[#7F6456]">
                   About Us
@@ -79,10 +79,10 @@ export default function Home() {
                 <div className="flex flex-wrap justify-evenly mt-4 ">
                   {[
                     {
-                      src: "/8d1ba13b-e31a-43ee-aab7-f187f704cb60.jpg",
-                      title: "Government E-Marketplace (GEV) Certification",
-                      desc: "Recognized as a registered vendor on the Government e-Marketplace, ensuring verified business compliance.",
-                      alt: "GEV Certificate",
+                      src: "/1746855302712-4fd7fa1e-68d2-4134-b764-a3980b730908_1.jpg",
+                      title: "ISO 9001: Quality Management",
+                      desc: "Ensures our processes consistently deliver high quality and client satisfaction.",
+                      alt: "ISO 9001 Certificate",
                     },
                     {
                       src: "/1746853721271-1d396663-da7f-4260-8c8b-76871714790c_1.jpg",
@@ -91,10 +91,10 @@ export default function Home() {
                       alt: "ISO 14001 Certificate",
                     },
                     {
-                      src: "/1746855302712-4fd7fa1e-68d2-4134-b764-a3980b730908_1.jpg",
-                      title: "ISO 9001: Quality Management",
-                      desc: "Ensures our processes consistently deliver high quality and client satisfaction.",
-                      alt: "ISO 9001 Certificate",
+                      src: "/8d1ba13b-e31a-43ee-aab7-f187f704cb60.jpg",
+                      title: "Government E-Marketplace (GEV) Certification",
+                      desc: "Recognized as a registered vendor on the Government e-Marketplace, ensuring verified business compliance.",
+                      alt: "GEV Certificate",
                     },
                   ].map((cert, index) => (
                     <div key={index} className="text-center max-w-[300px]">
