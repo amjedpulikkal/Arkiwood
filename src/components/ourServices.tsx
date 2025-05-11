@@ -5,9 +5,6 @@
 // import { useRouter } from "next/navigation";
 // import { useRef, useState } from "react";
 
-
-
-
 // function DivComponents({
 //   data,
 //   index,
@@ -28,24 +25,23 @@
 //       }
 //     }
 //   };
-  
+
 //   const itemVariants = {
 //     hidden: { opacity: 0, x: 100 },
-//     visible: { 
-//       opacity: 1, 
+//     visible: {
+//       opacity: 1,
 //       x: 0,
 //       transition: { duration: 0.5 }
 //     }
 //   };
-  
+
 //   const imageVariants = {
 //     hidden: { x: -500 },
-//     visible: { 
+//     visible: {
 //       x: 0,
-//       transition: { duration: 0.6, type: "easeInOut" } 
+//       transition: { duration: 0.6, type: "easeInOut" }
 //     }
 //   };
-  
 
 //   const router = useRouter();
 //   const ref = useRef(null);
@@ -383,11 +379,9 @@
 //   );
 // }
 
-
-
 "use client";
 
-import { motion, useInView, } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -413,49 +407,52 @@ function DivComponents({
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
-  
+
   const leftItemVariants = {
     hidden: { opacity: 0, x: -100 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
-  
+
   const rightItemVariants = {
     hidden: { opacity: 0, x: 100 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
-  
+
   const leftImageVariants = {
     hidden: { x: -500 },
-    visible: { 
+    visible: {
       x: 0,
-      transition: { duration: 0.6, type: "easeInOut" } 
-    }
+      transition: { duration: 0.6, type: "easeInOut" },
+    },
   };
-  
+
   const rightImageVariants = {
     hidden: { x: 500 },
-    visible: { 
+    visible: {
       x: 0,
-      transition: { duration: 0.6, type: "easeInOut" } 
-    }
+      transition: { duration: 0.6, type: "easeInOut" },
+    },
   };
 
   if (index % 2 === 1) {
     // Odd index layout
     return (
-      <div ref={containerRef} className="flex justify-between items-start sm:items-stretch">
+      <div
+        ref={containerRef}
+        className="flex justify-between items-start sm:items-stretch"
+      >
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -464,14 +461,12 @@ function DivComponents({
         >
           <motion.p
             variants={leftItemVariants}
-            className="nasalization text-center text-3xl text-[#7F6456]"
+            className="nasalization text-center sm:text-3xl text-2xl text-[#7F6456]"
           >
             {data.heading}
           </motion.p>
-          
-          <motion.p variants={leftItemVariants}>
-            {data.body}
-          </motion.p>
+
+          <motion.p variants={leftItemVariants}>{data.body}</motion.p>
 
           <motion.div variants={leftItemVariants} className="">
             {data.nav &&
@@ -506,7 +501,7 @@ function DivComponents({
             KNOW MORE
           </motion.button>
         </motion.div>
-        
+
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -525,7 +520,7 @@ function DivComponents({
           <Image
             src={data.name}
             className="sm:-mt-20"
-           width="640"
+            width="640"
             height="500"
             alt={data.heading}
           />
@@ -533,9 +528,11 @@ function DivComponents({
       </div>
     );
   } else {
-   
     return (
-      <div ref={containerRef} className="flex justify-between items-end sm:items-stretch">
+      <div
+        ref={containerRef}
+        className="flex justify-between items-end sm:items-stretch"
+      >
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -557,7 +554,7 @@ function DivComponents({
             alt={data.name}
           />
         </motion.div>
-        
+
         <div className="sm:w-1/2 flex justify-center items-center -mt-5">
           <motion.div
             initial="hidden"
@@ -567,15 +564,13 @@ function DivComponents({
           >
             <motion.p
               variants={rightItemVariants}
-              className="nasalization text-center text-3xl text-[#7F6456]"
+              className="nasalization text-center sm:text-3xl text-2xl text-[#7F6456]"
             >
               {data.heading}
             </motion.p>
-            
-            <motion.p variants={rightItemVariants}>
-              {data.body}
-            </motion.p>
-            
+
+            <motion.p variants={rightItemVariants}>{data.body}</motion.p>
+
             <motion.div variants={rightItemVariants} className="">
               {data.nav &&
                 data.nav.map((d) => (
@@ -599,7 +594,7 @@ function DivComponents({
                   </div>
                 ))}
             </motion.div>
-            
+
             <motion.button
               variants={rightItemVariants}
               onClick={() => router.push(`/ourservices/${data.heading}`)}
@@ -615,7 +610,6 @@ function DivComponents({
   }
 }
 
-
 export default function OurServices() {
   const [data] = useState([
     {
@@ -630,7 +624,6 @@ export default function OurServices() {
       ],
     },
     {
-
       name: "/Group 2250.png",
       heading: "MEP Engineering",
       body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
@@ -652,7 +645,6 @@ export default function OurServices() {
       ],
     },
     {
-
       name: "/Group 2252.png",
       heading: "Civil & Interior Fit out",
       body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution.
@@ -691,7 +683,7 @@ export default function OurServices() {
   ]);
 
   return (
-    <div id="our-services" className="pb-14">
+    <div id="our-services" className="pb-14 sm:mt-0 mt-32 ">
       <div className="py-24 flex justify-center">
         <p className="nasalization hover-underline-animation text-4xl text-[#7F6456] text-center">
           Our Services
