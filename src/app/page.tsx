@@ -9,7 +9,7 @@ import { Example } from "@/components/regulatory";
 
 import type { Metadata } from "next";
 import CallCpmponent from "@/components/callCpmponent";
-import {Banner} from "@/components/banner";
+import { Banner } from "@/components/banner";
 // import OurCertifications from "@/components/ourCertifications";
 // import Review from "@/components/review";
 
@@ -25,16 +25,17 @@ export default function Home() {
       <Cursor />
       <CallCpmponent />
       <Navbar />
-      <Banner/>
+      <Banner />
       <main className="  w-full  overflow-hidden">
-        
-
         <div className="pt-10" id="about">
           <div className=" w-full flex  h-[500px]  ">
             <div className="sm:w-[600px] w-full">
               <div className=" relative">
+                <div className=" absolute hidden sm:block h-[442px] -top-5 w-[250px] right-44   rounded-t-full rounded-b-full border-2 border-[#d0c5b8] ">  
+       
+                </div>
                 <video
-                  className="absolute hidden sm:block  w-[250px] right-48  rounded-t-full rounded-b-full border-2 border-white "
+                  className="absolute hidden sm:block  w-[250px] right-48  rounded-t-full rounded-b-full border-2 border-[#d0c5b8] "
                   muted
                   loop
                   playsInline
@@ -45,13 +46,13 @@ export default function Home() {
                     type="video/mp4"
                   />
                 </video>
-                <Image
+                {/* <Image
                   className="hidden sm:block -mr-12"
                   src={"/Vector 5.png"}
                   width={500}
                   height={460}
                   alt="My Image"
-                />
+                /> */}
               </div>
             </div>
             <div className="flex justify-center items-center sm:w-3/5 pr-10">
@@ -74,6 +75,36 @@ export default function Home() {
                   only functional but also ready to inspire—whether for work or
                   living.
                 </p>
+
+                <div className="flex justify-between mt-4 ">
+                  {[
+                    {
+                      src: "/8d1ba13b-e31a-43ee-aab7-f187f704cb60.jpg",
+                      title: "Government E-Marketplace (GEV) Certification",
+                      desc: "Recognized as a registered vendor on the Government e-Marketplace, ensuring verified business compliance.",
+                      alt: "GEV Certificate",
+                    },
+                    {
+                      src: "/1746853721271-1d396663-da7f-4260-8c8b-76871714790c_1.jpg",
+                      title: "ISO 14001: Environmental Management",
+                      desc: "Demonstrates our commitment to sustainable and eco-conscious operations.",
+                      alt: "ISO 14001 Certificate",
+                    },
+                    {
+                      src: "/1746855302712-4fd7fa1e-68d2-4134-b764-a3980b730908_1.jpg",
+                      title: "ISO 9001: Quality Management",
+                      desc: "Ensures our processes consistently deliver high quality and client satisfaction.",
+                      alt: "ISO 9001 Certificate",
+                    },
+                  ].map((cert, index) => (
+                    <div key={index} className="text-center max-w-[300px]">
+                      <p className="mt-4 text-[#704e3c] font-medium">
+                        {cert.title}
+                      </p>
+                      <p className="text-sm text-[#704e3c]">{cert.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
