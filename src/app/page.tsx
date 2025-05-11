@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import Navbar from "@/components/navbar";
 import OurServices from "@/components/ourServices";
 import ContactCom from "@/components/contact";
@@ -76,7 +76,7 @@ export default function Home() {
                   living.
                 </p>
 
-                <div className="flex justify-between mt-4 ">
+                <div className="flex flex-wrap justify-evenly mt-4 ">
                   {[
                     {
                       src: "/8d1ba13b-e31a-43ee-aab7-f187f704cb60.jpg",
