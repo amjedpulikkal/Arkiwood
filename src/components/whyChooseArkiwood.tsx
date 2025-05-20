@@ -63,7 +63,10 @@ export default function WhyChooseArkiwood() {
           </p>
           <div className="flex justify-evenly pt-7">
             {logos.map((data, index) => (
-              <div key={`${index+"24"}`} className=" flex justify-center flex-col items-center">
+              <div
+                key={`${index + "24"}`}
+                className=" flex justify-center flex-col items-center"
+              >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   key={`${index + data.image}`}
@@ -76,7 +79,7 @@ export default function WhyChooseArkiwood() {
                     className="object-contain rounded-lg"
                   />
                 </motion.div>
-                <p>{data.title}</p>
+                <p className="text-center">{data.title}</p>
               </div>
             ))}
           </div>
@@ -97,29 +100,50 @@ export default function WhyChooseArkiwood() {
           </p>
           <div className=" flex justify-evenly flex-wrap pt-7">
             <Link href={"/AE59602A_ARKIWOOD_TECHNICAL%20...pdf"}>
-              <Image
-                src={"/9001.webp"}
-                width={100}
-                height={100}
-                alt={"9001.webp"}
-              />
+              <div className="inline-block">
+                <Image
+                  src="/9001.webp"
+                  width={100}
+                  height={100}
+                  alt="9001"
+                  className="filter"
+                  style={{
+                    filter:
+                      "brightness(0) invert(0.5) sepia(0.4) saturate(1.5) hue-rotate(330deg)",
+                  }}
+                />
+              </div>
             </Link>
 
             <Link href={"/AE59602C-1_ARKIWOOD_TECHNICA...pdf"}>
-              <Image
-                src={"/45001.webp"}
-                width={100}
-                height={100}
-                alt={"45001.webp"}
-              />
+              <div className="inline-block">
+                <Image
+                  src={"/45001.webp"}
+                  width={100}
+                  height={100}
+                  alt={"45001.webp"}
+                  className="filter"
+                  style={{
+                    filter:
+                      "brightness(0) invert(0.5) sepia(0.4) saturate(1.5) hue-rotate(330deg)",
+                  }}
+                />
+              </div>
             </Link>
             <Link href={"/AE59602B_ARKIWOOD_TECHNICAL.pdf"}>
-              <Image
-                src={"/download.webp"}
-                width={100}
-                height={100}
-                alt={"14001.webp"}
-              />
+              <div className="inline-block">
+                <Image
+                  src={"/download.webp"}
+                  width={100}
+                  height={100}
+                  alt={"14001.webp"}
+                  className="filter"
+                  style={{
+                    filter:
+                      "brightness(0) invert(0.5) sepia(0.4) saturate(1.5) hue-rotate(330deg)",
+                  }}
+                />
+              </div>
             </Link>
           </div>
         </div>

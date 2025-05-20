@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function FooterFooter() {
@@ -42,22 +43,34 @@ export default function FooterFooter() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="https://www.instagram.com/arkiwood.uae?igsh=eXN1aW1ubDMybnow" className="hover:underline">
-                 Instagram
+                <a
+                  href="https://www.instagram.com/arkiwood.uae?igsh=eXN1aW1ubDMybnow"
+                  className="hover:underline"
+                >
+                  Instagram
                 </a>
               </li>
               <li className="mb-4">
-                <a href="https://www.linkedin.com/company/arkiwooduae/" className="hover:underline">
+                <a
+                  href="https://www.linkedin.com/company/arkiwooduae/"
+                  className="hover:underline"
+                >
                   LInkdin
                 </a>
               </li>
               <li className="mb-4">
-                <a href="https://x.com/arkiwoodua4518" className="hover:underline">
-                 X(Twitter)
+                <a
+                  href="https://x.com/arkiwoodua4518"
+                  className="hover:underline"
+                >
+                  X(Twitter)
                 </a>
               </li>
               <li className="mb-4">
-                <a href="https://www.facebook.com/profile.php?id=61573591764228" className="hover:underline">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61573591764228"
+                  className="hover:underline"
+                >
                   Facebook
                 </a>
               </li>
@@ -122,6 +135,36 @@ export default function FooterFooter() {
               </li>
             </ul>
           </div>
+        </div>
+        <div className=" flex justify-evenly flex-wrap ">
+          <Link href={"/AE59602A_ARKIWOOD_TECHNICAL%20...pdf"}>
+            <Image
+              src={"/9001.webp"}
+              width={100}
+              height={100}
+              alt={"9001.webp"}
+              className="grayscale"
+            />
+          </Link>
+
+          <Link href={"/AE59602C-1_ARKIWOOD_TECHNICA...pdf"}>
+            <Image
+              src={"/45001.webp"}
+              width={100}
+              height={100}
+              className="grayscale"
+              alt={"45001.webp"}
+            />
+          </Link>
+          <Link href={"/AE59602B_ARKIWOOD_TECHNICAL.pdf"}>
+            <Image
+              src={"/download.webp"}
+              width={100}
+              height={100}
+              className="grayscale"
+              alt={"14001.webp"}
+            />
+          </Link>
         </div>
         <div className="w-full text-center text-gray-500 dark:text-gray-400  p-5 -pt-5">
           <p>© {new Date().getFullYear()} Arkiwood. All rights reserved.</p>
