@@ -51,7 +51,7 @@ export default function WhyChooseArkiwood() {
       <div className="sm:flex ">
         <div className=" sm:w-1/2 flex-wrap gap-4 text-[#7F6456]">
           <div className="flex justify-center ">
-            <h1 className=" hover-underline-animation center nasalization text-3xl text-[#7F6456]">
+            <h1 className=" hover-underline-animation text-center nasalization text-3xl text-[#7F6456]">
               Why Choose Arkiwood
             </h1>
           </div>
