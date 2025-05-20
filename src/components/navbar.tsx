@@ -49,6 +49,9 @@ export default function Navbar() {
             <div className="w-1/2 text-xl nasalization hidden sm:block text-[#7f6456d7]">
               <ul className="flex justify-end  gap-x-6">
                 <li className="hover-underline-animation center hover:text-[#7F6456] transition-colors">
+                  <Link href={"/#about"}>About</Link>
+                </li>
+                <li className="hover-underline-animation center hover:text-[#7F6456] transition-colors">
                   <Link href={"/#our-services"}>Services</Link>
                 </li>
                 <li className="hover-underline-animation center hover:text-[#7F6456] transition-colors">
@@ -56,9 +59,6 @@ export default function Navbar() {
                 </li>
                 <li className="hover-underline-animation center hover:text-[#7F6456] transition-colors">
                   <Link href={"/#projects"}>Projects</Link>
-                </li>
-                <li className="hover-underline-animation center hover:text-[#7F6456] transition-colors">
-                  <Link href={"/#about"}>About</Link>
                 </li>
                 <li className="hover-underline-animation center hover:text-[#7F6456] transition-colors">
                   <Link href={"/#contact"}>Contact</Link>

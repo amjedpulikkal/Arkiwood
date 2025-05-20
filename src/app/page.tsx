@@ -10,6 +10,8 @@ import { Example } from "@/components/regulatory";
 import type { Metadata } from "next";
 import CallCpmponent from "@/components/callCpmponent";
 import { Banner } from "@/components/banner";
+import WhyChooseArkiwood from "@/components/whyChooseArkiwood";
+import AflterAndBeforImage from "@/components/aflterAndBeforImage";
 // import OurCertifications from "@/components/ourCertifications";
 // import Review from "@/components/review";
 
@@ -30,12 +32,9 @@ export default function Home() {
         <div className="pt-10" id="about">
           <div className=" w-full flex  h-[500px]  ">
             <div className="sm:w-[600px] w-full">
-              <div className=" relative">
-                <div className=" absolute hidden sm:block h-[442px] -top-5 w-[250px] right-44   rounded-t-full rounded-b-full border-2 border-[#d0c5b8] ">  
-       
-                </div>
+              <div className="relative">
                 <video
-                  className="absolute hidden sm:block  w-[250px] right-48  rounded-t-full rounded-b-full border-2 border-[#d0c5b8] "
+                  className="absolute hidden sm:block w-[342px] h-[442px] right-48 border-2 border-[#d0c5b8] hex-video"
                   muted
                   loop
                   playsInline
@@ -46,13 +45,6 @@ export default function Home() {
                     type="video/mp4"
                   />
                 </video>
-                {/* <Image
-                  className="hidden sm:block -mr-12"
-                  src={"/Vector 5.png"}
-                  width={500}
-                  height={460}
-                  alt="My Image"
-                /> */}
               </div>
             </div>
             <div className="flex justify-center items-center sm:mt-0 mt-72 sm:w-3/5 pr-10">
@@ -113,6 +105,9 @@ export default function Home() {
         <OurServices />
         <Example />
         {/* <OurCertifications/> */}
+        <WhyChooseArkiwood />
+        <AflterAndBeforImage />
+
         <OurClients />
         {/* <Review /> */}
         <ContactCom />

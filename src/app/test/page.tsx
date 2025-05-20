@@ -1,13 +1,13 @@
-import Head from "next/head";
+"use client";
+// import { useState, useRef } from "react";
 
-export default function Home() {
+export default function ImageComparisonSlider() {
+ 
   return (
-    <>
-      <Head>
-        <title>Arkiwood</title>
-        <meta name="description" content="Discover top-quality services and solutions tailored to your needs." />
-      </Head>
-      <h1>Welcome to Arkiwood</h1>
-    </>
+    <div
+    
+    >
+     
+    </div>
   );
 }
