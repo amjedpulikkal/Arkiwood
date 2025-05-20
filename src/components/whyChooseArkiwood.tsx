@@ -48,8 +48,8 @@ export default function WhyChooseArkiwood() {
   return (
     <div className=" px-6 pt-20">
       <div className="flex justify-center"></div>
-      <div className="flex ">
-        <div className=" w-1/2 flex-wrap gap-4 text-[#7F6456]">
+      <div className="sm:flex ">
+        <div className=" sm:w-1/2 flex-wrap gap-4 text-[#7F6456]">
           <div className="flex justify-center ">
             <h1 className=" hover-underline-animation center nasalization text-3xl text-[#7F6456]">
               Why Choose Arkiwood
@@ -81,7 +81,7 @@ export default function WhyChooseArkiwood() {
             ))}
           </div>
         </div>
-        <div className="w-1/2 text-[#7F6456]">
+        <div className="sm:w-1/2 text-[#7F6456] sm:mt-0 mt-10">
           <div className="flex justify-center ">
             <h1 className=" hover-underline-animation center nasalization text-3xl text-[#7F6456]">
               Our Authorizations

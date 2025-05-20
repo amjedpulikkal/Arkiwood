@@ -28,7 +28,7 @@ export default function AflterAndBeforImage() {
         Just like our work ethic, our designs and creative ideas are totally
         clear and open from the very start.
       </p>
-      <div className="flex justify-evenly flex-wrap pt-10">
+      <div className="flex justify-evenly gap-6 flex-wrap pt-10">
         {images.map((src, index) => (
           <ImageComparisonSlider key={`${index+src.bImage+src.fImage}`} bImage={src.bImage} fImage={src.fImage} />
         ))}

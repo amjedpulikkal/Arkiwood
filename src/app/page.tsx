@@ -68,7 +68,7 @@ export default function Home() {
                   living.
                 </p>
 
-                <div className="flex flex-wrap justify-evenly mt-4 ">
+                {/* <div className="flex flex-wrap justify-evenly mt-4 ">
                   {[
                     {
                       src: "/1746855302712-4fd7fa1e-68d2-4134-b764-a3980b730908_1.jpg",
@@ -96,7 +96,7 @@ export default function Home() {
                       <p className="text-sm text-[#704e3c]">{cert.desc}</p>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
