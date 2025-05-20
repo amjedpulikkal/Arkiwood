@@ -19,8 +19,8 @@ export default function AflterAndBeforImage() {
   ];
   return (
   <div className=" px-6 pt-20">
-      <div className="flex justify-center ">
-        <h1 className=" hover-underline-animation center nasalization text-4xl text-[#7F6456]">
+      <div className="flex justify-center text-center ">
+        <h1 className=" hover-underline-animation  nasalization text-4xl text-[#7F6456]">
           Projects We’re Excited About
         </h1>
       </div>
