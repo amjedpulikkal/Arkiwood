@@ -1,9 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
+type AutoScrollSectionProps = {
+  children: ReactNode;
+};
 
-const AutoScrollSection = ({ children }) => {
- const sectionRef = useRef<HTMLDivElement | null>(null);
-
+const AutoScrollSection: React.FC<AutoScrollSectionProps> = ({ children }) => {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -25,13 +27,7 @@ const AutoScrollSection = ({ children }) => {
     };
   }, []);
 
-  return (
-    <div
-      ref={sectionRef}
-    >
-      {children}
-    </div>
-  );
+  return <div ref={sectionRef}>{children}</div>;
 };
 
 export default AutoScrollSection;

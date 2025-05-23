@@ -10,7 +10,7 @@ import Footer from "@/components/footer";
 import { Banner } from "@/components/banner";
 import WhyChooseArkiwood from "@/components/whyChooseArkiwood";
 import AflterAndBeforImage from "@/components/aflterAndBeforImage";
-import AutoScrollSection from "./test/page";
+import AutoScrollSection from "@/components/autoScrollSection";
 
 import Service from "@/components/service";
 import Image from "next/image";
