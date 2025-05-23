@@ -680,12 +680,34 @@ export default function OurServices() {
         "Finishing & Polishing Works",
       ],
     },
+    {
+      name: "/Group 2254.png",
+      heading: "Authorities",
+      body: `Navigating approval processes is a crucial part of any interior or fit-out project. We assist clients in securing all necessary approvals from relevant authorities and building managements, ensuring designs and installations meet regulatory and landlord standards. From food sector permits to NOCs from mall and building managements, we handle the paperwork so you can focus on your business.`,
+      nav: [
+        "Civil Defense Authorities",
+        "Electricity & Water Authorities",
+        "Environmental & Sustainability Authorities",
+        "Free Zones & Special Authorities",
+      ],
+    },
+    {
+      name: "/Group 2254.png",
+      heading: "Approvals",
+      body: `We specialize in delivering carpentry and joinery works that fully comply with local authority regulations and building management standards across the UAE. Our team is experienced in handling documentation and technical requirements for approvals from entities such as Dubai Municipality, Civil Defense, DEWA, and major Free Zone authorities, ensuring smooth project execution without delays.`,
+      nav: [
+        "Food & Beverage Sector Approvals",
+        "Building Management & Developer Approvals",
+        "Building Owner/Landlord NOC",
+        "Mall Management Approval (For retail spaces)",
+      ],
+    },
   ]);
 
   return (
     <div id="our-services" className="pb-14 sm:mt-0 mt-32 ">
       <div className="py-24 flex justify-center">
-        <p className="nasalization hover-underline-animation text-4xl text-[#7F6456] text-center">
+        <p className="nasalization hover-underline-animation  text-4xl text-[#7F6456] text-center">
           Our Services
         </p>
       </div>

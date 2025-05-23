@@ -23,7 +23,50 @@ const ImageComparisonSlider: React.FC<ImageComparisonProps> = ({
   return (
     <motion.div whileHover={{scale:1.2}}
     //   ref={containerRef}
-      className="relative overflow-hidden sm:w-48 w-full rounded-lg shadow-xl"
+      className="relative overflow-hidden sm:w-48 w-full
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+       rounded-lg shadow-xl"
       style={containerStyle}
     >
       <div className="sm:w-56 w-full h-full sm:h-48 relative">

@@ -1,74 +1,64 @@
 // import Image from "next/image";
-import Navbar from "@/components/navbar";
-import OurServices from "@/components/ourServices";
+
 import ContactCom from "@/components/contact";
-import Cursor from "@/components/Cursor";
+
 import OurClients from "@/components/ourClients";
 import Footer from "@/components/footer";
-import { Example } from "@/components/regulatory";
 
-import type { Metadata } from "next";
-import CallCpmponent from "@/components/callCpmponent";
+
+
 import { Banner } from "@/components/banner";
 import WhyChooseArkiwood from "@/components/whyChooseArkiwood";
 import AflterAndBeforImage from "@/components/aflterAndBeforImage";
+import AutoScrollSection from "./test/page";
+
+import Service from "@/components/service";
+import Image from "next/image";
 // import OurCertifications from "@/components/ourCertifications";
 // import Review from "@/components/review";
 
-export const metadata: Metadata = {
-  title: "Arkiwood",
-  description:
-    "Discover top-quality services and solutions tailored to your needs. Stay ahead with our innovative platform and expert insights.",
-};
 
 export default function Home() {
   return (
     <>
-      <Cursor />
-      <CallCpmponent />
-      <Navbar />
       <Banner />
-      <main className="  w-full  overflow-hidden">
-        <div className="pt-10" id="about">
-          <div className=" w-full flex  h-[500px]  ">
-            <div className="sm:w-[600px] w-full">
-              <div className="relative">
-                <video
-                  className="absolute hidden sm:block w-[342px] h-[442px] right-48 border-2 border-[#d0c5b8] hex-video"
-                  muted
-                  loop
-                  playsInline
-                  autoPlay
-                >
-                  <source
-                    src="/1a0249c7f295d5dae9001bd0c8563e20.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
-            </div>
-            <div className="flex justify-center items-center sm:mt-0 mt-72 sm:w-3/5 pr-10">
-              <div>
-                <p className=" nasalization hover-underline-animation center text-4xl  text-[#7F6456]">
-                  About Us
-                </p>
-                <p className="text-[#704e3c]">
-                  At ARKIWOOD, we specialize in end-to-end solutions for
-                  transforming spaces across the UAE. From innovative interior
-                  design concepts to precise architectural drawings, MEP plans,
-                  and everything in between, we ensure every detail is
-                  meticulously covered. Our expert team navigates all regulatory
-                  approvals, ensuring smooth, hassle-free project execution from
-                  start to finish. Whether it’s residential, commercial, or
-                  industrial, we bring your vision to life with unmatched
-                  precision, creativity, and professionalism. From securing
-                  authority approvals to handing over the keys, we oversee every
-                  step of your interior journey, crafting spaces that are not
-                  only functional but also ready to inspire—whether for work or
-                  living.
-                </p>
 
-                {/* <div className="flex flex-wrap justify-evenly mt-4 ">
+      <main className="  w-full  overflow-hidden">
+        <AutoScrollSection>
+          <div className="mt-10" id="about">
+            <div className=" w-full sm:flex  h-[500px]  ">
+              <div className="sm:w-[600px] hidden sm:block w-full">
+                <div className="relative">
+                  <Image
+                    width={500}
+                    height={500}
+                    src={"/Group 2259 (2).png"}
+                    alt={"Group 2259 (2).png"}
+                  />
+                </div>
+              </div>
+              <div className="flex justify-center items-center sm:mt-0  sm:w-3/5 px-6 sm:pr-10">
+                <div>
+                  <p className=" nasalization hover-underline-animation center text-4xl  text-[#7F6456]">
+                    About Us
+                  </p>
+                  <p className="text-[#704e3c]">
+                    At ARKIWOOD, we specialize in end-to-end solutions for
+                    transforming spaces across the UAE. From innovative interior
+                    design concepts to precise architectural drawings, MEP
+                    plans, and everything in between, we ensure every detail is
+                    meticulously covered. Our expert team navigates all
+                    regulatory approvals, ensuring smooth, hassle-free project
+                    execution from start to finish. Whether it’s residential,
+                    commercial, or industrial, we bring your vision to life with
+                    unmatched precision, creativity, and professionalism. From
+                    securing authority approvals to handing over the keys, we
+                    oversee every step of your interior journey, crafting spaces
+                    that are not only functional but also ready to
+                    inspire—whether for work or living.
+                  </p>
+
+                  {/* <div className="flex flex-wrap justify-evenly mt-4 ">
                   {[
                     {
                       src: "/1746855302712-4fd7fa1e-68d2-4134-b764-a3980b730908_1.jpg",
@@ -97,20 +87,29 @@ export default function Home() {
                     </div>
                   ))}
                 </div> */}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </AutoScrollSection>
 
-        <OurServices />
-        <Example />
-        {/* <OurCertifications/> */}
-        <WhyChooseArkiwood />
-        <AflterAndBeforImage />
+        <Service />
 
-        <OurClients />
-        {/* <Review /> */}
-        <ContactCom />
+        {/* <AutoScrollSection> */}
+          <WhyChooseArkiwood />
+        {/* </AutoScrollSection> */}
+
+        {/* <AutoScrollSection> */}
+          <AflterAndBeforImage />
+        {/* </AutoScrollSection> */}
+
+        {/* <AutoScrollSection> */}
+          <OurClients />
+        {/* </AutoScrollSection> */}
+
+        {/* <AutoScrollSection> */}
+          <ContactCom />
+        {/* </AutoScrollSection> */}
         <Footer />
       </main>
     </>

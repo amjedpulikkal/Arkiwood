@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Navbar from "@/components/navbar";
+
 import Image from "next/image";
 import {
   Breadcrumb,
@@ -22,26 +22,22 @@ import {
 
 import data from "./data.json";
 import Footer from "@/components/footer";
-import Cursor from "@/components/Cursor";
-import { Metadata } from "next/types";
+// import Cursor from "@/components/Cursor";
+
 import Imagecom from "./imagecom";
 import SubCat from "./SubCat";
+import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Arkiwood",
-  description:
-    "Discover top-quality services and solutions tailored to your needs. Stay ahead with our innovative platform and expert insights.",
-};
+
 
 type tParams = Promise<{ services: string }>;
 export default async function page({ params }: { params: tParams }) {
   const p = decodeURIComponent((await params)?.services || "");
-
+  if (!(data as unknown as Data)[p]) {
+    notFound();
+  }
   return (
     <>
-      <Navbar />
-      <Cursor />
-
       <div className=" text-[#7F6456] ml-4 mt-4">
         <Breadcrumb className="">
           <BreadcrumbList className="text-xl">

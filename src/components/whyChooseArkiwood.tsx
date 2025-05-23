@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import Link from "next/link";
+
 import React from "react";
 
 export default function WhyChooseArkiwood() {
@@ -13,12 +13,12 @@ export default function WhyChooseArkiwood() {
       description:
         "We use only the finest materials to ensure long-lasting durability and beauty.",
     },
-    // {
-    //   image: "/web-design.png",
-    //   title: "Modern Design",
-    //   description:
-    //     "Our creations blend timeless woodcraft with contemporary aesthetics to suit any space.",
-    // },
+    {
+      image: "/web-design.png",
+      title: "Modern Design",
+      description:
+        "Our creations blend timeless woodcraft with contemporary aesthetics to suit any space.",
+    },
     // {
     //   image: "/trust.png",
     //   title: "Trusted Brand",
@@ -56,12 +56,14 @@ export default function WhyChooseArkiwood() {
             </h1>
           </div>
           <p className="pt-10">
-            At <samp className="nasalization">Arkiwood</samp> , we believe that
+            At <samp className="nasalization">Arkiwood</samp> we believe that
             exceptional interiors begin with thoughtful craftsmanship, quality
-            materials, and a commitment to customer satisfaction. Here’s what
-            sets us apart
+            materials, and a commitment to customer satisfaction. we don’t just
+            design interiors, we craft stories through detail, quality, and
+            care. What makes us different is what makes your space
+            unforgettable. Here’s what sets us apart.
           </p>
-          <div className="flex justify-evenly pt-7">
+          <div className="flex justify-evenly pt-8">
             {logos.map((data, index) => (
               <div
                 key={`${index + "24"}`}
@@ -98,7 +100,7 @@ export default function WhyChooseArkiwood() {
             compliance, and promoting sustainability in every project we
             undertake.
           </p>
-          <div className=" flex justify-evenly flex-wrap pt-7">
+          {/* <div className=" flex justify-evenly flex-wrap pt-7">
             <Link href={"/AE59602A_ARKIWOOD_TECHNICAL%20...pdf"}>
               <div className="inline-block">
                 <Image
@@ -145,6 +147,42 @@ export default function WhyChooseArkiwood() {
                 />
               </div>
             </Link>
+          </div> */}
+          <div className=" flex justify-center gap-2.5 flex-wrap pt-7">
+            <div className="inline-block">
+              <Image
+                src={"/logLAF.png"}
+                width={100}
+                height={100}
+                alt={"logLAF.webp"}
+              />
+            </div>
+            <div className="inline-block">
+              <Image
+                src={"/Group 2261.png"}
+                width={100}
+                height={100}
+                alt={"Group 2261.webp"}
+                
+              />
+            </div>
+            <div className="inline-block">
+              <Image
+                src="/download 10.png"
+                width={80}
+                height={80}
+                alt="Group"
+              />
+            </div>
+
+            <div className="inline-block">
+              <Image
+                src={"/logo2.png"}
+                width={100}
+                height={100}
+                alt={"logo2.webp"}
+              />
+            </div>
           </div>
         </div>
       </div>

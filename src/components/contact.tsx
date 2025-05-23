@@ -53,7 +53,7 @@ export default function ContactCom() {
           loading="lazy"
         ></iframe>
       </div>
-      <div className=" h-full sm:w-3/5 w-full bg-[#543d32]/40 rounded-4xl ">
+      <div className=" h-full sm:w-3/5 w-full card rounded-4xl ">
         <div className="p-10 pt-10">
           <p className="sm:text-6xl text-3xl  sm:pr-20 font-extrabold ">
             Let’s Build Your Dream Together
