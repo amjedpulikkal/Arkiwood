@@ -125,12 +125,28 @@ export function DrawerNav() {
               ))}
               <div className="flex justify-between items-center gap-4 ">
                 {[
-                  "/icons8-facebook-48.svg",
-                  "/icons8-instagram-logo.svg",
-                  "/icons8-linkedin-logo.svg",
-                ].map((url, index) => (
+                  {
+                    url: "https://www.facebook.com/profile.php?id=61573591764228",
+                    icon: "/icons8-facebook-48.svg",
+                  },
+                  {
+                    url: "https://x.com/arkiwoodua4518",
+                    icon: "/icons8-instagram-logo.svg",
+                  },
+                  {
+                    url: "https://www.linkedin.com/company/arkiwooduae/",
+                    icon: "/icons8-linkedin-logo.svg",
+                  },
+                ].map((item, index) => (
+                  <Link
+                    key={`social-link-${index}`}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                   
                   <motion.div
-                     key={`social-icon-${index}`}
+                    key={`social-icon-${index}`}
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{
@@ -141,12 +157,13 @@ export function DrawerNav() {
                     }}
                   >
                     <Image
-                      src={url}
+                      src={item.icon}
                       alt={`social-${index}`}
                       width={30}
                       height={30}
                     />
                   </motion.div>
+                  </Link>
                 ))}
               </div>
             </ul>

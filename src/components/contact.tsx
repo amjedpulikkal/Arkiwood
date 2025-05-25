@@ -41,7 +41,7 @@ export default function ContactCom() {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%23ffffff fill-opacity=0.1%3E%3Ccircle cx=7 cy=7 r=1/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
         </div>
 
-        <div className="relative z-10 flex justify-between gap-8 p-5 sm:p-10 sm:pt-20 text-white">
+        <div className="relative z-10 sm:flex justify-between gap-8 p-5 sm:p-10 sm:pt-20 text-white">
           <div className="w-full lg:w-2/5 mt-14 space-y-8">
             <div className="mb-12">
               <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-[#D4C4B0] bg-clip-text text-transparent">
@@ -124,8 +124,8 @@ export default function ContactCom() {
             </div>
           </div>
 
-          <div className="w-full lg:w-3/5 lg:pl-8">
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
+          <div className="w-full lg:w-3/5 lg:pl-8 ">
+            <div className="bg-gradient-to-br  sm:mt-0 mt-10 from-white/10 to-white/5 backdrop-blur-sm rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
               <div className="p-8 sm:p-12">
                 <div className="mb-8">
                   <h3 className="text-3xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#D4C4B0] to-[#7F6456] bg-clip-text text-transparent leading-tight">

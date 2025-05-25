@@ -40,7 +40,7 @@ export default function CallCpmponent() {
     window.location.href = `tel:+971588636991`;
   };
   return (
-    <div className="fixed right-0 bottom-0 z-10">
+    <div className="fixed right-0 bottom-0 z-[9999]">
       <motion.div
         {...imgAnimation2}
         onClick={handleCall}

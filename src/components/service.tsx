@@ -504,7 +504,6 @@
 //   );
 // }
 
-
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -652,22 +651,28 @@ export default function Service() {
     goPrev();
   }, [isDragging, goPrev]);
 
-  const goToSlide = useCallback((index: number) => {
-    if (isDragging) return;
-    setcIndex(index);
-  }, [isDragging]);
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (isDragging) return;
+      setcIndex(index);
+    },
+    [isDragging]
+  );
 
   // Handle image click for navigation
-  const handleImageClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    // Only navigate if user didn't drag
-    if (!hasDragged) {
-      e.stopPropagation();
-      const route = textData[cindex].route;
-      console.log(`Navigating to: ${route}`);
-      // Replace with your actual navigation logic
-      router.push(`/ourservices/${textData[cindex].heading}`);
-    }
-  }, [hasDragged, textData, cindex, router]);
+  const handleImageClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      // Only navigate if user didn't drag
+      if (!hasDragged) {
+        e.stopPropagation();
+        const route = textData[cindex].route;
+        console.log(`Navigating to: ${route}`);
+        // Replace with your actual navigation logic
+        router.push(`/ourservices/${textData[cindex].heading}`);
+      }
+    },
+    [hasDragged, textData, cindex, router]
+  );
 
   const handleStart = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     setIsDragging(true);
@@ -722,11 +727,14 @@ export default function Service() {
   }, [isDragging, dragDistance, hasDragged, goNext, goPrev]);
 
   // Prevent context menu on long press
-  const handleContextMenu = useCallback((e: React.MouseEvent) => {
-    if (isDragging || hasDragged) {
-      e.preventDefault();
-    }
-  }, [isDragging, hasDragged]);
+  const handleContextMenu = useCallback(
+    (e: React.MouseEvent) => {
+      if (isDragging || hasDragged) {
+        e.preventDefault();
+      }
+    },
+    [isDragging, hasDragged]
+  );
 
   useEffect(() => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
@@ -1009,6 +1017,8 @@ export default function Service() {
           </motion.div>
         </AnimatePresence>
       </div>
+      
+      
     </div>
   );
 }
