@@ -682,7 +682,7 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 22530.png",
+      name: "/Group 2.png",
       heading: "Authorities",
       body: `Navigating approval processes is a crucial part of any interior or fit-out project. We assist clients in securing all necessary approvals from relevant authorities and building managements, ensuring designs and installations meet regulatory and landlord standards. From food sector permits to NOCs from mall and building managements, we handle the paperwork so you can focus on your business.`,
       nav: [

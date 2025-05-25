@@ -43,10 +43,10 @@ export default async function page({ params }: { params: tParams }) {
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            {/* <BreadcrumbItem>
-              <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-            </BreadcrumbItem> */}
-            {/* <BreadcrumbSeparator /> */}
+           <BreadcrumbItem>
+              <BreadcrumbLink href="/ourservices">Our services</BreadcrumbLink>
+            </BreadcrumbItem> 
+            <BreadcrumbSeparator /> 
             <BreadcrumbItem>
               <BreadcrumbPage>{p}</BreadcrumbPage>
             </BreadcrumbItem>
@@ -92,7 +92,7 @@ export default async function page({ params }: { params: tParams }) {
       </div>
       <SubCat data={(data as unknown as Data)[p]} />
 
-      {(data as unknown as Data)[p][3]?.gnarig?.length && (
+      {!!(data as unknown as Data)[p][3]?.gnarig?.length && (
         <div className="p-10">
           <div className="sm:flex gap-1  w-full pb-15 text-[#7F6456]  items-center">
             <div className=" text-4xl gsp-1 flex items-center  nasalization ">
