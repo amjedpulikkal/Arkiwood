@@ -26,7 +26,14 @@ type Project = {
   };
 };
 
-const ProjectCard = ({ project, index, isActive, onClick }) => {
+type ProjectCardProps = {
+  project: Project;
+  index:number;
+  isActive:boolean;
+  onClick: React.Dispatch<React.SetStateAction<number>>
+
+};
+const ProjectCard: React.FC<ProjectCardProps>  = ({ project, index, isActive, onClick }) => {
   return (
     <div
       className={`group cursor-pointer transition-all duration-500 ${
