@@ -27,7 +27,7 @@ const imgAnimation3 = {
 
 export default function CallCpmponent() {
   const sendMessage = () => {
-    const phoneNumber = "+971588636991"; // Replace with actual number (with country code)
+    const phoneNumber = "+971509472658"; // Replace with actual number (with country code)
     const message = "Hello! I'm interested in your service."; // Customize message
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
