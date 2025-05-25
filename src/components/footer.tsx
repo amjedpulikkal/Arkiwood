@@ -16,24 +16,24 @@ export default function FooterFooter() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="#" className=" hover:underline">
+                <Link href="#" className=" hover:underline">
                   About
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <Link href="#" className="hover:underline">
                   Careers
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <Link href="#" className="hover:underline">
                   Brand Center
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <Link href="#" className="hover:underline">
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -43,36 +43,36 @@ export default function FooterFooter() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a
+                <Link
                   href="https://www.instagram.com/arkiwood.uae?igsh=eXN1aW1ubDMybnow"
                   className="hover:underline"
                 >
                   Instagram
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   href="https://www.linkedin.com/company/arkiwooduae/"
                   className="hover:underline"
                 >
                   LInkdin
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   href="https://x.com/arkiwoodua4518"
                   className="hover:underline"
                 >
                   X(Twitter)
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   href="https://www.facebook.com/profile.php?id=61573591764228"
                   className="hover:underline"
                 >
                   Facebook
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -82,24 +82,24 @@ export default function FooterFooter() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="/" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/ourservices" className="hover:underline">
+                <Link href="/ourservices" className="hover:underline">
                   Services
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/projects" className="hover:underline">
+                <Link href="/projects" className="hover:underline">
                   Projects
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/contact" className="hover:underline">
+                <Link href="/contact" className="hover:underline">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -109,29 +109,29 @@ export default function FooterFooter() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="/" className="hover:underline">
+                <Link href="/ourservices/Landscaping" className="hover:underline">
                   Landscaping
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <Link href="/ourservices/Interior Design" className="hover:underline">
                   Interior Design
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Swimming Pool
-                </a>
+                <Link href="/ourservices/Architectural Design" className="hover:underline">
+                  Architectural Design
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Villa Extension
-                </a>
+                <Link href="/ourservices/Carpentry & Woodworks" className="hover:underline">
+                 Carpentry & Woodworks
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Carpentry
-                </a>
+                <Link href="/ourservices/Authorities" className="hover:underline">
+                 Authorities
+                </Link>
               </li>
             </ul>
           </div>
