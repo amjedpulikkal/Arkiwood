@@ -533,6 +533,17 @@ export default function Service() {
       ],
       route: "/architectural-design", // Add route for navigation
     },
+     {
+      name: "/0-1--5-.1587627053.6613.webp",
+      heading: "Engineering ",
+      body: `At Arkiwood, engineering makes sure that every design is based on accuracy, security, and clever functioning.  We provide the technological foundation for every exquisite place, from structural integrity to seamless systems.`,
+      nav: [
+        "Structural planning",
+        "Electrical layout & execution",
+        "Plumbing systems",
+        "HVAC integration",
+      ],
+    },
     {
       name: "/francesca-tosolini-6japTIjUQoI-unsplash.jpg",
       heading: "MEP Engineering",
@@ -569,20 +580,7 @@ export default function Service() {
       ],
       route: "/civil-fitout",
     },
-    {
-      name: "/e10c68fd076d4591ad9389d155d29555.jpg",
-      heading: "Landscaping",
-      body: `Transform outdoor spaces into stunning, functional environments.
-    From lush gardens to modern hardscapes, we design landscapes
-    that harmonize with architecture and nature.`,
-      nav: [
-        "Garden Design",
-        "Landscape Architecture",
-        "Landscaping for Climate",
-        "Sustainable Landscaping",
-      ],
-      route: "/landscaping",
-    },
+   
     {
       name: "/0-1--5-.1587627053.6613.webp",
       heading: "Joinery",
@@ -617,6 +615,21 @@ export default function Service() {
         "Mall Management Approval (For retail spaces)",
       ],
     },
+     {
+      name: "/e10c68fd076d4591ad9389d155d29555.jpg",
+      heading: "Landscaping",
+      body: `Transform outdoor spaces into stunning, functional environments.
+    From lush gardens to modern hardscapes, we design landscapes
+    that harmonize with architecture and nature.`,
+      nav: [
+        "Garden Design",
+        "Landscape Architecture",
+        "Landscaping for Climate",
+        "Sustainable Landscaping",
+      ],
+      route: "/landscaping",
+    },
+   
   ]);
 
   // Wrap goNext and goPrev in useCallback to prevent recreation on every render
@@ -1017,8 +1030,6 @@ export default function Service() {
           </motion.div>
         </AnimatePresence>
       </div>
-      
-      
     </div>
   );
 }

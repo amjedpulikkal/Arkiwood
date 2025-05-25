@@ -472,5 +472,44 @@
         }
       ]
     }
+  ],
+  "Joinery": [
+    {
+      "Windows & Door Frames": [
+        "Hardwood and Softwood Frames",
+        "Custom Window Profiles",
+        "Architraves and Trims"
+      ],
+      "Staircases & Railings": [
+        "Wooden Staircase Fabrication",
+        "Handrails and Balustrades",
+        "Ornamental Joinery Work"
+      ],
+      "Cabinetry & Joinery Detailing": [
+        "Built-in Cabinets and Cupboards",
+        "Decorative Wood Mouldings",
+        "Wall Paneling and Wainscoting"
+      ],
+      "Exterior Joinery Works": [
+        "Pergolas and Gazebos",
+        "Decking and Fencing",
+        "Weatherproof Joinery Solutions"
+      ]
+    },
+    {
+      "image": [
+        "joinery-image-1.png",
+        "joinery-image-2.png",
+        "joinery-image-3.png",
+        "joinery-image-4.png"
+      ]
+    },
+    {
+      "body": "Precision joinery solutions that combine durability and craftsmanship. From elegant staircases to outdoor structures, our joinery work enhances both function and aesthetics."
+    },
+    {
+      "gnarig": [
+      ]
+    }
   ]
 }

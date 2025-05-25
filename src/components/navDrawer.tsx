@@ -83,6 +83,7 @@ export function DrawerNav() {
           <nav className="flex-1 w-screen flex items-center justify-center px-6">
             <ul className="flex w-full flex-col gap-8 items-center text-center">
               {[
+                { name: "Home", href: "/" },
                 { name: "Services", href: "/ourservices" },
                 { name: "Blogs", href: "/#blogs" },
                 { name: "Projects", href: "/projects" },

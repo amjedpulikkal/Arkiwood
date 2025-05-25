@@ -28,8 +28,6 @@ import Imagecom from "./imagecom";
 import SubCat from "./SubCat";
 import { notFound } from "next/navigation";
 
-
-
 type tParams = Promise<{ services: string }>;
 export default async function page({ params }: { params: tParams }) {
   const p = decodeURIComponent((await params)?.services || "");
@@ -94,16 +92,18 @@ export default async function page({ params }: { params: tParams }) {
       </div>
       <SubCat data={(data as unknown as Data)[p]} />
 
-      <div className="p-10">
-        <div className="sm:flex gap-1  w-full pb-15 text-[#7F6456]  items-center">
-          <div className=" text-4xl gsp-1 flex items-center  nasalization ">
-            <p>ProjectNest</p>
-            <p className=" hidden sm:block"> – </p>
+      {(data as unknown as Data)[p][3]?.gnarig?.length && (
+        <div className="p-10">
+          <div className="sm:flex gap-1  w-full pb-15 text-[#7F6456]  items-center">
+            <div className=" text-4xl gsp-1 flex items-center  nasalization ">
+              <p>ProjectNest</p>
+              <p className=" hidden sm:block"> – </p>
+            </div>
+            <p className="hod">A collective showcase of our completed works.</p>
           </div>
-          <p className="hod">A collective showcase of our completed works.</p>
+          <Imagecom data={(data as unknown as Data)[p]} />
         </div>
-        <Imagecom data={(data as unknown as Data)[p]} />
-      </div>
+      )}
       <Footer />
     </>
   );

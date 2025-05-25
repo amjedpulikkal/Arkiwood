@@ -49,7 +49,7 @@ export default function ContactCom() {
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-[#7F6456] to-[#A68B7A]"></div>
               <p className="text-[#D4C4B0] mt-4 text-lg">
-                Ready to transform your space? Let&aposs start the conversation.
+                Ready to transform your space? Let&apos;start the conversation.
               </p>
             </div>
 
@@ -129,7 +129,7 @@ export default function ContactCom() {
               <div className="p-8 sm:p-12">
                 <div className="mb-8">
                   <h3 className="text-3xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-[#D4C4B0] to-[#7F6456] bg-clip-text text-transparent leading-tight">
-                    Let&aposs Build Your Dream Together
+                    Let&apos;Build Your Dream Together
                   </h3>
                   <p className="text-[#D4C4B0] text-xl font-light">
                     Your perfect space is just a call away.

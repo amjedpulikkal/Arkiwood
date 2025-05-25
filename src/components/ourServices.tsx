@@ -624,6 +624,17 @@ export default function OurServices() {
       ],
     },
     {
+      name: "/Group 2252 (4).png",
+      heading: "Engineering ",
+      body: `At Arkiwood, engineering makes sure that every design is based on accuracy, security, and clever functioning.  We provide the technological foundation for every exquisite place, from structural integrity to seamless systems.`,
+      nav: [
+        "Structural planning",
+        "Electrical layout & execution",
+        "Plumbing systems",
+        "HVAC integration",
+      ],
+    },
+    {
       name: "/Group 2250.png",
       heading: "MEP Engineering",
       body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
@@ -635,7 +646,8 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2253.png",
+      name: "/Group 2252.png",
+
       heading: "Interior Design",
       body: `Bring life and function into your spaces with creative and client-centric interiors. We blend style with comfort to create environments that speak to you.`,
       nav: [
@@ -645,7 +657,8 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2252.png",
+      name: "/Group 2253.png",
+
       heading: "Civil & Interior Fit out",
       body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution.
   From partitions to finishes, we build with precision.`,
@@ -656,21 +669,9 @@ export default function OurServices() {
         "Plumbing & Sanitary Works",
       ],
     },
+
     {
-      name: "/Group 2249 (6).png",
-      heading: "Landscaping",
-      body: `Transform outdoor spaces into stunning, functional environments.
-  From lush gardens to modern hardscapes, we design landscapes
-  that harmonize with architecture and nature.`,
-      nav: [
-        "Garden Design",
-        "Landscape Architecture",
-        "Landscaping for Climate",
-        "Sustainable Landscaping",
-      ],
-    },
-    {
-      name: "/Group 2254.png",
+      name: "/Group 2250 (1).png",
       heading: "Carpentry & Woodworks",
       body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
       nav: [
@@ -702,6 +703,31 @@ export default function OurServices() {
         "Mall Management Approval (For retail spaces)",
       ],
     },
+    {
+      name: "/Group 22530.png",
+      heading: "Joinery",
+      body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
+      nav: [
+        "Custom Furniture Fabrication",
+        "Doors, Frames & Cladding",
+        "Shelving & Storage Units",
+        "Finishing & Polishing Works",
+      ],
+      route: "/carpentry-woodworks",
+    },
+    {
+      name: "/Group 2249 (6).png",
+      heading: "Landscaping",
+      body: `Transform outdoor spaces into stunning, functional environments.
+  From lush gardens to modern hardscapes, we design landscapes
+  that harmonize with architecture and nature.`,
+      nav: [
+        "Garden Design",
+        "Landscape Architecture",
+        "Landscaping for Climate",
+        "Sustainable Landscaping",
+      ],
+    },
   ]);
 
   return (
@@ -722,7 +748,7 @@ export default function OurServices() {
         {/* Content Container */}
         <div className="absolute inset-0 flex flex-col justify-center items-center px-8 z-10">
           {/* Title Section */}
-          <div className="text-center mb-8 transform transition-all duration-500 group-hover:translate-y-[-20px]">
+          <div className="text-center mt-8 sm:mt-0 mb-8 transform transition-all duration-500 group-hover:translate-y-[-20px]">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-wide">
               <span className="bg-gradient-to-r from-white via-[#D4C4B0] to-[#7F6456] bg-clip-text text-transparent">
                 Our Services
