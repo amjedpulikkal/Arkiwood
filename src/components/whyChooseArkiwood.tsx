@@ -47,7 +47,6 @@ export default function WhyChooseArkiwood() {
 
   return (
     <div className=" px-6 pt-20">
-      <div className="flex justify-center"></div>
       <div className="sm:flex ">
         <div className=" sm:w-1/2 flex-wrap gap-4 text-[#7F6456]">
           <div className="flex justify-center ">
@@ -86,6 +85,31 @@ export default function WhyChooseArkiwood() {
             ))}
           </div>
         </div>
+        <div className="sm:w-1/2 text-[#7F6456]  sm:mt-0 mt-10  px-5">
+
+          <div className="relative w-full h-full rounded-lg overflow-hidden">
+            <Image
+             src={"/01--FRONT-ELEVATION-opt-2-CAM-1.jpg"}
+              className="object-cover transition-transform duration-500 ease-in-out hover:scale-110 "
+              alt=""
+              fill
+            />
+          </div>
+       
+        </div>
+      </div>
+
+      <div className="sm:flex mt-10  ">
+        <div className=" sm:w-1/2 flex-wrap gap-4   px-5 ">
+          <div className="relative w-full h-full overflow-hidden rounded-lg ">
+            <Image
+              src={"/N38-CAM-5.-opt-2jpg.jpg"}
+             className="object-cover transition-transform duration-500 ease-in-out hover:scale-110 "
+              alt=""
+              fill
+            />
+          </div>
+        </div>
         <div className="sm:w-1/2 text-[#7F6456] sm:mt-0 mt-10">
           <div className="flex justify-center ">
             <h1 className=" hover-underline-animation center nasalization text-3xl text-[#7F6456]">
@@ -100,54 +124,7 @@ export default function WhyChooseArkiwood() {
             compliance, and promoting sustainability in every project we
             undertake.
           </p>
-          {/* <div className=" flex justify-evenly flex-wrap pt-7">
-            <Link href={"/AE59602A_ARKIWOOD_TECHNICAL%20...pdf"}>
-              <div className="inline-block">
-                <Image
-                  src="/9001.webp"
-                  width={100}
-                  height={100}
-                  alt="9001"
-                  className="filter"
-                  style={{
-                    filter:
-                      "brightness(0) invert(0.5) sepia(0.4) saturate(1.5) hue-rotate(330deg)",
-                  }}
-                />
-              </div>
-            </Link>
 
-            <Link href={"/AE59602C-1_ARKIWOOD_TECHNICA...pdf"}>
-              <div className="inline-block">
-                <Image
-                  src={"/45001.webp"}
-                  width={100}
-                  height={100}
-                  alt={"45001.webp"}
-                  className="filter"
-                  style={{
-                    filter:
-                      "brightness(0) invert(0.5) sepia(0.4) saturate(1.5) hue-rotate(330deg)",
-                  }}
-                />
-              </div>
-            </Link>
-            <Link href={"/AE59602B_ARKIWOOD_TECHNICAL.pdf"}>
-              <div className="inline-block">
-                <Image
-                  src={"/download.webp"}
-                  width={100}
-                  height={100}
-                  alt={"14001.webp"}
-                  className="filter"
-                  style={{
-                    filter:
-                      "brightness(0) invert(0.5) sepia(0.4) saturate(1.5) hue-rotate(330deg)",
-                  }}
-                />
-              </div>
-            </Link>
-          </div> */}
           <div className=" flex justify-center gap-2.5 flex-wrap pt-7">
             <div className="inline-block">
               <Image
@@ -163,7 +140,6 @@ export default function WhyChooseArkiwood() {
                 width={100}
                 height={100}
                 alt={"Group 2261.webp"}
-                
               />
             </div>
             <div className="inline-block">

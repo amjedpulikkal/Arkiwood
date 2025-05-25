@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar";
 import Cursor from "@/components/Cursor";
 import BackToTopButton from "@/components/BackToTopButton";
 import CallCpmponent from "@/components/callCpmponent";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +25,6 @@ export const metadata: Metadata = {
     "Discover top-quality services and solutions tailored to your needs. Stay ahead with our innovative platform and expert insights.",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,13 +35,14 @@ export default function RootLayout({
       <ReactLenis root>
         <Analytics />
         <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-        <Navbar />
+          <Navbar />
           <Cursor />
           <BackToTopButton />
           <CallCpmponent />
           {children}
+          <Footer />
         </body>
       </ReactLenis>
     </html>

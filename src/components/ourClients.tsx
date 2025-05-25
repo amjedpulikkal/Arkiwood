@@ -8,11 +8,12 @@ import React from "react";
 const logos1 = [
   "/clinetLogo/download (6).jpg",
   "/clinetLogo/download (3).png",
-  "/clinetLogo/download (23).png",
+  "/clinetLogo/images.png",
   "/clinetLogo/download (3).jpg",
   "/clinetLogo/download (4).png",
-  "/clinetLogo/download (2).png",
+  "/clinetLogo/clint13e.webp",
   "/clinetLogo/download (4).jpg",
+  "/clinetLogo/download (14).png",
 ];
 const logos2 = [
   "/clinetLogo/download (6).png",
@@ -23,13 +24,13 @@ const logos2 = [
   "/clinetLogo/download (11).png",
   "/clinetLogo/download (12).png",
   "/clinetLogo/download (13).png",
-  "/clinetLogo/download (14).png",
+  
 ];
 const logos3 = [
   "/clinetLogo/download (15).png",
   "/clinetLogo/download (16).png",
   "/clinetLogo/download (18).png",
-  "/clinetLogo/download (19).png",
+  "/clinetLogo/images3.png",
   "/clinetLogo/download (20).png",
   "/clinetLogo/download (22).png",
   "/clinetLogo/download.png",
@@ -37,13 +38,13 @@ const logos3 = [
 ];
 const logos4 = [
   "/clinetLogo/download22.jpg",
-  "/clinetLogo/download.jpg",
+  "/clinetLogo/emirates-airlienes-1.svg",
   "/clinetLogo/download (5).png",
   "/clinetLogo/download (5).jpg",
   "/clinetLogo/download (21).png",
   "/clinetLogo/download (1).jpg",
   "/clinetLogo/download (1).png",
-  "/clinetLogo/15.png",
+  "/clinetLogo/dubai-police-logo-F263188BEE-seeklogo.com.png",
 ];
 
 export default function OurClients() {

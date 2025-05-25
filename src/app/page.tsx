@@ -3,7 +3,6 @@
 import ContactCom from "@/components/contact";
 
 import OurClients from "@/components/ourClients";
-import Footer from "@/components/footer";
 
 
 
@@ -110,7 +109,6 @@ export default function Home() {
         {/* <AutoScrollSection> */}
           <ContactCom />
         {/* </AutoScrollSection> */}
-        <Footer />
       </main>
     </>
   );

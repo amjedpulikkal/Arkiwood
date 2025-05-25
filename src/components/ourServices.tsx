@@ -548,7 +548,7 @@ function DivComponents({
           >{`#0${index}`}</motion.p> */}
           <Image
             src={data.name}
-            className="-mt-20"
+            className="-mt-20 "
             width="640"
             height="500"
             alt={data.name}
@@ -657,7 +657,7 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2251.png",
+      name: "/Group 2249 (2).png",
       heading: "Landscaping",
       body: `Transform outdoor spaces into stunning, functional environments.
   From lush gardens to modern hardscapes, we design landscapes
@@ -681,7 +681,7 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2254.png",
+      name: "/Group 22530.png",
       heading: "Authorities",
       body: `Navigating approval processes is a crucial part of any interior or fit-out project. We assist clients in securing all necessary approvals from relevant authorities and building managements, ensuring designs and installations meet regulatory and landlord standards. From food sector permits to NOCs from mall and building managements, we handle the paperwork so you can focus on your business.`,
       nav: [
@@ -692,7 +692,7 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 2254.png",
+      name: "/Group 2252 (3).png",
       heading: "Approvals",
       body: `We specialize in delivering carpentry and joinery works that fully comply with local authority regulations and building management standards across the UAE. Our team is experienced in handling documentation and technical requirements for approvals from entities such as Dubai Municipality, Civil Defense, DEWA, and major Free Zone authorities, ensuring smooth project execution without delays.`,
       nav: [
@@ -705,12 +705,64 @@ export default function OurServices() {
   ]);
 
   return (
-    <div id="our-services" className="pb-14 sm:mt-0 mt-32 ">
-      <div className="py-24 flex justify-center">
-        <p className="nasalization hover-underline-animation  text-4xl text-[#7F6456] text-center">
-          Our Services
-        </p>
+    <div id="our-services" className="pb-14 sm:mt-0 mt-32 overflow-hidden ">
+      <div className="w-screen h-[550px] group relative overflow-hidden cursor-pointer">
+      {/* Background Image with Zoom Effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"
+        }}
+      />
+      
+      {/* Overlay with Dynamic Opacity */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-[#7F6456]/30 to-black/60 transition-opacity duration-500 group-hover:from-black/60 group-hover:via-[#7F6456]/40 group-hover:to-black/70" />
+      
+      {/* Content Container */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center px-8 z-10">
+        
+        {/* Title Section */}
+        <div className="text-center mb-8 transform transition-all duration-500 group-hover:translate-y-[-20px]">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-wide">
+            <span className="bg-gradient-to-r from-white via-[#D4C4B0] to-[#7F6456] bg-clip-text text-transparent">
+              Our Services
+            </span>
+          </h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#7F6456] to-[#A68B7A] mx-auto transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+        </div>
+
+        {/* Description Text - Hidden by default, shows on hover */}
+        <div className="max-w-4xl opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-200">
+          <p className="text-lg md:text-xl leading-relaxed text-center font-medium">
+            <span className="text-[#E8DDD4]">
+              We provide seamless, end-to-end solutions that make your environments come to life. 
+            </span>
+            <span className="text-white block mt-4">
+              We manage every aspect, from interior design and MEP engineering to carpentry, 
+              custom woodworking, landscaping, fit-outs, and architectural design.
+            </span>
+            <span className="text-[#D4C4B0] block mt-4 font-semibold">
+              We create the ideal balance of comfort, design, and usefulness in every area 
+              of your space with our skillful craftsmanship and astute engineering.
+            </span>
+          </p>
+        </div>
+
+        {/* Call to Action Button - Appears on hover */}
+        <div className="mt-8 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-400">
+          <button className="px-8 py-3 bg-gradient-to-r from-[#7F6456] to-[#9A8071] text-white font-semibold rounded-full hover:from-[#6B5447] hover:to-[#7F6456] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            Explore Our Work
+          </button>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 border-2 border-[#7F6456]/30 rotate-45 opacity-0 group-hover:opacity-100 group-hover:rotate-0 transition-all duration-700" />
+        <div className="absolute bottom-10 right-10 w-16 h-16 border-2 border-[#A68B7A]/40 rotate-45 opacity-0 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-700 delay-300" />
       </div>
+
+      {/* Animated Border Effect */}
+      <div className="absolute inset-0 border-4 border-transparent group-hover:border-gradient-to-r group-hover:from-blue-400/50 group-hover:to-purple-500/50 transition-all duration-500 pointer-events-none" />
+    </div>
       {data.map((data, index) => (
         <DivComponents key={index} data={data} index={index + 1} />
       ))}
