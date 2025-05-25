@@ -125,7 +125,7 @@ export default function WhyChooseArkiwood() {
             undertake.
           </p>
 
-          <div className=" flex justify-center gap-2.5 flex-wrap pt-7">
+          <div className=" flex justify-center  pt-7">
             <div className="inline-block">
               <Image
                 src={"/logLAF.png"}
