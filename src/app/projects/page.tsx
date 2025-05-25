@@ -201,7 +201,7 @@ const ProjectDetails = ({ project }) => {
             <div>
               <h4 className="text-xl font-semibold text-[#7F6456] mb-3">Client Testimonial</h4>
               <div className="bg-white border-l-4 border-[#7F6456] pl-6 py-4">
-                <p className="text-gray-700 italic mb-3">"{project.testimonial.quote}"</p>
+                <p className="text-gray-700 italic mb-3">&quot{project.testimonial.quote}&quot</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-[#7F6456] rounded-full flex items-center justify-center text-white font-bold">
                     {project.testimonial.author.charAt(0)}
