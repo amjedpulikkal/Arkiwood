@@ -12,22 +12,25 @@ export default function ContactCom() {
   });
 
   // const [_, setFocusedField] = useState("");
-
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
- 
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
     // TODO: Add actual form submission logic (API call, email service, etc.)
     alert("Message sent!");
   };
+
   return (
     <>
       <div

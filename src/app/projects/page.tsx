@@ -3,6 +3,29 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
+type Project = {
+  id: number;
+  title: string;
+  location: string;
+  category: string;
+  status: string;
+  duration: string;
+  budget: string;
+  area: string;
+  rooms: string;
+  year: string;
+  mainImage: string;
+  gallery: string[];
+  description: string;
+  features: string[];
+  materials: string[];
+  testimonial: {
+    quote: string;
+    author: string;
+    role: string;
+  };
+};
+
 // const ProjectCard = ({ project, index, isActive, onClick }) => {
 //   return (
 //     <div 
@@ -72,7 +95,11 @@ import React, { useState } from 'react';
 //   );
 // };
 
-const ProjectDetails = ({ project }) => {
+type ProjectDetailsProps = {
+  project: Project;
+};
+
+const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
   return (

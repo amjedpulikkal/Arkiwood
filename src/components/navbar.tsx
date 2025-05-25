@@ -78,18 +78,34 @@ export default function Navbar() {
             <div className="sm:block hidden">
               <div className="flex justify-between  items-center gap-4">
                 {[
-                  "/icons8-facebook-48.svg",
-                  "/icons8-instagram-logo.svg",
-                  "/icons8-linkedin-logo.svg",
-                ].map((url, index) => (
-                  <Image
-                    key={`social-icon-${index}`}
-                    src={url}
-                    alt={`social-${index}`}
-                    width={30}
-                    height={30}
-                  />
-                ))}
+                  {
+                    url: "https://www.facebook.com/profile.php?id=61573591764228",
+                    icon: "/icons8-facebook-48.svg",
+                  },
+                  {
+                    url: "https://x.com/arkiwoodua4518",
+                    icon: "/icons8-instagram-logo.svg",
+                  },
+                  {
+                    url: "https://www.linkedin.com/company/arkiwooduae/",
+                    icon: "/icons8-linkedin-logo.svg",
+                  },
+                ].map((item, index) => (
+                      <Link
+                        key={`social-link-${index}`}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src={item.icon}
+                          alt={`social-icon-${index}`}
+                          width={30}
+                          height={30}
+                        />
+                      </Link>
+                    ))}
+                
               </div>
             </div>
           </motion.nav>
