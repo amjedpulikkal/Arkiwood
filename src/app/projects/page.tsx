@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react';
 
 const ProjectCard = ({ project, index, isActive, onClick }) => {
