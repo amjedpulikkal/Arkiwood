@@ -180,10 +180,10 @@ const ProjectDetails = ({ project }) => {
                   <span className="text-gray-600">Duration</span>
                   <span className="font-semibold text-[#7F6456]">{project.duration}</span>
                 </div>
-                <div className="flex justify-between">
+                {/* <div className="flex justify-between">
                   <span className="text-gray-600">Budget Range</span>
                   <span className="font-semibold text-[#7F6456]">{project.budget}</span>
-                </div>
+                </div> */}
                 <div className="flex justify-between">
                   <span className="text-gray-600">Status</span>
                   <span className={`font-semibold ${
