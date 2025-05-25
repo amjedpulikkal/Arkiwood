@@ -1,75 +1,76 @@
 "use client"
 
+import Image from 'next/image';
 import React, { useState } from 'react';
 
-const ProjectCard = ({ project, index, isActive, onClick }) => {
-  return (
-    <div 
-      className={`group cursor-pointer transition-all duration-500 ${
-        isActive ? 'scale-105' : 'hover:scale-102'
-      }`}
-      onClick={() => onClick(index)}
-    >
-      <div className={`relative overflow-hidden rounded-2xl shadow-xl transition-all duration-500 ${
-        isActive ? 'shadow-2xl border-2 border-[#7F6456]' : 'shadow-lg hover:shadow-xl'
-      }`}>
-        {/* Main Project Image */}
-        <div className="relative h-80 overflow-hidden">
-          <img
-            src={project.mainImage}
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
+// const ProjectCard = ({ project, index, isActive, onClick }) => {
+//   return (
+//     <div 
+//       className={`group cursor-pointer transition-all duration-500 ${
+//         isActive ? 'scale-105' : 'hover:scale-102'
+//       }`}
+//       onClick={() => onClick(index)}
+//     >
+//       <div className={`relative overflow-hidden rounded-2xl shadow-xl transition-all duration-500 ${
+//         isActive ? 'shadow-2xl border-2 border-[#7F6456]' : 'shadow-lg hover:shadow-xl'
+//       }`}>
+//         {/* Main Project Image */}
+//         <div className="relative h-80 overflow-hidden">
+//           <img
+//             src={project.mainImage}
+//             alt={project.title}
+//             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+//           />
           
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+//           {/* Overlay */}
+//           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           
-          {/* Project Category Badge */}
-          <div className="absolute top-4 left-4 z-10">
-            <span className="px-3 py-1 bg-[#7F6456] text-white text-sm font-semibold rounded-full backdrop-blur-sm">
-              {project.category}
-            </span>
-          </div>
+//           {/* Project Category Badge */}
+//           <div className="absolute top-4 left-4 z-10">
+//             <span className="px-3 py-1 bg-[#7F6456] text-white text-sm font-semibold rounded-full backdrop-blur-sm">
+//               {project.category}
+//             </span>
+//           </div>
           
-          {/* Project Status */}
-          <div className="absolute top-4 right-4 z-10">
-            <span className={`px-3 py-1 text-white text-sm font-semibold rounded-full backdrop-blur-sm ${
-              project.status === 'Completed' ? 'bg-green-500' : 'bg-blue-500'
-            }`}>
-              {project.status}
-            </span>
-          </div>
+//           {/* Project Status */}
+//           <div className="absolute top-4 right-4 z-10">
+//             <span className={`px-3 py-1 text-white text-sm font-semibold rounded-full backdrop-blur-sm ${
+//               project.status === 'Completed' ? 'bg-green-500' : 'bg-blue-500'
+//             }`}>
+//               {project.status}
+//             </span>
+//           </div>
           
-          {/* Project Title & Quick Info */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-            <p className="text-sm opacity-90 mb-2">{project.location}</p>
-            <div className="flex items-center gap-4 text-sm">
-              <span className="flex items-center gap-1">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/>
-                </svg>
-                {project.duration}
-              </span>
-              <span className="flex items-center gap-1">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7-8a7 7 0 1114 0 7 7 0 01-14 0z" clipRule="evenodd"/>
-                </svg>
-                {project.budget}
-              </span>
-            </div>
-          </div>
-        </div>
+//           {/* Project Title & Quick Info */}
+//           <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+//             <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+//             <p className="text-sm opacity-90 mb-2">{project.location}</p>
+//             <div className="flex items-center gap-4 text-sm">
+//               <span className="flex items-center gap-1">
+//                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+//                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/>
+//                 </svg>
+//                 {project.duration}
+//               </span>
+//               <span className="flex items-center gap-1">
+//                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+//                   <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+//                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7-8a7 7 0 1114 0 7 7 0 01-14 0z" clipRule="evenodd"/>
+//                 </svg>
+//                 {project.budget}
+//               </span>
+//             </div>
+//           </div>
+//         </div>
         
-        {/* Active Indicator */}
-        {isActive && (
-          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#7F6456] rotate-45 border-2 border-white"></div>
-        )}
-      </div>
-    </div>
-  );
-};
+//         {/* Active Indicator */}
+//         {isActive && (
+//           <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#7F6456] rotate-45 border-2 border-white"></div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
 
 const ProjectDetails = ({ project }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -100,7 +101,7 @@ const ProjectDetails = ({ project }) => {
       <div className="p-8">
         <div className="mb-6">
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
-            <img
+            <Image fill 
               src={project.gallery[selectedImageIndex]}
               alt={`${project.title} - Image ${selectedImageIndex + 1}`}
               className="w-full h-full object-cover"
@@ -120,7 +121,7 @@ const ProjectDetails = ({ project }) => {
                   : 'opacity-70 hover:opacity-100'
               }`}
             >
-              <img
+              <Image fill
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
@@ -229,7 +230,7 @@ const ProjectDetails = ({ project }) => {
 };
 
 const EnhancedProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState(0);
+  const [selectedProject] = useState(0);
   
   const projects = [
     {
