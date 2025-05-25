@@ -340,7 +340,7 @@ const EnhancedProjectsSection = () => {
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-[#F5F1ED]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#7F6456] via-[#A68B7A] to-[#7F6456] bg-clip-text text-transparent mb-6">
             Featured Projects
           </h2>
@@ -348,10 +348,10 @@ const EnhancedProjectsSection = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Explore our portfolio of exceptional projects that showcase our commitment to quality, innovation, and design excellence.
           </p>
-        </div>
+        </div> */}
 
         {/* Project Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -361,7 +361,7 @@ const EnhancedProjectsSection = () => {
               onClick={setSelectedProject}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* Selected Project Details */}
         <ProjectDetails project={projects[selectedProject]} />
