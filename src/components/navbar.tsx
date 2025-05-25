@@ -19,7 +19,7 @@ export default function Navbar() {
     { title: "Services", href: "/ourservices" },
     { title: "Blogs", href: "/#blogs" },
     { title: "Projects", href: "/projects" },
-    { title: "Contact", href: "/#contact" },
+    { title: "Contact", href: "/contact" },
   ];
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function Navbar() {
                     icon: "/icons8-facebook-48.svg",
                   },
                   {
-                    url: "https://x.com/arkiwoodua4518",
+                    url: "https://www.instagram.com/arkiwood.uae?igsh=eXN1aW1ubDMybnow",
                     icon: "/icons8-instagram-logo.svg",
                   },
                   {

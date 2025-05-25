@@ -131,7 +131,7 @@ export function DrawerNav() {
                     icon: "/icons8-facebook-48.svg",
                   },
                   {
-                    url: "https://x.com/arkiwoodua4518",
+                    url: "https://www.instagram.com/arkiwood.uae?igsh=eXN1aW1ubDMybnow",
                     icon: "/icons8-instagram-logo.svg",
                   },
                   {
