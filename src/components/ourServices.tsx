@@ -383,6 +383,7 @@
 
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
@@ -731,7 +732,7 @@ export default function OurServices() {
   ]);
 
   return (
-    <div id="our-services" className="pb-14  overflow-hidden ">
+    <div className="pb-14  overflow-hidden ">
       <div className="w-screen h-[550px] group relative overflow-hidden cursor-pointer">
         {/* Background Image with Zoom Effect */}
         <div
@@ -797,9 +798,11 @@ export default function OurServices() {
 
           {/* Call to Action Button - Appears on hover */}
           <div className="mt-8 opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-400">
-            <button className="px-8 py-3 bg-gradient-to-r from-[#7F6456] to-[#9A8071] text-white font-semibold rounded-full hover:from-[#6B5447] hover:to-[#7F6456] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-              Explore Our Work
-            </button>
+            <Link href="#our-services">
+              <button className="px-8 py-3 bg-gradient-to-r from-[#7F6456] to-[#9A8071] text-white font-semibold rounded-full hover:from-[#6B5447] hover:to-[#7F6456] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                Explore Our Work
+              </button>
+            </Link>
           </div>
 
           {/* Decorative Elements */}
@@ -810,9 +813,11 @@ export default function OurServices() {
         {/* Animated Border Effect */}
         <div className="absolute inset-0 border-4 border-transparent group-hover:border-gradient-to-r group-hover:from-blue-400/50 group-hover:to-purple-500/50 transition-all duration-500 pointer-events-none" />
       </div>
-      {data.map((data, index) => (
-        <DivComponents key={index} data={data} index={index + 1} />
-      ))}
+      <div id="our-services">
+        {data.map((data, index) => (
+          <DivComponents key={index} data={data} index={index + 1} />
+        ))}
+      </div>
     </div>
   );
 }
