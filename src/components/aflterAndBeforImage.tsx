@@ -15,7 +15,7 @@ export default function AflterAndBeforImage() {
     },
     { fImage: "/havenly_k.jpg", bImage: "/f9544380-5.jpg" },
     { fImage: "/kyliefitts_havenl.jpg", bImage: "/sunroom-before.jpg" },
-    { fImage: "/daniellechiprut3.jpg", bImage: "/daniellechiprut.jpg" },
+    { fImage: "/fImag1.jpeg", bImage: "/bImg2.jpeg" },
   ];
   return (
   <div className=" px-6 pt-20">
