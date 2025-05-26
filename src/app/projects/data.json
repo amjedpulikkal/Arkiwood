@@ -1,0 +1,125 @@
+[
+  {
+    "id": 1,
+    "title": "Urban Chic Apartment Makeover",
+    "location": "Jumeirah Lake Towers, Dubai, UAE",
+    "category": "Interior Design",
+    "status": "Completed",
+    "duration": "3 months",
+    "budget": "$80K - $100K",
+    "area": "1,800 sq ft",
+    "rooms": "2 BR + 3 BA",
+    "year": "2024",
+    "mainImage": "/project/project-5/05-OPEN-LIVING-CAM-2.jpg",
+    "gallery": [
+      "/project/project-5/01-KITCHEN-CAM-1.jpg",
+      "/project/project-5/02.jpg",
+      "/project/project-5/02--DINNING-TABLE-CAM-3.jpg",
+      "/project/project-5/04--STAIR-CAM-1.jpg"
+    ],
+    "description": "A stylish redesign of a city apartment combining urban minimalism with earthy tones and textures. This project emphasized comfort, personality, and functionality for a young professional couple, creating a warm and welcoming space.",
+    "features": [
+      "Open-plan living and dining with modular furniture",
+      "Textured accent walls and warm wood elements",
+      "Custom-built reading nook with floating shelves",
+      "Soft ambient lighting and concealed LEDs",
+      "Smart home integration for lighting and blinds",
+      "Scandinavian-inspired kitchen layout",
+      "Handpicked artisanal decor elements"
+    ],
+    "materials": [
+      "Oak Veneer",
+      "Linen",
+      "Concrete Finish",
+      "Terracotta Tiles",
+      "Glass Panels"
+    ],
+    "testimonial": {
+      "quote": "The apartment feels like a true reflection of us—cozy, modern, and full of charm. The design team nailed it!",
+      "author": "Neha & Omar",
+      "role": "Apartment Owners"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Luxury Penthouse Interior Revamp",
+    "location": "Downtown Dubai, UAE",
+    "category": "Interior Design",
+    "status": "Completed",
+    "duration": "4 months",
+    "budget": "$150K - $200K",
+    "area": "3,200 sq ft",
+    "rooms": "4 BR + 5 BA",
+    "year": "2024",
+    "mainImage": "/project/project-6/05-BEDROOM-CAM-2.jpg",
+    "gallery": [
+      "/project/project-6/06--GF-DINING-CAM-4.jpg",
+      "/project/project-6/06-MASTER-BEDROOM-CAM-1.jpg",
+      "/project/project-6/11--BAR-CAM-1.jpg",
+      "/project/project-6/09-MASTER-BEDROOM.jpg"
+    ],
+    "description": "A refined and luxurious interior design project for a high-rise penthouse, focusing on modern elegance and comfort. Featuring custom-designed furniture, ambient lighting, and a seamless mix of textures and tones to reflect sophisticated urban living.",
+    "features": [
+      "Custom Italian furniture and cabinetry",
+      "Mood-based ambient lighting system",
+      "Acoustic paneling and soundproofing",
+      "Walk-in closets with smart organizers",
+      "Minimalist kitchen with hidden appliances",
+      "Accent walls with Venetian plaster finish",
+      "Integrated smart mirrors and controls"
+    ],
+    "materials": [
+      "Velvet",
+      "Oak Wood",
+      "Brushed Brass",
+      "Glass",
+      "Natural Stone"
+    ],
+    "testimonial": {
+      "quote": "The design exceeded our expectations. Every room now feels like a high-end suite, tailored exactly to our lifestyle.",
+      "author": "Lina D'Souza",
+      "role": "Resident"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Coastal Elegance Retreat",
+    "location": "Palm Jumeirah, UAE",
+    "category": "Residential",
+    "status": "Completed",
+    "duration": "8 months",
+    "budget": "$400K - $500K",
+    "area": "6,200 sq ft",
+    "rooms": "6 BR + 7 BA",
+    "year": "2025",
+    "mainImage": "/project/project-3/N38-CAM-5.-opt-2jpg.jpg",
+    "gallery": [
+      "/project/project-3/05-CAM-4-OPT-2.jpg",
+      "/project/project-3/06-BACK-SIDE---CAM-9-.jpg",
+      "/project/project-3/N38 CAM 5.jpg",
+      "/project/project-3/N38-CAM-1-OPT-2.jpg"
+    ],
+    "description": "An elegant beachfront residence designed to bring resort-style living to everyday life. This project blends coastal elements with modern luxury, featuring panoramic ocean views, breezy open-plan layouts, and premium materials suited for the seaside climate.",
+    "features": [
+      "Infinity pool overlooking the ocean",
+      "Outdoor kitchen and sunken lounge",
+      "Glass façade with retractable walls",
+      "Automated blinds and climate control",
+      "Spa-inspired master suite with ocean view",
+      "Rooftop terrace with fire pit and garden",
+      "Artisanal stone and wood finishes"
+    ],
+    "materials": [
+      "Coral Stone",
+      "Glass",
+      "Weather-treated Timber",
+      "Concrete",
+      "Quartz"
+    ],
+    "testimonial": {
+      "quote": "Their design brought our vision of luxury coastal living to life. Every detail feels intentional and stunning.",
+      "author": "Khalid Bin Saeed",
+      "role": "Client"
+    }
+  }
+]

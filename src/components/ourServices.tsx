@@ -636,7 +636,7 @@ export default function OurServices() {
     },
     {
       name: "/Group 2250.png",
-      heading: "MEP Engineering",
+      heading: "MEP Drawings",
       body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
       nav: [
         "HVAC and Ducting Systems",
@@ -704,7 +704,7 @@ export default function OurServices() {
       ],
     },
     {
-      name: "/Group 22530.png",
+      name: "/Group 2251 (5).png",
       heading: "Joinery",
       body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
       nav: [

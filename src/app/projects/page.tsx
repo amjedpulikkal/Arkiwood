@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-
+import projects from "./data.json"
 type Project = {
   id: number;
   title: string;
@@ -28,12 +28,16 @@ type Project = {
 
 type ProjectCardProps = {
   project: Project;
-  index:number;
-  isActive:boolean;
-  onClick: React.Dispatch<React.SetStateAction<number>>
-
+  index: number;
+  isActive: boolean;
+  onClick: React.Dispatch<React.SetStateAction<number>>;
 };
-const ProjectCard: React.FC<ProjectCardProps>  = ({ project, index, isActive, onClick }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  index,
+  isActive,
+  onClick,
+}) => {
   return (
     <div
       className={`group cursor-pointer transition-all duration-500 ${
@@ -168,12 +172,12 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
         </div>
 
         {/* Thumbnail Gallery */}
-        <div className="flex relative gap-3 mb-8 overflow-x-auto pb-2">
+        <div className="flex  gap-3 mb-8 overflow-x-auto pb-2">
           {project.gallery.map((image, index) => (
             <button
               key={index}
               onClick={() => setSelectedImageIndex(index)}
-              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all duration-300 ${
+              className={`flex-shrink-0 w-20 relative h-20 rounded-lg overflow-hidden transition-all duration-300 ${
                 selectedImageIndex === index
                   ? "ring-3 ring-[#7F6456] shadow-lg"
                   : "opacity-70 hover:opacity-100"
@@ -319,135 +323,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
 const EnhancedProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(0);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Modern Villa Transformation",
-      location: "Dubai Hills Estate, UAE",
-      category: "Residential",
-      status: "Completed",
-      duration: "6 months",
-      budget: "$250K - $300K",
-      area: "4,500 sq ft",
-      rooms: "5 BR + 6 BA",
-      year: "2024",
-      mainImage:
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      ],
-      description:
-        "A complete transformation of a traditional villa into a contemporary masterpiece. This project showcases our expertise in blending modern design principles with functional living spaces. Every corner was redesigned to maximize natural light, create seamless flow between indoor and outdoor spaces, and incorporate sustainable materials throughout.",
-      features: [
-        "Open-concept living with 20-foot ceilings",
-        "Smart home automation system",
-        "Sustainable materials and energy-efficient design",
-        "Custom-built wardrobes and storage solutions",
-        "Landscaped garden with outdoor entertainment area",
-        "Premium Italian marble and hardwood flooring",
-        "Designer lighting fixtures throughout",
-      ],
-      materials: [
-        "Italian Marble",
-        "Teak Wood",
-        "Steel",
-        "Glass",
-        "Natural Stone",
-      ],
-      testimonial: {
-        quote:
-          "ArchiWood transformed our house into a dream home. Their attention to detail and commitment to quality is unmatched.",
-        author: "Sarah Al-Mansouri",
-        role: "Homeowner",
-      },
-    },
-    {
-      id: 2,
-      title: "Corporate Office Redesign",
-      location: "Business Bay, Dubai",
-      category: "Commercial",
-      status: "Completed",
-      duration: "4 months",
-      budget: "$150K - $200K",
-      area: "3,200 sq ft",
-      rooms: "8 Offices + Meeting Rooms",
-      year: "2024",
-      mainImage:
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      ],
-      description:
-        "A comprehensive office redesign focused on creating a collaborative and inspiring work environment. The project involved transforming a traditional office layout into a modern, flexible workspace that promotes productivity and employee well-being.",
-      features: [
-        "Flexible workstations with ergonomic furniture",
-        "Collaborative meeting spaces with AV integration",
-        "Wellness room and quiet zones",
-        "Modern kitchen and break areas",
-        "Branded elements and company culture integration",
-        "Acoustic solutions for noise reduction",
-      ],
-      materials: [
-        "Laminated Wood",
-        "Acoustic Panels",
-        "Glass Partitions",
-        "Metal Fixtures",
-      ],
-      testimonial: {
-        quote:
-          "The new office design has significantly improved our team's productivity and created a more positive work environment.",
-        author: "Ahmed Hassan",
-        role: "CEO, Tech Solutions Inc.",
-      },
-    },
-    {
-      id: 3,
-      title: "Luxury Restaurant Interior",
-      location: "JBR, Dubai",
-      category: "Hospitality",
-      status: "In Progress",
-      duration: "5 months",
-      budget: "$300K - $400K",
-      area: "2,800 sq ft",
-      rooms: "Dining + Kitchen + Bar",
-      year: "2024",
-      mainImage:
-        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      ],
-      description:
-        "An upscale dining experience featuring contemporary design with Middle Eastern influences. This project combines luxury materials with cultural elements to create an unforgettable ambiance for guests.",
-      features: [
-        "Custom-designed seating and dining furniture",
-        "Ambient lighting with dimming controls",
-        "Premium kitchen equipment and layout",
-        "Private dining areas with acoustic privacy",
-        "Outdoor terrace with sea views",
-      ],
-      materials: [
-        "Brass Accents",
-        "Velvet Upholstery",
-        "Marble",
-        "Walnut Wood",
-      ],
-      testimonial: {
-        quote:
-          "The design perfectly captures our vision of modern luxury dining with cultural authenticity.",
-        author: "Omar Al-Rashid",
-        role: "Restaurant Owner",
-      },
-    },
-  ];
+  
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-[#F5F1ED]">

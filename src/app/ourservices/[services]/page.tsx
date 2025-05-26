@@ -76,9 +76,9 @@ export default async function page({ params }: { params: tParams }) {
               (data: string, index: React.Key | null | undefined) => (
                 <CarouselItem
                   key={index}
-                  className="md:basis-1/3 h-96 lg:basis-1/3 "
+                  className="md:basis-1/3 h-96 lg:basis-1/3 relative"
                 >
-                  <Image src={`/${data}`} width={500} height={500} alt="" />
+                  <Image src={`/${data}`}  fill className="object-cover" alt="" />
                 </CarouselItem>
               )
             )}

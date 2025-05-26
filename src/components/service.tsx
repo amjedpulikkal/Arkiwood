@@ -546,7 +546,7 @@ export default function Service() {
     },
     {
       name: "/francesca-tosolini-6japTIjUQoI-unsplash.jpg",
-      heading: "MEP Engineering",
+      heading: "MEP Drawings",
       body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
       nav: [
         "HVAC and Ducting Systems",
