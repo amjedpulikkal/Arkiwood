@@ -89,7 +89,7 @@ export default function WhyChooseArkiwood() {
 
           <div className="relative w-full h-full rounded-lg overflow-hidden">
             <Image
-             src={"/01--FRONT-ELEVATION-opt-2-CAM-1.jpg"}
+             src={"/WhatsApp Image 2025-05-26 at 4.11.50 PM (1).jpeg"}
               className="object-cover transition-transform duration-500 ease-in-out hover:scale-110 "
               alt=""
               fill
@@ -103,7 +103,7 @@ export default function WhyChooseArkiwood() {
         <div className=" sm:w-1/2 flex-wrap gap-4   px-5 ">
           <div className="relative w-full h-full overflow-hidden rounded-lg ">
             <Image
-              src={"/N38-CAM-5.-opt-2jpg.jpg"}
+              src={"/ibrary1280.jpg"}
              className="object-cover transition-transform duration-500 ease-in-out hover:scale-110 "
               alt=""
               fill

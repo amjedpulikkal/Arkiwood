@@ -35,7 +35,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+    <div className="bg-white  shadow-2xl overflow-hidden border border-gray-100">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#7F6456] to-[#A68B7A] text-white p-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
