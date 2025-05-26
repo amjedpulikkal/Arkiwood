@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, from "react";
+import React from "react";
 import projects from "./data.json";
 import { useRouter } from "next/navigation";
 
@@ -118,11 +118,10 @@ const EnhancedProjectsSection = () => {
 
         {/* Project Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
-              index={index}
               isActive={false}
               onClick={() => router.push(`/projects/${(project.title.split(" ").join("-"))}`)}
             />
