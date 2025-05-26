@@ -42,7 +42,7 @@
   },
   {
     "id": 2,
-    "title": "Luxury Penthouse Interior Revamp",
+    "title": "Suha park office and restaurant",
     "location": "Downtown Dubai, UAE",
     "category": "Interior Design",
     "status": "Completed",
@@ -51,12 +51,15 @@
     "area": "3,200 sq ft",
     "rooms": "4 BR + 5 BA",
     "year": "2024",
-    "mainImage": "/project/project-6/05-BEDROOM-CAM-2.jpg",
+    "mainImage": "/08 SUHA PARK OFFICE/04 RECEPTION.jpg",
     "gallery": [
-      "/project/project-6/06--GF-DINING-CAM-4.jpg",
-      "/project/project-6/06-MASTER-BEDROOM-CAM-1.jpg",
-      "/project/project-6/11--BAR-CAM-1.jpg",
-      "/project/project-6/09-MASTER-BEDROOM.jpg"
+      "/08 SUHA PARK OFFICE/01 LOUNGE.jpg",
+      "/08 SUHA PARK OFFICE/06  BIG WORKSTATION.jpg",
+      "/08 SUHA PARK OFFICE/00.jpg",
+      "/08 SUHA PARK OFFICE/03 LOUNGE SIDE VIEW.jpg",
+      "/08 SUHA PARK OFFICE/07 OFFICE VIEW 4,5,6.jpg",
+      "/08 SUHA PARK OFFICE/08  BIG WORKSTATION.jpg",
+      "/08 SUHA PARK OFFICE/10 OFFICE VIEW 7,8,9.jpg"
     ],
     "description": "A refined and luxurious interior design project for a high-rise penthouse, focusing on modern elegance and comfort. Featuring custom-designed furniture, ambient lighting, and a seamless mix of textures and tones to reflect sophisticated urban living.",
     "features": [
@@ -83,8 +86,100 @@
   },
   {
     "id": 3,
-    "title": "Coastal Elegance Retreat",
+    "title": "PFC any",
     "location": "Palm Jumeirah, UAE",
+    "category": "Residential",
+    "status": "Completed",
+    "duration": "8 months",
+    "budget": "$400K - $500K",
+    "area": "6,200 sq ft",
+    "rooms": "6 BR + 7 BA",
+    "year": "2025",
+    "mainImage": "/PFC OFFICE OPT 02/4.jpg",
+    "gallery": [
+      "/PFC OFFICE OPT 02/1.jpg",
+      "/PFC OFFICE OPT 02/2.jpg",
+      "/PFC OFFICE OPT 02/3.jpg",
+      "/PFC OFFICE OPT 02/4.jpg",
+      "/PFC OFFICE OPT 02/5.jpg",
+      "/PFC OFFICE OPT 02/6.jpg",
+      "/PFC OFFICE OPT 02/7.jpg",
+      "/PFC OFFICE OPT 02/8.jpg",
+      "/PFC OFFICE OPT 02/9.jpg"
+    ],
+    "description": "An elegant beachfront residence designed to bring resort-style living to everyday life. This project blends coastal elements with modern luxury, featuring panoramic ocean views, breezy open-plan layouts, and premium materials suited for the seaside climate.",
+    "features": [
+      "Infinity pool overlooking the ocean",
+      "Outdoor kitchen and sunken lounge",
+      "Glass façade with retractable walls",
+      "Automated blinds and climate control",
+      "Spa-inspired master suite with ocean view",
+      "Rooftop terrace with fire pit and garden",
+      "Artisanal stone and wood finishes"
+    ],
+    "materials": [
+      "Coral Stone",
+      "Glass",
+      "Weather-treated Timber",
+      "Concrete",
+      "Quartz"
+    ],
+    "testimonial": {
+      "quote": "Their design brought our vision of luxury coastal living to life. Every detail feels intentional and stunning.",
+      "author": "Khalid Bin Saeed",
+      "role": "Client"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Botique",
+    "location": " Dubai",
+    "category": "Residential",
+    "status": "Completed",
+    "duration": "8 months",
+    "budget": "$400K - $500K",
+    "area": "6,200 sq ft",
+    "rooms": "6 BR + 7 BA",
+    "year": "2025",
+    "mainImage": "/07 BOTIQE/1.jpg",
+    "gallery": [
+      "/07 BOTIQE/1.jpg",
+      "/07 BOTIQE/2.jpg",
+      "/07 BOTIQE/3.jpg",
+      "/07 BOTIQE/4.jpg",
+      "/07 BOTIQE/5.jpg",
+      "/07 BOTIQE/6.jpg",
+      "/07 BOTIQE/7.jpg",
+      "/07 BOTIQE/8.jpg"
+      
+    ],
+    "description": "An elegant beachfront residence designed to bring resort-style living to everyday life. This project blends coastal elements with modern luxury, featuring panoramic ocean views, breezy open-plan layouts, and premium materials suited for the seaside climate.",
+    "features": [
+      "Infinity pool overlooking the ocean",
+      "Outdoor kitchen and sunken lounge",
+      "Glass façade with retractable walls",
+      "Automated blinds and climate control",
+      "Spa-inspired master suite with ocean view",
+      "Rooftop terrace with fire pit and garden",
+      "Artisanal stone and wood finishes"
+    ],
+    "materials": [
+      "Coral Stone",
+      "Glass",
+      "Weather-treated Timber",
+      "Concrete",
+      "Quartz"
+    ],
+    "testimonial": {
+      "quote": "Their design brought our vision of luxury coastal living to life. Every detail feels intentional and stunning.",
+      "author": "Khalid Bin Saeed",
+      "role": "Client"
+    }
+  },
+  {
+    "id": 5,
+    "title": "Gulfstream",
+    "location": "Dubai",
     "category": "Residential",
     "status": "Completed",
     "duration": "8 months",
@@ -123,7 +218,7 @@
     }
   },
   {
-    "id": 4,
+    "id": 6,
     "title": "Amer Lounge",
     "location": "Burjuman mall - Dubai",
     "category": "Residential",
@@ -133,12 +228,15 @@
     "area": "6,200 sq ft",
     "rooms": "6 BR + 7 BA",
     "year": "2025",
-    "mainImage": "/project/project-3/N38-CAM-5.-opt-2jpg.jpg",
+    "mainImage": "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0005.jpg",
     "gallery": [
-      "/project/project-3/05-CAM-4-OPT-2.jpg",
-      "/project/project-3/06-BACK-SIDE---CAM-9-.jpg",
-      "/project/project-3/N38 CAM 5.jpg",
-      "/project/project-3/N38-CAM-1-OPT-2.jpg"
+     "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0001.jpg",
+     "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0004.jpg",
+     "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0007.jpg",
+     "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0009.jpg",
+     "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0010.jpg",
+     "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0012.jpg",
+     "/Amer Lounge/AMER CENTER 3D 29.04.2025_page-0013.jpg"
     ],
     "description": "An elegant beachfront residence designed to bring resort-style living to everyday life. This project blends coastal elements with modern luxury, featuring panoramic ocean views, breezy open-plan layouts, and premium materials suited for the seaside climate.",
     "features": [

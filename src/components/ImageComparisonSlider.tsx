@@ -31,7 +31,7 @@ const ImageComparisonSlider: React.FC<ImageComparisonProps> = ({
         <Image
           width={300}
           height={300}
-          className="w-full h-full object-cover object-left"
+          className="w-full h-full object-cover object-center"
           src={fImage}
           alt="After image"
         />

@@ -5,16 +5,16 @@ import ImageComparisonSlider from "./ImageComparisonSlider";
 export default function AflterAndBeforImage() {
   const images = [
     {
-      fImage: "/kyliefitts_havenly_shelby-rocklan.jpg",
-      bImage: "/kitchen-before.jpg",
+      bImage: "/bImage4.jpeg",
+      fImage: "/fImage4.jpeg",
     },
     {
       fImage:
-        "/kyliefitts_havenly_viviansapartment_01-800x1200-cb6eae5-700x1050.jpg",
-      bImage: "/Screen-Shot.png",
+        "/fImage3.jpeg",
+      bImage: "/bImage3.jpeg",
     },
     { fImage: "/havenly_k.jpg", bImage: "/f9544380-5.jpg" },
-    { fImage: "/kyliefitts_havenl.jpg", bImage: "/sunroom-before.jpg" },
+    { fImage: "/fImage2.jpeg", bImage: "/bImage2.jpeg" },
     { fImage: "/fImag1.jpeg", bImage: "/bImg2.jpeg" },
   ];
   return (
