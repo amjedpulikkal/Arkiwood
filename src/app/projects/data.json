@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Urban Chic Apartment Makeover",
+    "title": "AR3 villa 206",
     "location": "Jumeirah Lake Towers, Dubai, UAE",
     "category": "Interior Design",
     "status": "Completed",
@@ -85,6 +85,47 @@
     "id": 3,
     "title": "Coastal Elegance Retreat",
     "location": "Palm Jumeirah, UAE",
+    "category": "Residential",
+    "status": "Completed",
+    "duration": "8 months",
+    "budget": "$400K - $500K",
+    "area": "6,200 sq ft",
+    "rooms": "6 BR + 7 BA",
+    "year": "2025",
+    "mainImage": "/project/project-3/N38-CAM-5.-opt-2jpg.jpg",
+    "gallery": [
+      "/project/project-3/05-CAM-4-OPT-2.jpg",
+      "/project/project-3/06-BACK-SIDE---CAM-9-.jpg",
+      "/project/project-3/N38 CAM 5.jpg",
+      "/project/project-3/N38-CAM-1-OPT-2.jpg"
+    ],
+    "description": "An elegant beachfront residence designed to bring resort-style living to everyday life. This project blends coastal elements with modern luxury, featuring panoramic ocean views, breezy open-plan layouts, and premium materials suited for the seaside climate.",
+    "features": [
+      "Infinity pool overlooking the ocean",
+      "Outdoor kitchen and sunken lounge",
+      "Glass façade with retractable walls",
+      "Automated blinds and climate control",
+      "Spa-inspired master suite with ocean view",
+      "Rooftop terrace with fire pit and garden",
+      "Artisanal stone and wood finishes"
+    ],
+    "materials": [
+      "Coral Stone",
+      "Glass",
+      "Weather-treated Timber",
+      "Concrete",
+      "Quartz"
+    ],
+    "testimonial": {
+      "quote": "Their design brought our vision of luxury coastal living to life. Every detail feels intentional and stunning.",
+      "author": "Khalid Bin Saeed",
+      "role": "Client"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Amer Lounge",
+    "location": "Burjuman mall - Dubai",
     "category": "Residential",
     "status": "Completed",
     "duration": "8 months",
