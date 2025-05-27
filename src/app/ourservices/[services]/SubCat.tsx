@@ -11,8 +11,8 @@ type Props = {
 const SubCat: React.FC<Props> = ({ data }) => {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [isMobile, setMobile] = React.useState<boolean>(false);
-  
-  const handleTap = (index: number) => {
+
+  const handleTap = (index: number|null) => {
     console.log(index);
     if (isMobile) {
       setActiveIndex(activeIndex === index ? null : index);
@@ -23,28 +23,35 @@ const SubCat: React.FC<Props> = ({ data }) => {
     const handleResize = () => {
       setMobile(window.innerWidth < 1024);
     };
-    
+
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className="min-h-screen py-16 px-6">
       {/* Header Section */}
       <div className="text-center mb-16">
-        <h2 className="text-5xl font-bold bg-gradient-to-r from-amber-700 via-orange-600 to-yellow-700 bg-clip-text text-transparent mb-4" style={{color: '#7F6456'}}>
+        <h2
+          className="text-5xl font-bold bg-gradient-to-r from-amber-700 via-orange-600 to-yellow-700 bg-clip-text text-transparent mb-4"
+          style={{ color: "#7F6456" }}
+        >
           Our Services
         </h2>
         <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-          Discover our comprehensive range of services designed to meet your needs
+          Discover our comprehensive range of services designed to meet your
+          needs
         </p>
       </div>
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {Object.entries(data[0]).map(
-          ([category, topics]: [string, string[] | undefined], index: number) => (
+          (
+            [category, topics]: [string, string[] | undefined],
+            index: number
+          ) => (
             <div
               key={index}
               className="group relative transform hover:scale-105 transition-all duration-500 ease-out"
@@ -59,7 +66,10 @@ const SubCat: React.FC<Props> = ({ data }) => {
 
                 {/* Category Title */}
                 <div className="p-6 pb-4">
-                  <h3 className="text-xl font-bold text-center mb-4 nasalization" style={{color: '#7F6456'}}>
+                  <h3
+                    className="text-xl font-bold text-center mb-4 nasalization"
+                    style={{ color: "#7F6456" }}
+                  >
                     {category}
                   </h3>
                 </div>
@@ -72,52 +82,57 @@ const SubCat: React.FC<Props> = ({ data }) => {
                     width={280}
                     height={256}
                     className={`absolute inset-0 w-full h-full object-cover cursor-pointer transition-all duration-700 ease-in-out transform
-                      ${activeIndex === index || (!isMobile && 'group-hover:scale-110 group-hover:blur-sm group-hover:brightness-50')}`}
+                      ${
+                        activeIndex === index ||
+                        (!isMobile &&
+                          "group-hover:scale-110 group-hover:blur-sm group-hover:brightness-50")
+                      }`}
                     src={`/${data[1].image[index]}`}
                     alt={`${category} service image`}
                   />
 
                   {/* Overlay Content */}
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-amber-900/40 to-transparent 
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t from-black/80 via-amber-900/40 to-transparent 
                     flex items-center justify-center p-6 transition-all duration-500 transform
-                    ${activeIndex === index 
-                      ? 'opacity-100 translate-y-0' 
-                      : isMobile 
-                        ? 'opacity-0 translate-y-full' 
-                        : 'opacity-0 group-hover:opacity-100 translate-y-full group-hover:translate-y-0'
-                    }`}>
-                    
+                    ${
+                      activeIndex === index
+                        ? "opacity-100 translate-y-0"
+                        : isMobile
+                        ? "opacity-0 translate-y-full"
+                        : "opacity-0 group-hover:opacity-100 translate-y-full group-hover:translate-y-0"
+                    }`}
+                  >
                     <div className="text-center">
                       {/* Topics List */}
                       <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl max-h-48 overflow-y-auto border border-orange-200">
-                        <ul className="space-y-2 text-sm" style={{color: '#7F6456'}}>
+                        <ul
+                          className="space-y-2 text-sm"
+                          style={{ color: "#7F6456" }}
+                        >
                           {topics?.map((topic: string, i: number) => (
-                            <li key={i} className="flex items-center space-x-2 animate-fade-in">
-                              <div className="w-2 h-2 rounded-full flex-shrink-0" style={{background: 'linear-gradient(135deg, #7F6456 0%, #9B7B63 100%)'}}></div>
+                            <li
+                              key={i}
+                              className="flex items-center space-x-2 animate-fade-in"
+                            >
+                              <div
+                                className="w-2 h-2 rounded-full flex-shrink-0"
+                                style={{
+                                  background:
+                                    "linear-gradient(135deg, #7F6456 0%, #9B7B63 100%)",
+                                }}
+                              ></div>
                               <span className="text-left">{topic}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
-                      
+
                       {/* Mobile hint */}
-                      {isMobile && (
-                        <p className="text-white/80 text-xs mt-3 font-medium">
-                          Tap to {activeIndex === index ? 'close' : 'explore'}
-                        </p>
-                      )}
                     </div>
                   </div>
 
                   {/* Hover hint for desktop */}
-                  {!isMobile && (
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 
-                      opacity-0 group-hover:opacity-100 transition-all duration-300 delay-200">
-                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium shadow-lg border border-orange-200" style={{color: '#7F6456'}}>
-                        Hover to explore
-                      </div>
-                    </div>
-                  )}
                 </div>
 
                 {/* Decorative Elements */}
@@ -127,16 +142,46 @@ const SubCat: React.FC<Props> = ({ data }) => {
 
               {/* Floating particles effect */}
               <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{backgroundColor: '#7F6456'}}></div>
-                <div className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{backgroundColor: '#9B7B63', animationDelay: '0.5s'}}></div>
-                <div className="absolute top-1/2 right-1/3 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{backgroundColor: '#A67C5A', animationDelay: '1s'}}></div>
+                <div
+                  className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 animate-ping"
+                  style={{ backgroundColor: "#7F6456" }}
+                ></div>
+                <div
+                  className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 animate-ping"
+                  style={{ backgroundColor: "#9B7B63", animationDelay: "0.5s" }}
+                ></div>
+                <div
+                  className="absolute top-1/2 right-1/3 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 animate-ping"
+                  style={{ backgroundColor: "#A67C5A", animationDelay: "1s" }}
+                ></div>
               </div>
+              {!isMobile && (
+                <div
+                  className="absolute bottom-10 left-1/2 transform -translate-x-1/2 
+                      opacity-100 group-hover:opacity-0 transition-all duration-300 delay-200"
+                >
+                  <div
+                    className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium shadow-lg border border-orange-200"
+                    style={{ color: "#7F6456" }}
+                  >
+                    Hover to explore
+                  </div>
+                </div>
+              )}
+
+              {isMobile && (
+                <p onClick={()=>{
+                  if(activeIndex === index){
+                    handleTap(null)
+                  }
+                }} className="text-white/80 text-xs mt-3 font-medium">
+                  Tap to {activeIndex === index ? "close" : "explore"}
+                </p>
+              )}
             </div>
           )
         )}
       </div>
-
-    
     </div>
   );
 };
