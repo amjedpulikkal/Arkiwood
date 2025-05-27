@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback, JSX } from "react";
+import React, { useState, useEffect, useRef, useCallback,JSX } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -12,18 +12,13 @@ interface ServiceItem {
   nav: string[];
 }
 
-// interface TouchEvent extends React.TouchEvent {
-//   touches: TouchList;
-// }
 
-// interface MouseEvent extends React.MouseEvent {
-//   clientX: number;
-// }
 
 export default function Service(): JSX.Element {
   const [cindex, setcIndex] = useState<number>(0);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
+  const [startY, setStartY] = useState<number>(0);
   const [dragDistance, setDragDistance] = useState<number>(0);
   const [hasDragged, setHasDragged] = useState<boolean>(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -190,8 +185,13 @@ export default function Service(): JSX.Element {
       const clientX = 'clientX' in e 
         ? e.clientX 
         : e.touches[0].clientX;
+        
+      const clientY = 'clientY' in e 
+        ? e.clientY 
+        : e.touches[0].clientY;
 
       setStartX(clientX);
+      setStartY(clientY);
       setDragDistance(0);
     },
     [clearAutoPlay]
@@ -204,12 +204,26 @@ export default function Service(): JSX.Element {
       const clientX = 'clientX' in e 
         ? e.clientX 
         : (e as globalThis.TouchEvent).touches[0].clientX;
+      
+      const clientY = 'clientY' in e 
+        ? e.clientY 
+        : (e as globalThis.TouchEvent).touches[0].clientY;
 
       const distance = clientX - startX;
-      setDragDistance(distance);
-
-      if (Math.abs(distance) > 10) {
+      const verticalDistance = Math.abs(clientY - (startY || clientY));
+      
+      // Only prevent default and handle horizontal drag if it's clearly horizontal movement
+      if (Math.abs(distance) > verticalDistance && Math.abs(distance) > 10) {
+        if ('preventDefault' in e) {
+          e.preventDefault();
+        }
+        setDragDistance(distance);
         setHasDragged(true);
+      } else if (verticalDistance > Math.abs(distance) && verticalDistance > 20) {
+        // If it's clearly vertical scrolling, stop dragging
+        setIsDragging(false);
+        setHasDragged(false);
+        setDragDistance(0);
       }
     },
     [isDragging, startX]
