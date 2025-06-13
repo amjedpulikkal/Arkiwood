@@ -24,11 +24,21 @@ export default function ContactCom() {
       [name]: value,
     }));
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    // TODO: Add actual form submission logic (API call, email service, etc.)
-    alert("Message sent!");
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      alert("Message sent!");
+    } else {
+      alert(`Error: ${result.error}`);
+    }
   };
 
   return (

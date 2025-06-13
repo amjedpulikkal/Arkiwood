@@ -46,7 +46,7 @@ export default function Navbar() {
             <div className=" p-5 ">
               <Link href={"/"}>
                 <Image
-                  className="w-28    dark:invert"
+                  className="w-28    "
                   src="/logo.png"
                   alt="logo"
                   width={240}
@@ -75,6 +75,7 @@ export default function Navbar() {
                 ))}
               </ul>
             </div>
+            
             <div className="sm:block hidden">
               <div className="flex justify-between  items-center gap-4">
                 {[

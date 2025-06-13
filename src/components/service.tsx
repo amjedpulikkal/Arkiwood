@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback,JSX } from "react";
+import React, { useState, useEffect, useRef, useCallback, JSX } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -11,8 +11,6 @@ interface ServiceItem {
   body: string;
   nav: string[];
 }
-
-
 
 export default function Service(): JSX.Element {
   const [cindex, setcIndex] = useState<number>(0);
@@ -177,18 +175,16 @@ export default function Service(): JSX.Element {
   );
 
   const handleStart = useCallback(
-    (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+    (
+      e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
+    ): void => {
       setIsDragging(true);
       setHasDragged(false);
       clearAutoPlay();
 
-      const clientX = 'clientX' in e 
-        ? e.clientX 
-        : e.touches[0].clientX;
-        
-      const clientY = 'clientY' in e 
-        ? e.clientY 
-        : e.touches[0].clientY;
+      const clientX = "clientX" in e ? e.clientX : e.touches[0].clientX;
+
+      const clientY = "clientY" in e ? e.clientY : e.touches[0].clientY;
 
       setStartX(clientX);
       setStartY(clientY);
@@ -201,32 +197,35 @@ export default function Service(): JSX.Element {
     (e: globalThis.MouseEvent | globalThis.TouchEvent): void => {
       if (!isDragging) return;
 
-      const clientX = 'clientX' in e 
-        ? e.clientX 
-        : (e as globalThis.TouchEvent).touches[0].clientX;
-      
-      const clientY = 'clientY' in e 
-        ? e.clientY 
-        : (e as globalThis.TouchEvent).touches[0].clientY;
+      const clientX =
+        "clientX" in e
+          ? e.clientX
+          : (e as globalThis.TouchEvent).touches[0].clientX;
+
+      const clientY =
+        "clientY" in e
+          ? e.clientY
+          : (e as globalThis.TouchEvent).touches[0].clientY;
 
       const distance = clientX - startX;
       const verticalDistance = Math.abs(clientY - (startY || clientY));
-      
-      // Only prevent default and handle horizontal drag if it's clearly horizontal movement
+
       if (Math.abs(distance) > verticalDistance && Math.abs(distance) > 10) {
-        if ('preventDefault' in e) {
+        if ("preventDefault" in e) {
           e.preventDefault();
         }
         setDragDistance(distance);
         setHasDragged(true);
-      } else if (verticalDistance > Math.abs(distance) && verticalDistance > 20) {
-        // If it's clearly vertical scrolling, stop dragging
+      } else if (
+        verticalDistance > Math.abs(distance) &&
+        verticalDistance > 20
+      ) {
         setIsDragging(false);
         setHasDragged(false);
         setDragDistance(0);
       }
     },
-    [isDragging, startX]
+    [isDragging, startX, startY] 
   );
 
   const handleEnd = useCallback((): void => {

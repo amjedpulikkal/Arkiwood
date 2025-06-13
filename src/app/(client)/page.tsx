@@ -13,6 +13,7 @@ import AutoScrollSection from "@/components/autoScrollSection";
 
 import Service from "@/components/service";
 import Image from "next/image";
+
 // import OurCertifications from "@/components/ourCertifications";
 // import Review from "@/components/review";
 
@@ -109,6 +110,8 @@ export default function Home() {
         {/* <AutoScrollSection> */}
           <ContactCom />
         {/* </AutoScrollSection> */}
+
+       
       </main>
     </>
   );
