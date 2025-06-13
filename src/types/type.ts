@@ -49,6 +49,7 @@ export type Image = {
 };
 
 export type Service = {
+  
   service_id:number;
   id: number;
   service_name: string;

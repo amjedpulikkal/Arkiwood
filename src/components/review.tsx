@@ -1,9 +1,13 @@
 "use client";
-import { useState } from "react";
+import { FC, useState } from "react";
 
-export default function TestimonialForm({ data }) {
+export default function TestimonialForm({
+  data,
+}: {
+  data: { name: string; email: string; id: number };
+}) {
   const [formData, setFormData] = useState({
-    name: data.name || "",
+    name: data?.name || "",
     email: data.email || "",
     company: "",
     rating: 0,
@@ -14,7 +18,7 @@ export default function TestimonialForm({ data }) {
   const [hoverRating, setHoverRating] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -22,7 +26,7 @@ export default function TestimonialForm({ data }) {
     }));
   };
 
-  const handleRatingClick = (rating) => {
+  const handleRatingClick = (rating: number) => {
     setFormData((prev) => ({
       ...prev,
       rating,
@@ -62,7 +66,16 @@ export default function TestimonialForm({ data }) {
     }
   };
 
-  const StarIcon = ({ filled, onHover, onClick }) => (
+  interface StarIconProps {
+    /** whether the star is filled (active) */
+    filled: boolean;
+    /** called when the mouse enters (hover) */
+    onHover: () => void;
+    /** called when the star is clicked */
+    onClick: () => void;
+  }
+
+  const StarIcon: FC<StarIconProps> = ({ filled, onHover, onClick }) => (
     <svg
       className={`w-8 h-8 cursor-pointer transition-all duration-200 ${
         filled ? "text-yellow-400" : "text-white/30"
@@ -75,7 +88,6 @@ export default function TestimonialForm({ data }) {
       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
     </svg>
   );
-
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#2C2C2C] via-[#3D3D3D] to-[#1A1A1A]  flex items-center justify-center p-4">
@@ -244,7 +256,7 @@ export default function TestimonialForm({ data }) {
                   value={formData.testimonial}
                   onChange={handleInputChange}
                   required
-                  rows="6"
+                  rows={6}
                   className="w-full bg-white/5 border-2 border-white/20 rounded-2xl p-4 text-white text-lg placeholder:text-white/50 focus:outline-none focus:border-[#7F6456] focus:bg-white/10 transition-all duration-300 resize-none"
                   placeholder="Share your experience working with us. What did you like most about our service? How did we help bring your vision to life?"
                 />

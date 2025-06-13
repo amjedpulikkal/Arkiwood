@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import { Service } from "@/types/type";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -7,14 +8,15 @@ export async function GET(req: Request) {
 
   if (serviceId) {
 
-    const {data,error } = await supabase.from("services").select("*").eq("id",serviceId)
-   
+    const {data,error } = await supabase.from("services").select("*").eq("id", serviceId) 
+    
+    const service = data as Service[]
     const { data: removeData } = await supabase.storage
       .from("static.images")
-      .list(`projects/${data[0]?.service_name}`);
+      .list(`service/${service[0]?.service_name}`);
 
     const filesToRemove = removeData!.map(
-      (x) => `projects/${data[0]?.title}/${x.name}`
+      (x) => `service/${service[0]?.service_name}/${x.name}`
     );
 
     

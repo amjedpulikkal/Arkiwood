@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
     
-    const serviceObj = JSON.parse(formData.get("services")!);
+    const serviceObj = JSON.parse((formData.get("services") as string));
 
     const serviceArray = Object.entries(serviceObj).map(([key, value]) => ({
       name: key,

@@ -3,6 +3,10 @@ import React from 'react'
 
 export default function page() {
   return (
-    <><TestimonialForm/></>
+    <><TestimonialForm data={{
+      name: '',
+      email: '',
+      id: 0
+    }}/></>
   )
 }
