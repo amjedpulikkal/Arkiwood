@@ -748,6 +748,9 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 import { Project } from "@/types/type";
+import { supabase } from "@/lib/supabaseClient";
+import { nanoid } from "nanoid";
+import Image from "next/image";
 
 interface Testimonial {
   quote: string;
@@ -757,6 +760,7 @@ interface Testimonial {
 
 interface ExistingImage {
   path: string;
+  image_url: string;
 }
 
 interface GalleryItem {
@@ -801,7 +805,9 @@ export default function UpdateProjectProjectConfiguration({
   data,
 }: Props) {
   const [activeTab, setActiveTab] = useState<string>("basic");
-  const [formData, setFormData] = useState<ProjectData>(({ ...data } as unknown as ProjectData));
+  const [formData, setFormData] = useState<ProjectData>({
+    ...data,
+  } as unknown as ProjectData);
   const [newFeature, setNewFeature] = useState<string>("");
   const [newMaterial, setNewMaterial] = useState<string>("");
   const [errors, setErrors] = useState<ValidationErrors>({});
@@ -986,7 +992,20 @@ export default function UpdateProjectProjectConfiguration({
     { id: "images", label: "Images" },
     { id: "testimonial", label: "Testimonial" },
   ];
+  const uploadImage = async (projectName: string, file: File) => {
+    const path = `projects/${projectName}/${nanoid()}-${file.name}`;
 
+    const { error } = await supabase.storage
+      .from("static.images")
+      .upload(path, file, { contentType: file.type });
+
+    if (error) console.log(error);
+
+    const url = supabase.storage.from("static.images").getPublicUrl(path)
+      .data.publicUrl;
+    console.log(url);
+    return { image_url: url, path };
+  };
   const handleSubmit = async () => {
     if (!validate()) {
       toast.error("Please fix validation errors.");
@@ -1018,17 +1037,30 @@ export default function UpdateProjectProjectConfiguration({
     formData.project_materials.forEach((item) => {
       form.append("project_materials[]", item);
     });
-    formData.project_gallery.forEach((item) => {
+
+    const gallery_images = [];
+    for (const item of formData.project_gallery) {
       if (item.image_url instanceof File) {
-        form.append("new_gallery_images", item.image_url);
+        const data = await uploadImage(formData.title, item.image_url);
+        gallery_images.push(data);
       } else {
-        form.append("existing_gallery_paths[]", item.image_url.path);
+        gallery_images.push(item.image_url);
+        // form.append("existing_gallery_paths[]", item.image_url.path);
       }
-    });
+    }
+    form.append("new_gallery_images", JSON.stringify(gallery_images));
+    // formData.project_gallery.forEach((item) => {
+    // });
     if (formData.main_image instanceof File) {
-      form.append("main_image", formData.main_image);
+      
+      form.append("old_cover_image_path",data.main_image.path)
+      const dataRes = await uploadImage(formData.title, formData.main_image);
+      form.append("main_image", JSON.stringify(dataRes));
+      
     } else if (formData.main_image && "path" in formData.main_image) {
-      form.append("existing_main_image_path", formData.main_image.path);
+
+      form.append("main_image", JSON.stringify(formData.main_image));
+
     }
     const response = fetch("/api/projects/updateProject", {
       method: "POST",
@@ -1412,8 +1444,22 @@ export default function UpdateProjectProjectConfiguration({
                   {formData.main_image && (
                     <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 group">
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-[#7F6456]/20 rounded-lg flex items-center justify-center">
-                          <ImageIc className="text-[#7F6456]" size={20} />
+                        <div className="w-12 relative h-12 bg-[#7F6456]/20 rounded-lg flex items-center justify-center">
+                          {/* <ImageIc className="text-[#7F6456]" size={20} /> */}
+
+                          {formData.main_image instanceof File ? (
+                            <Image
+                              src={URL.createObjectURL(formData.main_image)}
+                              fill
+                              alt={formData.main_image?.name}
+                            />
+                          ) : (
+                            <Image
+                              src={formData.main_image?.image_url}
+                              fill
+                              alt={formData.main_image?.path}
+                            />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-white text-sm font-medium truncate">
@@ -1457,8 +1503,24 @@ export default function UpdateProjectProjectConfiguration({
                       className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 group"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-[#7F6456]/20 rounded-lg flex items-center justify-center">
-                          <ImageIc className="text-[#7F6456]" size={20} />
+                        <div className="w-12 relative h-12 bg-[#7F6456]/20 rounded-lg flex items-center justify-center">
+                          {/* <ImageIc className="text-[#7F6456]" size={20} /> */}
+
+                          {item.image_url instanceof File ? (
+                            <Image
+                              src={URL.createObjectURL(item.image_url)}
+                              fill
+                              className="object-cover"
+                              alt={item.image_url.name}
+                            />
+                          ) : (
+                            <Image
+                              src={item?.image_url?.image_url}
+                              fill
+                              className="object-cover"
+                              alt={item?.image_url?.path}
+                            />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-white text-sm font-medium truncate">

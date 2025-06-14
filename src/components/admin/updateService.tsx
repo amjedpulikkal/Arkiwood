@@ -20,6 +20,8 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { SubService, Image as Imagetype, Service } from "@/types/type";
+import { supabase } from "@/lib/supabaseClient";
+import { nanoid } from "nanoid";
 
 //
 // --- TYPE DEFINITIONS ---
@@ -221,14 +223,26 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
 
     if (
       sub_services &&
-      !updatedSub_services.find((data) => data.id === sub_services.id)
+      updatedSub_services.find((data) => data.id === sub_services.id)
     ) {
-      setUpdatedSub_services((p) => [...p, sub_services]);
+      const index = updatedSub_services.findIndex(
+        (data) => data.id === sub_services.id
+      );
+
+      console.log(index);
+      const newData = [...updatedSub_services];
+
+      newData[index] = newSub
+
+      console.log(newData);
+      setUpdatedSub_services(newData);
+    } else {
+      setUpdatedSub_services([...updatedSub_services, newSub]);
     }
 
     setFormData((prev) => {
       const updatedSubServices = [...(prev.sub_services || [])];
-      // @ts-expect-error : ignore
+      
       updatedSubServices[serviceIndex] = newSub;
       return {
         ...prev,
@@ -309,7 +323,20 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
     }));
     setRemoveImages([...removeImages]);
   };
+  const uploadImage = async (serviceName: string, file: File) => {
+    const path = `service/${serviceName}/${nanoid()}-${file.name}`;
 
+    const { error } = await supabase.storage
+      .from("static.images")
+      .upload(path, file, { contentType: file.type });
+
+    if (error) console.log(error);
+
+    const url = supabase.storage.from("static.images").getPublicUrl(path)
+      .data.publicUrl;
+    console.log(url);
+    return { image_url: url, path };
+  };
   // Handle Save (submit)
   const handleSave = async () => {
     if (!validateForm()) {
@@ -327,38 +354,50 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
         "updatedSub_services",
         JSON.stringify(updatedSub_services)
       );
-
+      console.log("updatedSub_services",updatedSub_services);
       if (formData.cover_image instanceof File) {
-        payload.append("cover_image", formData.cover_image);
+        const data = await uploadImage(
+          formData.service_name,
+          formData.cover_image
+        );
+        payload.append("cover_image", JSON.stringify(data));
         payload.append("old_cover_image_path", coverImages?.path ?? "");
       } else if (
         typeof formData.cover_image === "object" &&
         formData.cover_image?.path
       ) {
-        payload.append("cover_image", formData.cover_image.image_url!);
+        payload.append("cover_image", formData.cover_image.path!);
       }
 
-      const existingPaths: string[] = [];
-      const newFiles: File[] = [];
+      const existingPaths = [] as unknown as [
+        { path: string; image_url: string }
+      ];
+      // const newFiles: [{ path: string ,image_url: string;}] = [];
 
-      (formData.images ?? []).forEach((img) => {
+      for (const img of formData.images ?? []) {
         if (img instanceof File) {
-          newFiles.push(img);
+          const data = await uploadImage(formData.service_name, img);
+          console.log("new images", data);
+          existingPaths.push(data);
         } else if (typeof img === "object" && "path" in img) {
-          existingPaths.push(img.path!);
+          existingPaths.push(img as { path: string; image_url: string });
         }
-      });
+      }
+
       removeSubServices.forEach((i) => {
         // @ts-expect-error : ignore
         payload.append("removeSubServices[]", i);
       });
-      existingPaths.forEach((p) => {
-        payload.append("existing_images[]", p);
-      });
 
-      newFiles.forEach((f) => {
-        payload.append("new_images[]", f);
-      });
+      console.log("before update new images", existingPaths);
+
+      // existingPaths.forEach((p) => {
+      payload.append("existing_images", JSON.stringify(existingPaths));
+      // });
+
+      // newFiles.forEach((f) => {
+      //   payload.append("new_images[]", f);
+      // });
       const res = fetch("/api/services/updateService", {
         method: "POST",
         body: payload,
@@ -445,7 +484,9 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
             ].map((tab) => (
               <button
                 key={tab.id + "tap"}
-                onClick={() => setActiveTab(tab.id as "services"| "images"|"description")}
+                onClick={() =>
+                  setActiveTab(tab.id as "services" | "images" | "description")
+                }
                 className={`flex-1 flex items-center justify-center space-x-2 px-6 py-4 font-medium transition-colors ${
                   activeTab === tab.id
                     ? "text-[#7F6456] border-b-2 border-[#7F6456] bg-[#7F6456]/10"

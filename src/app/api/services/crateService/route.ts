@@ -4,45 +4,51 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
-    
-    const serviceObj = JSON.parse((formData.get("services") as string));
+
+    const serviceObj = JSON.parse(formData.get("services") as string);
 
     const serviceArray = Object.entries(serviceObj).map(([key, value]) => ({
       name: key,
       subServices: value,
     }));
-    const coverImage = formData.get("coverImages") as File;
-    const path = `service/${formData.get("serviceName")}/${Date.now()}-${
-      coverImage.name
-    }`;
+    const coverImage = JSON.parse(formData.get("coverImages") as string) as {
+      path: string;
+      image_url: string;
+    };
+    // const path = `service/${formData.get("serviceName")}/${Date.now()}-${
+    //   coverImage.name
+    // }`;
 
-    const buffer = Buffer.from(await coverImage.arrayBuffer());
-    await supabase.storage
-      .from("static.image")
-      .upload(path, buffer, { contentType: coverImage.type });
+    // const buffer = Buffer.from(await coverImage.arrayBuffer());
+    // await supabase.storage
+    //   .from("static.images")
+    //   .upload(path, buffer, { contentType: coverImage.type });
 
-    const { data: image_url } = supabase.storage
-      .from("static.images")
-      .getPublicUrl(path);
+    // const { data: image_url } = supabase.storage
+    //   .from("static.images")
+    //   .getPublicUrl(path);
 
-    const uploadedUrls = [];
-    const images = formData.getAll("images") as unknown as File[];
+    // const uploadedUrls = [];
+    const images = JSON.parse(formData.get("images") as string) as unknown as {
+      path: string;
+      image_url: string;
+    }[];
 
-    for (const image of images) {
-      const buffer = Buffer.from(await image.arrayBuffer());
-      const path = `service/${formData.get("serviceName")}/${Date.now()}-${
-        image.name
-      }`;
+    // for (const image of images) {
+    //   const buffer = Buffer.from(await image.arrayBuffer());
+    //   const path = `service/${formData.get("serviceName")}/${Date.now()}-${
+    //     image.name
+    //   }`;
 
-      await supabase.storage.from("static.images").upload(path, buffer, {
-        contentType: image.type,
-      });
-      const { data: urlData } = supabase.storage
-        .from("static.images")
-        .getPublicUrl(path);
+    //   await supabase.storage.from("static.images").upload(path, buffer, {
+    //     contentType: image.type,
+    //   });
+    //   const { data: urlData } = supabase.storage
+    //     .from("static.images")
+    //     .getPublicUrl(path);
 
-      uploadedUrls.push({ path, image_url: urlData.publicUrl });
-    }
+    //   uploadedUrls.push({ path, image_url: urlData.publicUrl });
+    // }
 
     const { data: serviceData, error } = await supabase
       .from("services")
@@ -50,8 +56,11 @@ export async function POST(req: Request) {
         {
           service_name: formData.get("serviceName"),
           description: formData.get("description"),
-          cover_image: {path,image_url:image_url.publicUrl},
-          images: uploadedUrls,
+          cover_image: {
+            path: coverImage.path,
+            image_url: coverImage.image_url,
+          },
+          images,
         },
       ])
       .select();
@@ -59,7 +68,6 @@ export async function POST(req: Request) {
     if (error) throw error;
     const serviceId = serviceData[0].id;
 
-                                                          
     const subServicePayload = serviceArray.map((data) => ({
       sub_service_name: data.name,
       service_id: serviceId,

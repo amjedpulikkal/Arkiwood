@@ -19,6 +19,8 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabaseClient";
+import { nanoid } from "nanoid";
 
 //
 // --- TYPE DEFINITIONS ---
@@ -136,7 +138,7 @@ export default function ServiceModal({ open, callBack }: Props) {
       // Clear any previous services error
       setErrors((prev) => {
         // const { services, ...rest } = prev;
-        const {  ...rest } = prev;
+        const { ...rest } = prev;
         return rest;
       });
     }
@@ -239,7 +241,7 @@ export default function ServiceModal({ open, callBack }: Props) {
 
       // Clear any previous coverImages error
       setErrors((prev) => {
-        const {  ...rest } = prev;
+        const { ...rest } = prev;
         // const { coverImages, ...rest } = prev;
         return rest;
       });
@@ -263,6 +265,20 @@ export default function ServiceModal({ open, callBack }: Props) {
       coverImages: [],
     }));
   };
+  const uploadImage = async (serviceName: string, file: File) => {
+    const path = `service/${serviceName}/${nanoid()}-${file.name}`;
+
+    const { error } = await supabase.storage
+      .from("static.images")
+      .upload(path, file, { contentType: file.type });
+
+    if (error) console.log(error);
+
+    const url = supabase.storage.from("static.images").getPublicUrl(path)
+      .data.publicUrl;
+    console.log(url);
+    return { image_url: url, path };
+  };
 
   // Handle Save (submit)
   const handleSave = async () => {
@@ -277,14 +293,18 @@ export default function ServiceModal({ open, callBack }: Props) {
       payload.append("services", JSON.stringify(formData.services));
 
       // Append cover image (only one allowed)
-      formData.coverImages.forEach((coverImg) => {
-        payload.append("coverImages", coverImg);
+      formData.coverImages.forEach(async (coverImg) => {
+        const data = await uploadImage(formData.serviceName, coverImg);
+        payload.append("coverImages", JSON.stringify(data));
       });
 
       // Append gallery images
-      formData.images.forEach((img) => {
-        payload.append("images", img);
-      });
+      if (formData.images.length > 0) {
+        const data = await Promise.all(
+          formData.images.map((img) => uploadImage(formData.serviceName, img))
+        );
+        payload.append("images", JSON.stringify(data));
+      }
 
       const res = fetch("/api/services/crateService", {
         method: "POST",
@@ -351,7 +371,7 @@ export default function ServiceModal({ open, callBack }: Props) {
                 }));
                 setErrors((prev) => {
                   // const { serviceName, ...rest } = prev;
-                  const {  ...rest } = prev;
+                  const { ...rest } = prev;
                   return rest;
                 });
               }}
@@ -372,7 +392,9 @@ export default function ServiceModal({ open, callBack }: Props) {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as "services"|"images"|"description")}
+                onClick={() =>
+                  setActiveTab(tab.id as "services" | "images" | "description")
+                }
                 className={`flex-1 flex items-center justify-center space-x-2 px-6 py-4 font-medium transition-colors ${
                   activeTab === tab.id
                     ? "text-[#7F6456] border-b-2 border-[#7F6456] bg-[#7F6456]/10"

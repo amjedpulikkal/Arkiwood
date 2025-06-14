@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabaseClient";
+import { nanoid } from "nanoid";
 
 interface Testimonial {
   quote: string;
@@ -241,7 +243,20 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
       images: prev.images.filter((_, i) => i !== index),
     }));
   };
+  const uploadImage = async (projectName: string, file: File) => {
+    const path = `projects/${projectName}/${nanoid()}-${file.name}`;
 
+    const { error } = await supabase.storage
+      .from("static.images")
+      .upload(path, file, { contentType: file.type });
+
+    if (error) console.log(error);
+
+    const url = supabase.storage.from("static.images").getPublicUrl(path)
+      .data.publicUrl;
+    console.log(url);
+    return { image_url: url, path };
+  };
   // Handle generic input changes for text / select / number
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -306,11 +321,18 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
     formData.materials.forEach((item) => {
       payload.append("materials[]", item);
     });
-    formData.images.forEach((file) => {
-      payload.append("images", file);
-    });
+    const new_images = [];
+
+    for (const file of formData.images) {
+      const data = await uploadImage(formData.title, file);
+      new_images.push(data);
+    }
+
+    payload.append("images", JSON.stringify(new_images));
+
     if (formData.main_image) {
-      payload.append("main_image", formData.main_image);
+      const data = await uploadImage(formData.title, formData.main_image);
+      payload.append("main_image", JSON.stringify(data));
     }
 
     // 3. Fire off the request via promiseToast
@@ -721,7 +743,7 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
                     <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 group">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 bg-[#7F6456]/20 rounded-lg flex items-center justify-center">
-                          <ImageIc  className="text-[#7F6456]" size={20} />
+                          <ImageIc className="text-[#7F6456]" size={20} />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-white text-sm font-medium truncate">

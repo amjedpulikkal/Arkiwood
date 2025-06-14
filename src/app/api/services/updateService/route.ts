@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
-import { SubService } from "@/types/type";
+import { Image, SubService } from "@/types/type";
 
 export async function POST(req: Request) {
   const formData = await req.formData();
@@ -10,11 +10,15 @@ export async function POST(req: Request) {
   try {
     // 1) Parse required fields
     const idRaw = formData.get("id");
+
     if (!idRaw) throw new Error("Missing service ID");
+
     const serviceId = Number(idRaw);
+
     if (isNaN(serviceId)) throw new Error("Invalid service ID");
 
     const service_name = formData.get("service_name") as string;
+
     const description = formData.get("description") as string;
     const raw = formData.get("sub_services");
 
@@ -28,78 +32,74 @@ export async function POST(req: Request) {
     const updatedSub_services = JSON.parse(raw_updatedSub_services) as
       | [{ id: number }]
       | [{ sub_service_name: string; features: string[] }];
-    const cover_image = formData.get("cover_image") as string | File;
+
+    const cover_image = JSON.parse(
+      formData.get("cover_image") as string
+    ) as Image;
+
     const old_cover_image_path = formData.get("old_cover_image_path") as string;
-    const images = formData.getAll("existing_images[]") as unknown as string[];
-    const new_images = formData.getAll("new_images[]") as File[];
+
+    const images = JSON.parse(
+      formData.get("existing_images") as string
+    ) as unknown as [{ path: string; image_url: string }];
     const remove_images = formData.getAll("remove_images[]") as string[];
     const remove_subServices = formData.getAll("removeSubServices[]");
 
     if (remove_subServices.length > 0) {
-      supabase.from("sub_services").delete().in("id", remove_subServices);
+      const { data, error } = await supabase
+        .from("sub_services")
+        .delete()
+        .in("id", remove_subServices);
+
+      console.log(data, error);
     }
 
     if (remove_images.length > 0) {
       supabase.storage.from("static.images").remove(remove_images);
     }
 
-    const uploadedImagesObjects = [];
+    // for (const image of new_images) {
+    //   const buffer = Buffer.from(await image.arrayBuffer());
+    //   const path = `service/${service_name}/${Date.now()}-${image.name}`;
 
-    images.forEach((path) => {
-      const { data: urlData } = supabase.storage
-        .from("static.images")
-        .getPublicUrl(path);
+    //   await supabase.storage.from("static.images").upload(path, buffer, {
+    //     contentType: image.type,
+    //   });
+    //   const { data: urlData } = supabase.storage
+    //     .from("static.images")
+    //     .getPublicUrl(path);
 
-      uploadedImagesObjects.push({ path, image_url: urlData.publicUrl });
-    });
-
-    for (const image of new_images) {
-      const buffer = Buffer.from(await image.arrayBuffer());
-      const path = `service/${service_name}/${Date.now()}-${image.name}`;
-
-      await supabase.storage.from("static.images").upload(path, buffer, {
-        contentType: image.type,
-      });
-      const { data: urlData } = supabase.storage
-        .from("static.images")
-        .getPublicUrl(path);
-
-      uploadedImagesObjects.push({ path, image_url: urlData.publicUrl });
-    }
+    //   uploadedImagesObjects.push({ path, image_url: urlData.publicUrl });
+    // }
+    console.log("remove_subServices", remove_subServices);
 
     if (!service_name) throw new Error("serviceName is required");
     if (!description) throw new Error("description is required");
     if (!servicesJson) throw new Error("services JSON is required");
 
-    let coverImage = null;
-    console.log(cover_image);
-    if (cover_image instanceof File) {
-      if (!old_cover_image_path)
-        throw new Error("old_cover_image_path is required");
+    
 
+    if (old_cover_image_path) {
       const { error } = await supabase.storage
         .from("static.images")
         .remove([old_cover_image_path]);
-
       if (error) throw new Error(error.message);
-
-      const buffer = Buffer.from(await cover_image.arrayBuffer());
-      const path = `service/${service_name}/${Date.now()}-${cover_image.name}`;
-
-      await supabase.storage.from("static.images").upload(path, buffer, {
-        contentType: cover_image.type,
-      });
-      const { data: urlData } = supabase.storage
-        .from("static.images")
-        .getPublicUrl(path);
-
-      coverImage = { path, image_url: urlData.publicUrl };
-    } else {
-      const { data: urlData } = supabase.storage
-        .from("static.images")
-        .getPublicUrl(cover_image);
-      coverImage = { path: cover_image, image_url: urlData.publicUrl };
     }
+    // if (cover_image instanceof File) {
+    //   if (!old_cover_image_path)
+    //     throw new Error("old_cover_image_path is required");
+
+    //   const { error } = await supabase.storage
+    //     .from("static.images")
+    //     .remove([old_cover_image_path]);
+
+    //   if (error) throw new Error(error.message);
+    // } else {
+    //   const { data: urlData } = supabase.storage
+    //     .from("static.images")
+    //     .getPublicUrl(cover_image);
+    //   coverImage = { path: cover_image, image_url: urlData.publicUrl };
+    // }
 
     await supabase
       .from("services")
@@ -107,8 +107,8 @@ export async function POST(req: Request) {
         {
           service_name,
           description,
-          cover_image: coverImage,
-          images: uploadedImagesObjects,
+          cover_image,
+          images,
         },
       ])
       .eq("id", idRaw);

@@ -2,6 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
+import { Image } from "@/types/type";
 
 export async function POST(req: Request) {
   const formData = await req.formData();
@@ -31,109 +32,115 @@ export async function POST(req: Request) {
     const quote = formData.get("testimonial_quote") as string | null;
     const author = formData.get("testimonial_author") as string | null;
     const role = formData.get("testimonial_role") as string | null;
-
-    const mainImageFile = formData.get("main_image") as File | null;
-    const existingMainPath = formData.get("existing_main_image_path") as
-      | string
-      | null;
+    console.log(formData.get("main_image"))
+    const mainImageFile = JSON.parse(
+      formData.get("main_image") as string
+    ) as Image;
+    const old_cover_image_path = formData.get("old_cover_image_path") as string;
 
     if (remove_images.length > 0) {
       console.log(remove_images);
       await supabase.storage.from("static.images").remove(remove_images);
     }
-    let finalMainObj: { path: string; image_url: string } | null = null;
-    if (mainImageFile && mainImageFile.size > 0) {
-      // Upload new main image
-      const buffer = Buffer.from(await mainImageFile.arrayBuffer());
-      const safeFilename = `${Date.now()}-${mainImageFile.name}`;
-      const storagePath = `projects/${title}/${safeFilename}`;
 
-      const uploadResult = await supabase.storage
+    if (old_cover_image_path) {
+      await supabase.storage
         .from("static.images")
-        .upload(storagePath, buffer, { contentType: mainImageFile.type });
-
-      if (uploadResult.error) {
-        throw new Error(
-          "Failed to upload new main_image: " + uploadResult.error.message
-        );
-      }
-
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("static.images").getPublicUrl(storagePath);
-
-      finalMainObj = { path: storagePath, image_url: publicUrl };
-    } else if (existingMainPath) {
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("static.images").getPublicUrl(existingMainPath);
-
-      finalMainObj = { path: existingMainPath, image_url: publicUrl };
-    } else {
-      finalMainObj = null;
+        .remove([old_cover_image_path]);
     }
+    // let finalMainObj: { path: string; image_url: string } | null = null;
+    // if (mainImageFile && mainImageFile.size > 0) {
+    //   // Upload new main image
+    //   const buffer = Buffer.from(await mainImageFile.arrayBuffer());
+    //   const safeFilename = `${Date.now()}-${mainImageFile.name}`;
+    //   const storagePath = `projects/${title}/${safeFilename}`;
 
-    const existingGalleryPaths =
-      (formData.getAll("existing_gallery_paths[]") as string[]) || [];
+    //   const uploadResult = await supabase.storage
+    //     .from("static.images")
+    //     .upload(storagePath, buffer, { contentType: mainImageFile.type });
 
-    const newGalleryFiles =
-      (formData.getAll("new_gallery_images") as File[]) || [];
+    //   if (uploadResult.error) {
+    //     throw new Error(
+    //       "Failed to upload new main_image: " + uploadResult.error.message
+    //     );
+    //   }
+
+    //   const {
+    //     data: { publicUrl },
+    //   } = supabase.storage.from("static.images").getPublicUrl(storagePath);
+
+    //   finalMainObj = { path: storagePath, image_url: publicUrl };
+    // } else if (existingMainPath) {
+    //   const {
+    //     data: { publicUrl },
+    //   } = supabase.storage.from("static.images").getPublicUrl(existingMainPath);
+
+    //   finalMainObj = { path: existingMainPath, image_url: publicUrl };
+    // } else {
+    //   finalMainObj = null;
+    // }
+
+    // const existingGalleryPaths =
+    //   (formData.getAll("existing_gallery_paths[]") as string[]) || [];
+
+    const newGalleryFiles = JSON.parse(
+      formData.get("new_gallery_images") as string
+    ) as unknown as Image[];
 
     // 3.a) Upload all new Files
-    const uploadedGalleryObjects: Array<{ path: string; image_url: string }> =
-      [];
-    for (const file of newGalleryFiles) {
-      if (!(file instanceof File) || file.size === 0) continue;
 
-      const buffer = Buffer.from(await file.arrayBuffer());
-      const safeFilename = `${Date.now()}-${file.name}`;
-      const storagePath = `projects/${title}/${safeFilename}`;
+    // for (const file of newGalleryFiles) {
+    //   if (!(file instanceof File) || file.size === 0) continue;
 
-      const uploadResult = await supabase.storage
-        .from("static.images")
-        .upload(storagePath, buffer, { contentType: file.type });
+    //   const buffer = Buffer.from(await file.arrayBuffer());
+    //   const safeFilename = `${Date.now()}-${file.name}`;
+    //   const storagePath = `projects/${title}/${safeFilename}`;
 
-      if (uploadResult.error) {
-        throw new Error(
-          "Failed to upload one of the gallery images: " +
-            uploadResult.error.message
-        );
-      }
+    //   const uploadResult = await supabase.storage
+    //     .from("static.images")
+    //     .upload(storagePath, buffer, { contentType: file.type });
 
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("static.images").getPublicUrl(storagePath);
+    //   if (uploadResult.error) {
+    //     throw new Error(
+    //       "Failed to upload one of the gallery images: " +
+    //         uploadResult.error.message
+    //     );
+    //   }
 
-      uploadedGalleryObjects.push({ path: storagePath, image_url: publicUrl });
-    }
+    //   const {
+    //     data: { publicUrl },
+    //   } = supabase.storage.from("static.images").getPublicUrl(storagePath);
+
+    //   uploadedGalleryObjects.push({ path: storagePath, image_url: publicUrl });
+    // }
 
     // 3.b) Build a single array of all gallery paths to keep in the DB
     //      (both existing ones and newly uploaded).
-    const allGalleryEntries: Array<{
-      project_id: number;
-      image_url: { path: string; image_url: string };
-    }> = [];
+    // const allGalleryEntries: Array<{
+    //   project_id: number;
+    //   image_url: { path: string; image_url: string };
+    // }> = [];
 
-    // Keep existing ones:
-    for (const p of existingGalleryPaths) {
-      // Get public URL again from storage (so the DB row can store the correct {path, image_url})
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("static.images").getPublicUrl(p);
+    // // Keep existing ones:
+    // for (const p of existingGalleryPaths) {
+    //   // Get public URL again from storage (so the DB row can store the correct {path, image_url})
+    //   const {
+    //     data: { publicUrl },
+    //   } = supabase.storage.from("static.images").getPublicUrl(p);
 
-      allGalleryEntries.push({
-        project_id: id,
-        image_url: { path: p, image_url: publicUrl },
-      });
-    }
+    //   allGalleryEntries.push({
+    //     project_id: id,
+    //     image_url: { path: p, image_url: publicUrl },
+    //   });
+    // }
 
     // Add newly uploaded ones:
-    for (const obj of uploadedGalleryObjects) {
-      allGalleryEntries.push({
-        project_id: id,
-        image_url: { path: obj.path, image_url: obj.image_url },
-      });
-    }
+    // for (const obj of newGalleryFiles) {
+    //   allGalleryEntries.push({
+    //     project_id: id,
+    //     image_url: { path: obj.path, image_url: obj.image_url },
+    //   });
+    // }
 
     const updatePayload: Record<string, unknown> = {
       title,
@@ -147,7 +154,7 @@ export async function POST(req: Request) {
       showOnLanding,
       project_features,
       project_materials,
-      main_image: finalMainObj,
+      main_image: mainImageFile,
       project_testimonials: {
         quote,
         author,
@@ -174,10 +181,15 @@ export async function POST(req: Request) {
       );
     }
 
-    if (allGalleryEntries.length > 0) {
+    if (newGalleryFiles.length > 0) {
       const { error: insertGalleryError } = await supabase
         .from("project_gallery")
-        .insert(allGalleryEntries);
+        .insert(
+          newGalleryFiles.map((data) => ({
+            project_id: id,
+            image_url: data,
+          }))
+        );
 
       if (insertGalleryError) {
         throw new Error(
@@ -191,7 +203,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error) {
-    // console.error("[SUPABASE UPDATE ERROR]", error.message);
+    console.error("[SUPABASE UPDATE ERROR]", error);
     return NextResponse.json({ error: error }, { status: 500 });
   }
 }

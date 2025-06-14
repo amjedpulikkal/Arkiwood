@@ -37,7 +37,7 @@ export type Project = {
 
 export type SubService = {
   id?: number;
-  sub_service_name: string;
+  sub_service_name?: string;
   service_id?: number;
   created_at?: string;
   features: string[]
