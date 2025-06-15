@@ -61,7 +61,6 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
     "services" | "images" | "description"
   >("services");
   const [formData, setFormData] = useState<FormDataState>(data);
-
   const [newService, setNewService] = useState<string>("");
   const [newSubService, setNewSubService] = useState<string>("");
   const [selectedService, setSelectedService] = useState<number | null>(0);
