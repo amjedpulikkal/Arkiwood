@@ -1,35 +1,13 @@
 "use client";
 
-import Image from 'next/image';
-import React, { useState } from 'react'
+import Image from "next/image";
+import React, { useState } from "react";
 
-type Project = {
-  id: number;
-  title: string;
-  location: string;
-  category: string;
-  status: string;
-  duration: string;
-  budget: string;
-  area: string;
-  rooms: string;
-  year: string;
-  mainImage: string;
-  gallery: string[];
-  description: string;
-  features: string[];
-  materials: string[];
-  testimonial: {
-    quote: string;
-    author: string;
-    role: string;
-  };
-};
+import { Project } from "@/types/type";
 
 type ProjectDetailsProps = {
   project: Project;
 };
-
 
 const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -62,7 +40,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
             <Image
               fill
-              src={project.gallery[selectedImageIndex]}
+              src={project.project_gallery[selectedImageIndex]?.image_url?.image_url}
               alt={`${project.title} - Image ${selectedImageIndex + 1}`}
               className="w-full h-full object-cover"
             />
@@ -71,7 +49,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
 
         {/* Thumbnail Gallery */}
         <div className="flex  gap-3 mb-8 overflow-x-auto pb-2">
-          {project.gallery.map((image, index) => (
+          {project.project_gallery.map((image, index) => (
             <button
               key={index}
               onClick={() => setSelectedImageIndex(index)}
@@ -83,7 +61,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
             >
               <Image
                 fill
-                src={image}
+                src={image.image_url?.image_url}
                 alt={`Thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
               />
@@ -109,7 +87,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
                 Key Features
               </h4>
               <ul className="space-y-2">
-                {project.features.map((feature, index) => (
+                {project.project_features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-[#7F6456] rounded-full mt-2 flex-shrink-0"></div>
                     <span className="text-gray-700">{feature}</span>
@@ -123,7 +101,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
                 Materials Used
               </h4>
               <div className="flex flex-wrap gap-2">
-                {project.materials.map((material, index) => (
+                {project.project_materials.map((material, index) => (
                   <span
                     key={index}
                     className="px-3 py-1 bg-[#F5F1ED] text-[#7F6456] rounded-full text-sm font-medium"
@@ -185,18 +163,18 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
               </h4>
               <div className="bg-white border-l-4 border-[#7F6456] pl-6 py-4">
                 <p className="text-gray-700 italic mb-3">
-                  &quot{project.testimonial.quote}&quot
+                  &quot{project.project_testimonials.quote}&quot
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-[#7F6456] rounded-full flex items-center justify-center text-white font-bold">
-                    {project.testimonial.author.charAt(0)}
+                    {project.project_testimonials.author.charAt(0)}
                   </div>
                   <div>
                     <div className="font-semibold text-[#7F6456]">
-                      {project.testimonial.author}
+                      {project.project_testimonials.author}
                     </div>
                     <div className="text-sm text-gray-500">
-                      {project.testimonial.role}
+                      {project.project_testimonials.role}
                     </div>
                   </div>
                 </div>
@@ -218,4 +196,4 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
   );
 };
 
-export default ProjectDetails
+export default ProjectDetails;

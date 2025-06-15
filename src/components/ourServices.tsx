@@ -381,19 +381,14 @@
 
 "use client";
 
+import { Service } from "@/types/type";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
-function DivComponents({
-  data,
-  index,
-}: {
-  data: { name: string; heading: string; body: string; nav: string[] };
-  index: number;
-}) {
+function DivComponents({ data, index }: { data: Service; index: number }) {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
   const router = useRouter();
@@ -464,15 +459,18 @@ function DivComponents({
             variants={leftItemVariants}
             className="nasalization text-center sm:text-3xl text-2xl text-[#7F6456]"
           >
-            {data.heading}
+            {data.service_name}
           </motion.p>
 
-          <motion.p variants={leftItemVariants}>{data.body}</motion.p>
+          <motion.p variants={leftItemVariants}>{data.description}</motion.p>
 
           <motion.div variants={leftItemVariants} className="">
-            {data.nav &&
-              data.nav.map((d) => (
-                <div className="flex items-center gap-1" key={d}>
+            {data.sub_services.length > 0 &&
+              data.sub_services.map((d,index) => (
+                <div
+                  className="flex items-center gap-1"
+                  key={d.service_id + "subservice"+index}
+                >
                   <svg
                     className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
                     aria-hidden="true"
@@ -488,7 +486,7 @@ function DivComponents({
                       d="M1 5h12m0 0L9 1m4 4L9 9"
                     />
                   </svg>
-                  <p className="whitespace-nowrap">{d}</p>
+                  <p className="whitespace-nowrap">{d.sub_service_name}</p>
                 </div>
               ))}
           </motion.div>
@@ -496,7 +494,7 @@ function DivComponents({
           <motion.button
             variants={leftItemVariants}
             whileHover={{ scale: 1.2 }}
-            onClick={() => router.push(`/ourservices/${data.heading}`)}
+            onClick={() => router.push(`/ourservices/${data.service_name}`)}
             className="border-2 border-[#7F6456] hover:text-white text-[#7F6456] hover:bg-[#7F6456] transition-colors w-32 p-3 rounded-full"
           >
             KNOW MORE
@@ -518,13 +516,40 @@ function DivComponents({
             transition={{ delay: 0.7 }}
             style={{ y }}
           >{`#0${index}`}</motion.p> */}
+
+          <div className="w-full mt-10 h-full z-10 flex justify-start items-center">
+            <div className="w-96 h-80 relative ">
+              <Image
+                // src={"/Vector 6 (1).png"}
+                src={data.cover_image?.image_url || ""}
+                className=" rounded-l-4xl object-cover"
+                fill
+                alt={`${data.cover_image.path}-SERVICE`}
+              />
+            </div>
+          </div>
           <Image
-            src={data.name}
+            src={"/Vector 5 (1).png"}
+            // src={data.cover_image?.image_url || ""}
+            className="top-0 -z-10 absolute right-20"
+            width="600"
+            height="400"
+            alt={`${data.cover_image.path}-SERVICE`}
+          />
+          {/* <Image
+            src={"/Vector 5 (1).png"}
             className="sm:-mt-20"
             width="640"
             height="500"
-            alt={`${data.name}-SERVICE`}
+            alt={`${data.cover_image.path}-SERVICE`}
           />
+          <Image
+            src={data.cover_image.image_url || ""}
+            className="sm:-mt-20"
+            width="640"
+            height="500"
+            alt={`${data.cover_image.path}-SERVICE`}
+          /> */}
         </motion.div>
       </div>
     );
@@ -547,12 +572,24 @@ function DivComponents({
             transition={{ delay: 0.7 }}
             style={{ y }}
           >{`#0${index}`}</motion.p> */}
+          <div className="w-full mt-10 h-full z-10 flex justify-start items-center">
+            <div className="w-96 h-80 relative ">
+              <Image
+                // src={"/Vector 6 (1).png"}
+                src={data.cover_image?.image_url || ""}
+                className=" rounded-r-4xl object-cover"
+                fill
+                alt={`${data.cover_image.path}-SERVICE`}
+              />
+            </div>
+          </div>
           <Image
-            src={data.name}
-            className="-mt-20 "
-            width="640"
-            height="500"
-            alt={`${data.name}-SERVICE`}
+            src={"/Vector 6 (1).png"}
+            // src={data.cover_image?.image_url || ""}
+            className="top-0 -z-10 absolute "
+            width="450"
+            height="250"
+            alt={`${data.cover_image.path}-SERVICE`}
           />
         </motion.div>
 
@@ -567,15 +604,18 @@ function DivComponents({
               variants={rightItemVariants}
               className="nasalization text-center sm:text-3xl text-2xl text-[#7F6456]"
             >
-              {data.heading}
+              {data.service_name}
             </motion.p>
 
-            <motion.p variants={rightItemVariants}>{data.body}</motion.p>
+            <motion.p variants={rightItemVariants}>{data.description}</motion.p>
 
             <motion.div variants={rightItemVariants} className="">
-              {data.nav &&
-                data.nav.map((d) => (
-                  <div className="flex items-center gap-1" key={d}>
+              {data.sub_services.length > 0 &&
+                data.sub_services.map((d,index) => (
+                  <div
+                    className="flex items-center gap-1"
+                    key={d.service_id + "sub"+index}
+                  >
                     <svg
                       className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
                       aria-hidden="true"
@@ -591,14 +631,14 @@ function DivComponents({
                         d="M1 5h12m0 0L9 1m4 4L9 9"
                       />
                     </svg>
-                    <p className="whitespace-nowrap">{d}</p>
+                    <p className="whitespace-nowrap">{d.sub_service_name}</p>
                   </div>
                 ))}
             </motion.div>
 
             <motion.button
               variants={rightItemVariants}
-              onClick={() => router.push(`/ourservices/${data.heading}`)}
+              onClick={() => router.push(`/ourservices/${data.service_name}`)}
               whileHover={{ scale: 1.2 }}
               className="border-2 border-[#7F6456] hover:text-white text-[#7F6456] hover:bg-[#7F6456] transition-colors w-32 p-3 rounded-full"
             >
@@ -611,125 +651,125 @@ function DivComponents({
   }
 }
 
-export default function OurServices() {
-  const [data] = useState([
-    {
-      name: "/Group 2251 (1).png",
-      heading: "Architectural Design",
-      body: `Innovative and practical architectural solutions tailored to your vision. From concept to construction, we ensure designs that inspire and perform.`,
-      nav: [
-        "Architectural Design Projects",
-        "3D Rendering and Visualization",
-        "Project Management",
-        "Sustainable and Green Building Practices",
-      ],
-    },
-    {
-      name: "/Group 2252 (4).png",
-      heading: "Engineering ",
-      body: `At Arkiwood, engineering makes sure that every design is based on accuracy, security, and clever functioning.  We provide the technological foundation for every exquisite place, from structural integrity to seamless systems.`,
-      nav: [
-        "Structural planning",
-        "Electrical layout & execution",
-        "Plumbing systems",
-        "HVAC integration",
-      ],
-    },
-    {
-      name: "/Group 2250.png",
-      heading: "MEP Drawings",
-      body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
-      nav: [
-        "HVAC and Ducting Systems",
-        "Electrical & Power Layouts",
-        "Plumbing & Drainage Design",
-        "Fire Protection & Coordination Drawings",
-      ],
-    },
-    {
-      name: "/Group 2252.png",
+export default function OurServices({ data }: { data: Service[] }) {
+  // const [data] = useState([
+  //   {
+  //     name: "/Group 2251 (1).png",
+  //     heading: "Architectural Design",
+  //     body: `Innovative and practical architectural solutions tailored to your vision. From concept to construction, we ensure designs that inspire and perform.`,
+  //     nav: [
+  //       "Architectural Design Projects",
+  //       "3D Rendering and Visualization",
+  //       "Project Management",
+  //       "Sustainable and Green Building Practices",
+  //     ],
+  //   },
+  //   {
+  //     name: "/Group 2252 (4).png",
+  //     heading: "Engineering ",
+  //     body: `At Arkiwood, engineering makes sure that every design is based on accuracy, security, and clever functioning.  We provide the technological foundation for every exquisite place, from structural integrity to seamless systems.`,
+  //     nav: [
+  //       "Structural planning",
+  //       "Electrical layout & execution",
+  //       "Plumbing systems",
+  //       "HVAC integration",
+  //     ],
+  //   },
+  //   {
+  //     name: "/Group 2250.png",
+  //     heading: "MEP Drawings",
+  //     body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
+  //     nav: [
+  //       "HVAC and Ducting Systems",
+  //       "Electrical & Power Layouts",
+  //       "Plumbing & Drainage Design",
+  //       "Fire Protection & Coordination Drawings",
+  //     ],
+  //   },
+  //   {
+  //     name: "/Group 2252.png",
 
-      heading: "Interior Design",
-      body: `Bring life and function into your spaces with creative and client-centric interiors. We blend style with comfort to create environments that speak to you.`,
-      nav: [
-        "Space Planning & Concepts",
-        "Material and Finish Selection",
-        "Lighting & Furniture Design",
-      ],
-    },
-    {
-      name: "/Group 2253.png",
+  //     heading: "Interior Design",
+  //     body: `Bring life and function into your spaces with creative and client-centric interiors. We blend style with comfort to create environments that speak to you.`,
+  //     nav: [
+  //       "Space Planning & Concepts",
+  //       "Material and Finish Selection",
+  //       "Lighting & Furniture Design",
+  //     ],
+  //   },
+  //   {
+  //     name: "/Group 2253.png",
 
-      heading: "Civil & Interior Fit out",
-      body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution.
-  From partitions to finishes, we build with precision.`,
-      nav: [
-        "Partitioning & False Ceilings",
-        "Flooring & Wall Finishes",
-        "Electrical & HVAC Installations",
-        "Plumbing & Sanitary Works",
-      ],
-    },
+  //     heading: "Civil & Interior Fit out",
+  //     body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution.
+  // From partitions to finishes, we build with precision.`,
+  //     nav: [
+  //       "Partitioning & False Ceilings",
+  //       "Flooring & Wall Finishes",
+  //       "Electrical & HVAC Installations",
+  //       "Plumbing & Sanitary Works",
+  //     ],
+  //   },
 
-    {
-      name: "/Group 2250 (1).png",
-      heading: "Carpentry & Woodworks",
-      body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
-      nav: [
-        "Custom Furniture Fabrication",
-        "Doors, Frames & Cladding",
-        "Shelving & Storage Units",
-        "Finishing & Polishing Works",
-      ],
-    },
-    {
-      name: "/Group 2.png",
-      heading: "Authorities",
-      body: `Navigating approval processes is a crucial part of any interior or fit-out project. We assist clients in securing all necessary approvals from relevant authorities and building managements, ensuring designs and installations meet regulatory and landlord standards. From food sector permits to NOCs from mall and building managements, we handle the paperwork so you can focus on your business.`,
-      nav: [
-        "Civil Defense Authorities",
-        "Electricity & Water Authorities",
-        "Environmental & Sustainability Authorities",
-        "Free Zones & Special Authorities",
-      ],
-    },
-    {
-      name: "/Group 2254.png",
-      heading: "Approvals",
-      body: `We specialize in delivering carpentry and joinery works that fully comply with local authority regulations and building management standards across the UAE. Our team is experienced in handling documentation and technical requirements for approvals from entities such as Dubai Municipality, Civil Defense, DEWA, and major Free Zone authorities, ensuring smooth project execution without delays.`,
-      nav: [
-        "Food & Beverage Sector Approvals",
-        "Building Management & Developer Approvals",
-        "Building Owner/Landlord NOC",
-        "Mall Management Approval (For retail spaces)",
-      ],
-    },
-    {
-      name: "/Group 2251 (5).png",
-      heading: "Joinery",
-      body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
-      nav: [
-        "Custom Furniture Fabrication",
-        "Doors, Frames & Cladding",
-        "Shelving & Storage Units",
-        "Finishing & Polishing Works",
-      ],
-      route: "/carpentry-woodworks",
-    },
-    {
-      name: "/Group 2249 (6).png",
-      heading: "Landscaping",
-      body: `Transform outdoor spaces into stunning, functional environments.
-  From lush gardens to modern hardscapes, we design landscapes
-  that harmonize with architecture and nature.`,
-      nav: [
-        "Garden Design",
-        "Landscape Architecture",
-        "Landscaping for Climate",
-        "Sustainable Landscaping",
-      ],
-    },
-  ]);
+  //   {
+  //     name: "/Group 2250 (1).png",
+  //     heading: "Carpentry & Woodworks",
+  //     body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
+  //     nav: [
+  //       "Custom Furniture Fabrication",
+  //       "Doors, Frames & Cladding",
+  //       "Shelving & Storage Units",
+  //       "Finishing & Polishing Works",
+  //     ],
+  //   },
+  //   {
+  //     name: "/Group 2.png",
+  //     heading: "Authorities",
+  //     body: `Navigating approval processes is a crucial part of any interior or fit-out project. We assist clients in securing all necessary approvals from relevant authorities and building managements, ensuring designs and installations meet regulatory and landlord standards. From food sector permits to NOCs from mall and building managements, we handle the paperwork so you can focus on your business.`,
+  //     nav: [
+  //       "Civil Defense Authorities",
+  //       "Electricity & Water Authorities",
+  //       "Environmental & Sustainability Authorities",
+  //       "Free Zones & Special Authorities",
+  //     ],
+  //   },
+  //   {
+  //     name: "/Group 2254.png",
+  //     heading: "Approvals",
+  //     body: `We specialize in delivering carpentry and joinery works that fully comply with local authority regulations and building management standards across the UAE. Our team is experienced in handling documentation and technical requirements for approvals from entities such as Dubai Municipality, Civil Defense, DEWA, and major Free Zone authorities, ensuring smooth project execution without delays.`,
+  //     nav: [
+  //       "Food & Beverage Sector Approvals",
+  //       "Building Management & Developer Approvals",
+  //       "Building Owner/Landlord NOC",
+  //       "Mall Management Approval (For retail spaces)",
+  //     ],
+  //   },
+  //   {
+  //     name: "/Group 2251 (5).png",
+  //     heading: "Joinery",
+  //     body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
+  //     nav: [
+  //       "Custom Furniture Fabrication",
+  //       "Doors, Frames & Cladding",
+  //       "Shelving & Storage Units",
+  //       "Finishing & Polishing Works",
+  //     ],
+  //     route: "/carpentry-woodworks",
+  //   },
+  //   {
+  //     name: "/Group 2249 (6).png",
+  //     heading: "Landscaping",
+  //     body: `Transform outdoor spaces into stunning, functional environments.
+  // From lush gardens to modern hardscapes, we design landscapes
+  // that harmonize with architecture and nature.`,
+  //     nav: [
+  //       "Garden Design",
+  //       "Landscape Architecture",
+  //       "Landscaping for Climate",
+  //       "Sustainable Landscaping",
+  //     ],
+  //   },
+  // ]);
 
   return (
     <div className="pb-14  overflow-hidden ">
@@ -815,7 +855,7 @@ export default function OurServices() {
       </div>
       <div id="our-services">
         {data.map((data, index) => (
-          <DivComponents key={index} data={data} index={index + 1} />
+          <DivComponents key={index+"DivComponents"} data={data} index={index + 1} />
         ))}
       </div>
     </div>

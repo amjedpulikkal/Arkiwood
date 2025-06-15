@@ -60,7 +60,6 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
   const [activeTab, setActiveTab] = useState<
     "services" | "images" | "description"
   >("services");
-  // @ts-expect-error : ignore
   const [formData, setFormData] = useState<FormDataState>(data);
 
   const [newService, setNewService] = useState<string>("");

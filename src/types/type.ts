@@ -1,14 +1,10 @@
-type ProjectFeature = {
-  feature: string;
-};
+
 
 type ProjectGalleryItem = {
   image_url: { path: string; image_url: string };
 };
 
-type ProjectMaterial = {
-  material: string;
-};
+
 
 type ProjectTestimonial = {
   role: string;
@@ -27,10 +23,10 @@ export type Project = {
   year: string;
   main_image: { path: string; image_url: string }; // URL string
   description: string;
-  project_features: ProjectFeature[];
+  project_features: string[];
   project_gallery: ProjectGalleryItem[];
-  project_materials: ProjectMaterial[];
-  project_testimonials: ProjectTestimonial[];
+  project_materials: string[];
+  project_testimonials: ProjectTestimonial;
 };
 
 // type ViewMode = "grid" | "list";
@@ -54,7 +50,7 @@ export type Service = {
   id: number;
   service_name: string;
   description: string;
-  cover_image: string;
+  cover_image: Image;
   created_at: string;
   sub_services: SubService[];
   images: Image[];

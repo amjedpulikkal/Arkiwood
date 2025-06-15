@@ -510,7 +510,7 @@ export const ProjectManagementPanel: React.FC<Props> = ({
                           key={idx}
                           className="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-full"
                         >
-                          {mat.material}
+                          {mat}
                         </span>
                       ))}
                     </div>
@@ -537,7 +537,7 @@ export const ProjectManagementPanel: React.FC<Props> = ({
                         <div key={idx} className="flex items-start gap-2">
                           <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                           <span className="text-gray-300 text-sm">
-                            {feat.feature}
+                            {feat}
                           </span>
                         </div>
                       ))}
@@ -545,21 +545,21 @@ export const ProjectManagementPanel: React.FC<Props> = ({
                   </div>
 
                   {/* Testimonial */}
-                  {selectedProject.project_testimonials.length > 0 && (
+                  {selectedProject.project_testimonials && (
                     <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
                       <h3 className="text-white font-medium mb-3">
                         Client Testimonial
                       </h3>
                       <blockquote className="text-gray-300 italic mb-3">
-                        &ldquo;{selectedProject.project_testimonials[0].quote}&ldquo;
+                        &ldquo;{selectedProject.project_testimonials.quote}&ldquo;
                       </blockquote>
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4 text-blue-400" />
                         <span className="text-white font-medium">
-                          {selectedProject.project_testimonials[0].author}
+                          {selectedProject.project_testimonials.author}
                         </span>
                         <span className="text-gray-400">
-                          • {selectedProject.project_testimonials[0].role}
+                          • {selectedProject.project_testimonials.role}
                         </span>
                       </div>
                     </div>

@@ -1,6 +1,5 @@
+"use server";
 import * as React from "react";
-
-import { Data } from "./types";
 
 import {
   Carousel,
@@ -20,20 +19,27 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-import data from "./data.json";
 import Footer from "@/components/footer";
-// import Cursor from "@/components/Cursor";
 
 import Imagecom from "./imagecom";
 import SubCat from "./SubCat";
 import { notFound } from "next/navigation";
+import { supabase } from "@/lib/supabaseClient";
+import { Service } from "@/types/type";
+import { PostgrestResponse } from "@supabase/supabase-js";
 
 type tParams = Promise<{ services: string }>;
 export default async function page({ params }: { params: tParams }) {
-  const p = decodeURIComponent((await params)?.services || "");
-  if (!(data as unknown as Data)[p]) {
+  const services = decodeURIComponent((await params)?.services || "");
+  const { data, error } = (await supabase
+    .from("services")
+    .select("*,sub_services(*),reviews(*)")
+    .eq("service_name", services)) as PostgrestResponse<Service>;
+  console.log(data);
+  if (error || !data) {
     notFound();
   }
+  const serviceData = data[0];
   return (
     <>
       <div className=" text-[#7F6456] ml-4 mt-4">
@@ -43,12 +49,12 @@ export default async function page({ params }: { params: tParams }) {
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-           <BreadcrumbItem>
-              <BreadcrumbLink href="/ourservices">Our services</BreadcrumbLink>
-            </BreadcrumbItem> 
-            <BreadcrumbSeparator /> 
             <BreadcrumbItem>
-              <BreadcrumbPage>{p}</BreadcrumbPage>
+              <BreadcrumbLink href="/ourservices">Our services</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{serviceData.service_name}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -56,7 +62,7 @@ export default async function page({ params }: { params: tParams }) {
 
       <div className="flex justify-center items-center py-10 ">
         <h1 className="nasalization hover-underline-animation text-center text-4xl text-[#7F6456]">
-          {p}
+          {serviceData.service_name}
         </h1>
       </div>
 
@@ -72,13 +78,18 @@ export default async function page({ params }: { params: tParams }) {
           className="w-[90%] h-96"
         >
           <CarouselContent>
-            {(data as unknown as Data)[p][1]?.image?.map(
-              (data: string, index: React.Key | null | undefined) => (
+            {serviceData.images.map(
+              (data, index: React.Key | null | undefined) => (
                 <CarouselItem
-                  key={index}
+                  key={index + "imageSer"}
                   className="md:basis-1/3 h-96 lg:basis-1/3 relative"
                 >
-                  <Image src={`/${data}`}  fill className="object-cover" alt="" />
+                  <Image
+                    src={data.image_url || ""}
+                    fill
+                    className="object-cover"
+                    alt=""
+                  />
                 </CarouselItem>
               )
             )}
@@ -88,11 +99,11 @@ export default async function page({ params }: { params: tParams }) {
         </Carousel>
       </div>
       <div className="px-4 text-xl text-center sm:mt-10 text-[#7F6456]">
-        <p>{(data as unknown as Data)[p][2]?.body}</p>
+        <p>{serviceData.description}</p>
       </div>
-      <SubCat data={(data as unknown as Data)[p]} />
+      <SubCat data={serviceData} />
 
-      {!!(data as unknown as Data)[p][3]?.gnarig?.length && (
+      {!!serviceData?.testimonials?.length && (
         <div className="p-10">
           <div className="sm:flex gap-1  w-full pb-15 text-[#7F6456]  items-center">
             <div className=" text-4xl gsp-1 flex items-center  nasalization ">
@@ -101,7 +112,7 @@ export default async function page({ params }: { params: tParams }) {
             </div>
             <p className="hod">A collective showcase of our completed works.</p>
           </div>
-          <Imagecom data={(data as unknown as Data)[p]} />
+          <Imagecom data={serviceData} />
         </div>
       )}
       <Footer />

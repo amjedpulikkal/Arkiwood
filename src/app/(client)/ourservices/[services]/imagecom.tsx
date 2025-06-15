@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Star } from "lucide-react";
-import { ServiceArray } from "./types";
+
+import { Service } from "@/types/type";
 
 // Mock data for demonstration
 
-const ReviewGallery = ({ data }: { data: ServiceArray }) => {
+const ReviewGallery = ({ data }: { data: Service }) => {
   const [activeIndex, setActiveIndex] = useState<null | number>(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -48,9 +49,9 @@ const ReviewGallery = ({ data }: { data: ServiceArray }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data[3].gnarig?.map((review, index) => (
+          {data.testimonials?.map((review, index) => (
             <div
-              key={index}
+              key={index+"testimonials"}
               className="relative h-80 rounded-2xl overflow-hidden shadow-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               onClick={() => handleTap(index)}
             >
