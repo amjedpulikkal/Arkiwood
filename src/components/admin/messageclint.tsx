@@ -10,10 +10,11 @@ import {
   CheckCircle,
   Clock,
   AlertCircle,
+  MapPin,
 } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
+import CountryFlag from "./countryFlag";
 
-// Type definitions
 type ActionStatus = "new" | "in_progress" | "resolved";
 
 interface ContactMessage {
@@ -25,6 +26,13 @@ interface ContactMessage {
   submitted_at: string;
   is_readed: boolean;
   action_status: ActionStatus;
+  ip_address: {
+    ip: string;
+    region?: string;
+    country?: string;
+    regionName?: string;
+    countryCode?: string;
+  };
 }
 
 interface StatusConfig {
@@ -279,6 +287,19 @@ const MessageAdminPanel: React.FC<MessageAdminPanelProps> = ({
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
                             {formatDate(message.submitted_at)}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            <CountryFlag
+                              code={message.ip_address?.countryCode}
+                            />
+                            {/* <Flag
+                              countryCode={
+                                message.ip_address?.countryCode || ""
+                              }
+                            /> */}
+                            {message.ip_address?.country},
+                            {message.ip_address?.regionName}
                           </div>
                         </div>
 
