@@ -19,7 +19,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-import Footer from "@/components/footer";
+
 
 import Imagecom from "./imagecom";
 import SubCat from "./SubCat";
@@ -34,7 +34,8 @@ export default async function page({ params }: { params: tParams }) {
   const { data, error } = (await supabase
     .from("services")
     .select("*,sub_services(*),reviews(*)")
-    .eq("service_name", services)) as PostgrestResponse<Service>;
+    .eq("service_name", services)
+    .eq("reviews.showOnLanding", true)) as PostgrestResponse<Service>;
   console.log(data);
   if (error || !data) {
     notFound();
@@ -103,7 +104,7 @@ export default async function page({ params }: { params: tParams }) {
       </div>
       <SubCat data={serviceData} />
 
-      {!!serviceData?.testimonials?.length && (
+      {!!serviceData?.reviews?.length && (
         <div className="p-10">
           <div className="sm:flex gap-1  w-full pb-15 text-[#7F6456]  items-center">
             <div className=" text-4xl gsp-1 flex items-center  nasalization ">
@@ -115,7 +116,6 @@ export default async function page({ params }: { params: tParams }) {
           <Imagecom data={serviceData} />
         </div>
       )}
-      <Footer />
     </>
   );
 }

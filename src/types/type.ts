@@ -1,10 +1,6 @@
-
-
 type ProjectGalleryItem = {
   image_url: { path: string; image_url: string };
 };
-
-
 
 type ProjectTestimonial = {
   role: string;
@@ -36,7 +32,7 @@ export type SubService = {
   sub_service_name?: string;
   service_id?: number;
   created_at?: string;
-  features: string[]
+  features: string[];
 };
 
 export type Image = {
@@ -45,8 +41,7 @@ export type Image = {
 };
 
 export type Service = {
-  
-  service_id:number;
+  service_id: number;
   id: number;
   service_name: string;
   description: string;
@@ -54,5 +49,26 @@ export type Service = {
   created_at: string;
   sub_services: SubService[];
   images: Image[];
-  testimonials?:[{name:string,rating:number,text:string}]
+  testimonials?: [{ name: string; rating: number; text: string }];
+  reviews?: [
+    {
+      id: string;
+      name: string;
+      email: string;
+      review: string;
+      rating: number;
+      service_id: number;
+      showOnLanding: boolean | null;
+      is_readed: boolean;
+      is_dynamic: boolean;
+      dynamic_link: string;
+      created_at: string;
+      type: string;
+      images: {
+        image_url: string;
+        path: string;
+      };
+      company:string
+    }
+  ];
 };

@@ -361,12 +361,12 @@ import {
   Trash2,
   Filter,
   Search,
-  Image as ImageIc,
   Copy,
 } from "lucide-react";
 import ReviewModal from "./reviewModal";
 import { toast } from "sonner";
 import { AlertDialog } from "./alertDialog";
+import { Image } from "@/types/type";
 
 // Define Review interface based on used fields
 export interface ServiceInfo {
@@ -381,7 +381,7 @@ export interface Review {
   rating: number;
   is_readed: boolean;
   is_dynamic: boolean;
-  images?: string[];
+  images?: Image;
   services?: ServiceInfo;
   service_id: number;
   created_at: string;
@@ -424,7 +424,8 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
 
   const handelShowOnLanding = async (id: number, showOnLanding: boolean) => {
     const response = fetch(
-      `/api/reviews/updateReviews?showOnLanding=${showOnLanding}&id=${id}`    );
+      `/api/reviews/updateReviews?showOnLanding=${showOnLanding}&id=${id}`
+    );
 
     toast.promise(response, {
       loading: "updating reviews...",
@@ -495,13 +496,7 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
       />
       <div className="p-6">
         {selectedReview && (
-          <ReviewModal
-            onClose={closeModal}
-            review={selectedReview}
-            onSave={(updatedData) => {
-              console.log("Updated data:", updatedData);
-            }}
-          />
+          <ReviewModal onClose={closeModal} review={selectedReview} />
         )}
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
@@ -619,12 +614,7 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                                 Pending
                               </span>
                             )}
-                          {review.images && review.images.length > 0 && (
-                            <span className="flex items-center gap-1 px-2 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-600/30">
-                              <ImageIc size={12} />
-                              {review.images.length}
-                            </span>
-                          )}
+                         
                         </div>
                       </div>
                     </div>
@@ -672,27 +662,35 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                     >
                       <Trash2 size={16} /> Delete
                     </button>
-                    <div className="flex items-center space-x-3">
-                      <span className="text-white font-medium">
-                        Show on Landing Page
-                      </span>
-                      <button
-                        onClick={() =>
-                          handelShowOnLanding(review.id, !review.showOnLanding)
-                        }
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#7F6456] focus:ring-offset-2 ${
-                          review.showOnLanding ? "bg-green-600" : "bg-[#e71e1e]"
-                        }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    {!!review.rating && review.review && (
+                      <div className="flex items-center space-x-3">
+                        <span className="text-white font-medium">
+                          Show on Landing Page
+                        </span>
+
+                        <button
+                          onClick={() =>
+                            handelShowOnLanding(
+                              review.id,
+                              !review.showOnLanding
+                            )
+                          }
+                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#7F6456] focus:ring-offset-2 ${
                             review.showOnLanding
-                              ? "translate-x-6"
-                              : "translate-x-1"
+                              ? "bg-green-600"
+                              : "bg-[#e71e1e]"
                           }`}
-                        />
-                      </button>
-                    </div>
+                        >
+                          <span
+                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                              review.showOnLanding
+                                ? "translate-x-6"
+                                : "translate-x-1"
+                            }`}
+                          />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

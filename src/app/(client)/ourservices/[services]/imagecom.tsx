@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 
 import { Service } from "@/types/type";
+import Image from "next/image";
 
 // Mock data for demonstration
 
@@ -26,14 +27,16 @@ const ReviewGallery = ({ data }: { data: Service }) => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // const renderStars = (rating: number) => {
-  //   return Array.from({ length: 5 }, (_, i) => (
-  //     <Star
-  //       key={i}
-  //       className={`w-4 h-4 ${i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
-  //     />
-  //   ));
-  // };
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <Star
+        key={i}
+        className={`w-4 h-4 ${
+          i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+        }`}
+      />
+    ));
+  };
   console.log(data);
   return (
     <div className="">
@@ -49,25 +52,26 @@ const ReviewGallery = ({ data }: { data: Service }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.testimonials?.map((review, index) => (
+          {data.reviews?.map((review, index) => (
             <div
-              key={index+"testimonials"}
+              key={index + "testimonials"}
               className="relative h-80 rounded-2xl overflow-hidden shadow-lg group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               onClick={() => handleTap(index)}
             >
               {/* Background Image with Overlay */}
               <div className="absolute inset-0">
-                {/* <img
-                  src={review.}
-                  alt=""
+                <Image
+                  src={review.images?.image_url}
+                  alt={review.images?.image_url}
+                  fill
                   className="w-full h-full object-cover"
-                /> */}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               </div>
 
               {/* Review Content Overlay */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br from-[#7F6456] to-[#6B5447] p-6 flex flex-col justify-center transition-all duration-500 ${
+                className={`absolute inset-0 backdrop-blur-sm border-2   p-6 flex flex-col justify-center transition-all duration-500 ${
                   activeIndex === index
                     ? "opacity-100"
                     : "opacity-0 lg:group-hover:opacity-100"
@@ -81,17 +85,24 @@ const ReviewGallery = ({ data }: { data: Service }) => {
                         {review.name.charAt(0)}
                       </span>
                     </div>
-                    {/* <div>
-                      <h3 className="text-white font-semibold text-lg">{review.name}</h3>
-                      <div className="flex items-center mt-1">
+                    <div>
+                      <div>
+                        <p className="text-white font-semibold text-lg">
+                          {review.name}
+                        </p>
+                        <p className="text-white/30 -mt-2.5">
+                          {review.company}
+                        </p>
+                      </div>
+                      <div className="  flex items-center mt-1">
                         {renderStars(review.rating)}
                       </div>
-                    </div> */}
+                    </div>
                   </div>
 
                   {/* Review Text */}
                   <p className="text-white/90 text-sm leading-relaxed italic">
-                    &ldquo;{review.text}&rdquo;
+                    &ldquo;{review.review}&rdquo;
                   </p>
                 </div>
               </div>
