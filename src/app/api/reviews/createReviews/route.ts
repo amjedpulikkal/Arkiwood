@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import { Image } from "@/types/type";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -14,21 +15,21 @@ export async function POST(req: Request) {
     const service_id = formData.get("service_id") as string;
     const company = formData.get("company") as string;
 
-    const mainImage = formData.get("image") as File;
-    const path = `reviews/${formData.get(
-      "service_id"
-    )}/${email}/${Date.now()}-${mainImage.name}`;
+    const images = JSON.parse(formData.get("image") as string) as Image;
+    // const path = `reviews/${formData.get(
+    //   "service_id"
+    // )}/${email}/${Date.now()}-${mainImage.name}`;
 
-    if (mainImage) {
-      const buffer = Buffer.from(await mainImage.arrayBuffer());
-      await supabase.storage.from("static.images").upload(path, buffer, {
-        contentType: mainImage.type,
-      });
-    }
+    // if (mainImage) {
+    //   const buffer = Buffer.from(await mainImage.arrayBuffer());
+    //   await supabase.storage.from("static.images").upload(path, buffer, {
+    //     contentType: mainImage.type,
+    //   });
+    // }
 
-    const { data: image_url } = supabase.storage
-      .from("static.images")
-      .getPublicUrl(path);
+    // const { data: image_url } = supabase.storage
+    //   .from("static.images")
+    //   .getPublicUrl(path);
 
     const { data: inserted, error } = await supabase.from("reviews").insert([
       {
@@ -39,15 +40,13 @@ export async function POST(req: Request) {
         dynamic_link,
         is_dynamic,
         service_id,
-        images: {
-          path,
-          image_url: image_url.publicUrl,
-        },
+        images,
         company,
       },
     ]);
 
     console.log(inserted, error);
+    return NextResponse.json("created new ", { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
   }

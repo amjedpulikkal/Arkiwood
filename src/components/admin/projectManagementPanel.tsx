@@ -1,23 +1,15 @@
 "use client";
 
-import React, {
-  useState,
-  Dispatch,
-  SetStateAction,
-  ChangeEvent,
-} from "react";
+import React, { useState, Dispatch, SetStateAction, ChangeEvent } from "react";
 import {
   Plus,
   Edit3,
   Trash2,
-  
   MapPin,
   Calendar,
-  
   Home,
   Image as ImageIcon,
   User,
- 
   Search,
   Grid,
   List,
@@ -30,6 +22,7 @@ import NextImage from "next/image";
 import { AlertDialog } from "./alertDialog";
 import { toast } from "sonner";
 import { Project } from "@/types/type";
+import { AnimatePresence, motion } from "motion/react";
 
 //
 // --- TYPE DEFINITIONS ---
@@ -161,7 +154,11 @@ export const ProjectManagementPanel: React.FC<Props> = ({
         fetchData();
         return `Project deleted successfully.`;
       },
-      error: "Error deleting project.",
+      error: (data) => {
+
+        
+        return `${data}`;
+      },
     });
   };
 
@@ -434,181 +431,199 @@ export const ProjectManagementPanel: React.FC<Props> = ({
           </div>
         )}
       </div>
-
-      {/* ===== PROJECT DETAIL MODAL ===== */}
-      {showModal && selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-auto">
-            <div className="p-6">
-              {/* Modal Header */}
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h2 className="text-3xl font-bold text-white">
-                    {selectedProject.title}
-                  </h2>
-                  <p className="text-gray-300 mt-1">
-                    {selectedProject.location}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors"
-                >
-                  ✕
-                </button>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Left Column */}
-                <div className="space-y-6">
-                  {/* Project Details */}
-                  <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
-                    <h3 className="text-white font-medium mb-4">
-                      Project Details
-                    </h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-gray-400 text-sm">Status</label>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span
-                            className={`px-3 py-1 rounded-full text-sm ${
-                              statusConfig[selectedProject.status]?.bg
-                            } ${statusConfig[selectedProject.status]?.color}`}
-                          >
-                            {selectedProject.status}
-                          </span>
-                        </div>
-                      </div>
-                      <div>
-                        <label className="text-gray-400 text-sm">
-                          Category
-                        </label>
-                        <p className="text-white">{selectedProject.category}</p>
-                      </div>
-
-                      <div>
-                        <label className="text-gray-400 text-sm">Year</label>
-                        <p className="text-white">{selectedProject.year}</p>
-                      </div>
-                      <div>
-                        <label className="text-gray-400 text-sm">Area</label>
-                        <p className="text-white">{selectedProject.area}</p>
-                      </div>
-                      <div>
-                        <label className="text-gray-400 text-sm">Rooms</label>
-                        <p className="text-white">{selectedProject.rooms}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Materials */}
-                  <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
-                    <h3 className="text-white font-medium mb-3">Materials</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.project_materials.map((mat, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-full"
-                        >
-                          {mat}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column */}
-                <div className="space-y-6">
-                  {/* Description */}
-                  <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
-                    <h3 className="text-white font-medium mb-3">Description</h3>
-                    <p className="text-gray-300 leading-relaxed">
-                      {selectedProject.description}
+      <AnimatePresence>
+        {/* ===== PROJECT DETAIL MODAL ===== */}
+        {showModal && selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-auto"
+            >
+              <div className="p-6">
+                {/* Modal Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h2 className="text-3xl font-bold text-white">
+                      {selectedProject.title}
+                    </h2>
+                    <p className="text-gray-300 mt-1">
+                      {selectedProject.location}
                     </p>
                   </div>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors"
+                  >
+                    ✕
+                  </button>
+                </div>
 
-                  {/* Features */}
-                  <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
-                    <h3 className="text-white font-medium mb-3">
-                      Key Features
-                    </h3>
-                    <div className="space-y-2">
-                      {selectedProject.project_features.map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-300 text-sm">
-                            {feat}
-                          </span>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Left Column */}
+                  <div className="space-y-6">
+                    {/* Project Details */}
+                    <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
+                      <h3 className="text-white font-medium mb-4">
+                        Project Details
+                      </h3>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-gray-400 text-sm">
+                            Status
+                          </label>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span
+                              className={`px-3 py-1 rounded-full text-sm ${
+                                statusConfig[selectedProject.status]?.bg
+                              } ${statusConfig[selectedProject.status]?.color}`}
+                            >
+                              {selectedProject.status}
+                            </span>
+                          </div>
                         </div>
-                      ))}
+                        <div>
+                          <label className="text-gray-400 text-sm">
+                            Category
+                          </label>
+                          <p className="text-white">
+                            {selectedProject.category}
+                          </p>
+                        </div>
+
+                        <div>
+                          <label className="text-gray-400 text-sm">Year</label>
+                          <p className="text-white">{selectedProject.year}</p>
+                        </div>
+                        <div>
+                          <label className="text-gray-400 text-sm">Area</label>
+                          <p className="text-white">{selectedProject.area}</p>
+                        </div>
+                        <div>
+                          <label className="text-gray-400 text-sm">Rooms</label>
+                          <p className="text-white">{selectedProject.rooms}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Materials */}
+                    <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
+                      <h3 className="text-white font-medium mb-3">Materials</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.project_materials.map((mat, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-full"
+                          >
+                            {mat}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Testimonial */}
-                  {selectedProject.project_testimonials && (
+                  {/* Right Column */}
+                  <div className="space-y-6">
+                    {/* Description */}
                     <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
                       <h3 className="text-white font-medium mb-3">
-                        Client Testimonial
+                        Description
                       </h3>
-                      <blockquote className="text-gray-300 italic mb-3">
-                        &ldquo;{selectedProject.project_testimonials.quote}&ldquo;
-                      </blockquote>
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4 text-blue-400" />
-                        <span className="text-white font-medium">
-                          {selectedProject.project_testimonials.author}
-                        </span>
-                        <span className="text-gray-400">
-                          • {selectedProject.project_testimonials.role}
-                        </span>
+                      <p className="text-gray-300 leading-relaxed">
+                        {selectedProject.description}
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
+                      <h3 className="text-white font-medium mb-3">
+                        Key Features
+                      </h3>
+                      <div className="space-y-2">
+                        {selectedProject.project_features.map((feat, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-gray-300 text-sm">
+                              {feat}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  )}
+
+                    {/* Testimonial */}
+                    {selectedProject.project_testimonials && (
+                      <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
+                        <h3 className="text-white font-medium mb-3">
+                          Client Testimonial
+                        </h3>
+                        <blockquote className="text-gray-300 italic mb-3">
+                          &ldquo;{selectedProject.project_testimonials.quote}
+                          &ldquo;
+                        </blockquote>
+                        <div className="flex items-center gap-2">
+                          <User className="w-4 h-4 text-blue-400" />
+                          <span className="text-white font-medium">
+                            {selectedProject.project_testimonials.author}
+                          </span>
+                          <span className="text-gray-400">
+                            • {selectedProject.project_testimonials.role}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Gallery */}
+                <div className="mt-6 backdrop-blur-sm bg-white/5 rounded-lg p-4">
+                  <h3 className="text-white font-medium mb-4">
+                    Project Gallery ({selectedProject.project_gallery.length}{" "}
+                    images)
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {selectedProject.project_gallery.map(
+                      ({ image_url }, idx) => (
+                        <div
+                          key={idx}
+                          className="aspect-square overflow-hidden relative bg-white/10 rounded-lg p-4 flex flex-col items-center justify-center"
+                        >
+                          <NextImage
+                            src={image_url.image_url}
+                            fill
+                            alt="Gallery"
+                            className="object-contain"
+                          />
+                          <span className="text-xs text-gray-400 text-center line-clamp-2 mt-2">
+                            {image_url.image_url.split("/").pop()}
+                          </span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-white/20">
+                  <button
+                    onClick={() => setSelectProjects(selectedProject)}
+                    className="px-6 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 rounded-lg transition-colors"
+                  >
+                    Edit Project
+                  </button>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
-
-              {/* Gallery */}
-              <div className="mt-6 backdrop-blur-sm bg-white/5 rounded-lg p-4">
-                <h3 className="text-white font-medium mb-4">
-                  Project Gallery ({selectedProject.project_gallery.length}{" "}
-                  images)
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {selectedProject.project_gallery.map(({ image_url }, idx) => (
-                    <div
-                      key={idx}
-                      className="aspect-square overflow-hidden relative bg-white/10 rounded-lg p-4 flex flex-col items-center justify-center"
-                    >
-                      <NextImage
-                        src={image_url.image_url}
-                        fill
-                        alt="Gallery"
-                        className="object-contain"
-                      />
-                      <span className="text-xs text-gray-400 text-center line-clamp-2 mt-2">
-                        {image_url.image_url.split("/").pop()}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-white/20">
-                <button className="px-6 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 rounded-lg transition-colors">
-                  Edit Project
-                </button>
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
 
       <AlertDialog
         callBack={handleDelete}

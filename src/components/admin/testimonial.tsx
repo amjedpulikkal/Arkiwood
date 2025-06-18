@@ -354,9 +354,16 @@
 
 // export default AdminReviews;
 
-
 import React, { useState, ChangeEvent, FC } from "react";
-import { Star, Eye, Trash2, Filter, Search, Image as ImageIc, Copy } from "lucide-react";
+import {
+  Star,
+  Eye,
+  Trash2,
+  Filter,
+  Search,
+  Image as ImageIc,
+  Copy,
+} from "lucide-react";
 import ReviewModal from "./reviewModal";
 import { toast } from "sonner";
 import { AlertDialog } from "./alertDialog";
@@ -408,11 +415,27 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
       <Star
         key={i}
         size={16}
-        className={`${i < rating ? "text-yellow-400 fill-current" : "text-gray-600"}`}
+        className={`${
+          i < rating ? "text-yellow-400 fill-current" : "text-gray-600"
+        }`}
       />
     ));
   };
 
+  const handelShowOnLanding = async (id: number, showOnLanding: boolean) => {
+    const response = fetch(
+      `/api/reviews/updateReviews?showOnLanding=${showOnLanding}&id=${id}`    );
+
+    toast.promise(response, {
+      loading: "updating reviews...",
+      success: () => {
+        fetchData();
+        return `updated status.`;
+      },
+      error: "Error deleting reviews.",
+    });
+    // const data = await res.json();
+  };
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -429,8 +452,10 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
       review.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       review.company?.toLowerCase().includes(searchTerm.toLowerCase()!) ||
       false;
-    const matchesRating = filterRating === "all" || review.rating.toString() === filterRating;
-    const matchesService = filterService === "all" || review.service_id.toString() === filterService;
+    const matchesRating =
+      filterRating === "all" || review.rating.toString() === filterRating;
+    const matchesService =
+      filterService === "all" || review.service_id.toString() === filterService;
 
     return matchesSearch && matchesRating && matchesService;
   });
@@ -480,7 +505,9 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
         )}
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Reviews Management</h1>
+            <h1 className="text-3xl font-bold text-white mb-2">
+              Reviews Management
+            </h1>
             <p className="text-gray-400">Manage and monitor customer reviews</p>
           </div>
 
@@ -495,7 +522,9 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                   type="text"
                   placeholder="Search reviews..."
                   value={searchTerm}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setSearchTerm(e.target.value)
+                  }
                   className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
@@ -507,7 +536,9 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                 />
                 <select
                   value={filterRating}
-                  onChange={(e: ChangeEvent<HTMLSelectElement>) => setFilterRating(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    setFilterRating(e.target.value)
+                  }
                   className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                 >
                   <option value="all">All Ratings</option>
@@ -522,7 +553,9 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
               <div>
                 <select
                   value={filterService}
-                  onChange={(e: ChangeEvent<HTMLSelectElement>) => setFilterService(e.target.value)}
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    setFilterService(e.target.value)
+                  }
                   className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                 >
                   <option value="all">All Services</option>
@@ -534,7 +567,8 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
 
               <div className="flex items-center justify-end">
                 <span className="text-gray-400">
-                  {filteredReviews.length} review{filteredReviews.length !== 1 && "s"}
+                  {filteredReviews.length} review
+                  {filteredReviews.length !== 1 && "s"}
                 </span>
               </div>
             </div>
@@ -556,14 +590,22 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                     )}
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-lg font-semibold text-white mb-1">{review.name}</h3>
+                        <h3 className="text-lg font-semibold text-white mb-1">
+                          {review.name}
+                        </h3>
                         <p className="text-gray-400 text-sm">{review.email}</p>
-                        {review.company && <p className="text-blue-400 text-sm font-medium">{review.company}</p>}
+                        {review.company && (
+                          <p className="text-blue-400 text-sm font-medium">
+                            {review.company}
+                          </p>
+                        )}
                       </div>
                       <div className="flex flex-col items-end gap-2">
                         <div className="flex items-center gap-1">
                           {renderStars(review.rating)}
-                          <span className="text-yellow-400 font-medium ml-1">{review.rating}</span>
+                          <span className="text-yellow-400 font-medium ml-1">
+                            {review.rating}
+                          </span>
                         </div>
                         <div className="flex items-center gap-2">
                           {review.is_dynamic && (
@@ -571,14 +613,16 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                               Dynamic
                             </span>
                           )}
-                          {review.is_dynamic && (!review.rating || !review.review) && (
-                            <span className="px-2 py-1 bg-yellow-400 text-xs rounded-full border ">
-                              Pending
-                            </span>
-                          )}
+                          {review.is_dynamic &&
+                            (!review.rating || !review.review) && (
+                              <span className="px-2 py-1 bg-yellow-400 text-xs rounded-full border ">
+                                Pending
+                              </span>
+                            )}
                           {review.images && review.images.length > 0 && (
                             <span className="flex items-center gap-1 px-2 py-1 bg-purple-600/20 text-purple-400 text-xs rounded-full border border-purple-600/30">
-                              <ImageIc size={12} />{review.images.length}
+                              <ImageIc size={12} />
+                              {review.images.length}
                             </span>
                           )}
                         </div>
@@ -587,7 +631,9 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
 
                     {review.review && (
                       <div className="mb-4">
-                        <p className="text-gray-300 leading-relaxed">{review.review}</p>
+                        <p className="text-gray-300 leading-relaxed">
+                          {review.review}
+                        </p>
                       </div>
                     )}
 
@@ -604,7 +650,8 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                               onClick={() => handleCopy(review.dynamic_link!)}
                             />
                             <p className="text-blue-500">
-                              https://arkiwooduae.com/testimonial/{review.dynamic_link}
+                              https://arkiwooduae.com/testimonial/
+                              {review.dynamic_link}
                             </p>
                           </div>
                         </>
@@ -626,8 +673,13 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                       <Trash2 size={16} /> Delete
                     </button>
                     <div className="flex items-center space-x-3">
-                      <span className="text-white font-medium">Show on Landing Page</span>
+                      <span className="text-white font-medium">
+                        Show on Landing Page
+                      </span>
                       <button
+                        onClick={() =>
+                          handelShowOnLanding(review.id, !review.showOnLanding)
+                        }
                         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#7F6456] focus:ring-offset-2 ${
                           review.showOnLanding ? "bg-green-600" : "bg-[#e71e1e]"
                         }`}
@@ -637,7 +689,7 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
                             review.showOnLanding
                               ? "translate-x-6"
                               : "translate-x-1"
-                          }`} 
+                          }`}
                         />
                       </button>
                     </div>
@@ -651,8 +703,12 @@ const AdminReviews: FC<AdminReviewsProps> = ({ reviews = [], fetchData }) => {
             <div className="text-center py-12">
               <div className="bg-gray-800/40 rounded-xl p-8 border border-gray-700/50">
                 <Star className="mx-auto text-gray-500 mb-4" size={48} />
-                <h3 className="text-xl font-semibold text-gray-400 mb-2">No reviews found</h3>
-                <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+                <h3 className="text-xl font-semibold text-gray-400 mb-2">
+                  No reviews found
+                </h3>
+                <p className="text-gray-500">
+                  Try adjusting your search or filter criteria
+                </p>
               </div>
             </div>
           )}

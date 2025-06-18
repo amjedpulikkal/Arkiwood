@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import {
-  BarChart3,
+  FolderOpen,
   Users,
   X,
   Home,
@@ -61,7 +61,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
 
   const sidebarItems: SidebarItem[] = [
     { icon: Users, label: "Service", href: "/admin/dashboard/services" },
-    { icon: BarChart3, label: "Project", href: "/admin/dashboard/projects" },
+    { icon: FolderOpen, label: "Project", href: "/admin/dashboard/projects" },
     { icon: Star, label: "Review", href: "/admin/dashboard/review" },
     { icon: Settings, label: "Settings", href: "/admin/dashboard/settings" },
   ];
@@ -77,7 +77,6 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
         table: "contact_messages",
       },
       (payload) => {
-        console.log("insert---------");
         if (payload.new) {
           if (audioRef.current) {
             audioRef.current.currentTime = 0;

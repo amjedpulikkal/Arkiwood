@@ -628,6 +628,7 @@ import {
 import { nanoid } from "nanoid";
 import ReviewRatingUI from "@/components/admin/testimonial";
 import Image from "next/image";
+import { supabase } from "@/lib/supabaseClient";
 
 // Type definitions
 interface Service {
@@ -802,7 +803,20 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
     });
     setSubmitStatus(null);
   };
+  const uploadImage = async (name: string, file: File) => {
+    const path = `projects/${name}/${nanoid()}-${file.name}`;
 
+    const { error } = await supabase.storage
+      .from("static.images")
+      .upload(path, file, { contentType: file.type });
+
+    if (error) console.log(error);
+
+    const url = supabase.storage.from("static.images").getPublicUrl(path)
+      .data.publicUrl;
+    console.log(url);
+    return { image_url: url, path };
+  };
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
@@ -822,14 +836,18 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
       }
 
       if (formData.images[0]?.file) {
-        newForm.append("image", formData.images[0].file);
+        const data = await uploadImage(
+          formData.projectPhase,
+          formData.images[0].file
+        );
+        newForm.append("image", JSON.stringify(data));
       }
 
       newForm.append("dynamic_link", formData.dynamic_link);
       newForm.append("service_id", formData.projectPhase);
       newForm.append("company", formData.company);
 
-      await toast.promise(
+      toast.promise(
         fetch("/api/reviews/createReviews", {
           method: "POST",
           body: newForm,
@@ -1138,7 +1156,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
               <div className="backdrop-blur-sm bg-white/5 rounded-lg p-4">
                 <h3 className="text-white font-medium mb-4 flex items-center gap-2">
                   <Camera className="w-5 h-5 text-purple-400" />
-                  Photos (Optional)
+                  Photos 
                 </h3>
                 <div className="space-y-4">
                   <input
@@ -1154,7 +1172,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
                     className="flex items-center justify-center gap-2 p-4 border-2 border-dashed border-white/20 rounded-lg cursor-pointer hover:border-white/40 transition-colors"
                   >
                     <Camera className="w-5 h-5 text-gray-400" />
-                    <span className="text-gray-400">Upload images (max 5)</span>
+                    <span className="text-gray-400">Upload images 1</span>
                   </label>
 
                   {formData.images.length > 0 && (
@@ -1275,7 +1293,7 @@ const ReviewFormDemo: React.FC = () => {
             fetchData={fetchData}
           />
 
-          <ReviewRatingUI reviews={reviews} fetchData={fetchData} />
+          <ReviewRatingUI reviews={reviews} fetchData={fetchData}  />
         </div>
       </div>
     </>

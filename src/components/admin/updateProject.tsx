@@ -1052,15 +1052,11 @@ export default function UpdateProjectProjectConfiguration({
     // formData.project_gallery.forEach((item) => {
     // });
     if (formData.main_image instanceof File) {
-      
-      form.append("old_cover_image_path",data.main_image.path)
+      form.append("old_cover_image_path", data.main_image.path);
       const dataRes = await uploadImage(formData.title, formData.main_image);
       form.append("main_image", JSON.stringify(dataRes));
-      
     } else if (formData.main_image && "path" in formData.main_image) {
-
       form.append("main_image", JSON.stringify(formData.main_image));
-
     }
     const response = fetch("/api/projects/updateProject", {
       method: "POST",
@@ -1088,7 +1084,12 @@ export default function UpdateProjectProjectConfiguration({
         </button>
       </div>
 
-      <div className="w-full h-full flex-col flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        
+        className="w-full h-full flex-col flex items-center justify-center"
+      >
         <div className="w-full backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
           <div className="flex items-center justify-between p-6 border-b border-white/20">
             <div className="flex items-center space-x-3">
@@ -1611,7 +1612,7 @@ export default function UpdateProjectProjectConfiguration({
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
