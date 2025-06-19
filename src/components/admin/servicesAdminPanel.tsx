@@ -625,9 +625,9 @@ const ServicesAdminPanel: React.FC<ServicesAdminPanelProps> = ({
                     </div>
                   ) : (
                     <div className="flex flex-wrap gap-2">
-                      {service.sub_services?.slice(0, 3).map((subService) => (
+                      {service.sub_services?.slice(0, 3).map((subService,index) => (
                         <span
-                          key={subService.created_at}
+                          key={"subService.created_at"+index+subService.id}
                           className="px-3 py-1 bg-white/10 text-gray-300 text-xs rounded-full"
                         >
                           {subService.sub_service_name}

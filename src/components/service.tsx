@@ -3,16 +3,15 @@ import React, { useState, useEffect, useRef, useCallback, JSX } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Service as TypeService } from "@/types/type";
 
 // Type definitions
-interface ServiceItem {
-  name: string;
-  heading: string;
-  body: string;
-  nav: string[];
-}
 
-export default function Service(): JSX.Element {
+export default function Service({
+  services,
+}: {
+  services: TypeService[];
+}): JSX.Element {
   const [cindex, setcIndex] = useState<number>(0);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number>(0);
@@ -23,106 +22,106 @@ export default function Service(): JSX.Element {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
 
-  const [textData] = useState<ServiceItem[]>([
-    {
-      name: "/todd-kent-178j8tJrNlc-unsplash.jpg",
-      heading: "Architectural Design",
-      body: `Innovative and practical architectural solutions tailored to your vision. From concept to construction, we ensure designs that inspire and perform.`,
-      nav: [
-        "Architectural Design Projects",
-        "3D Rendering and Visualization",
-        "Project Management",
-        "Sustainable and Green Building Practices",
-      ],
-    },
-    {
-      name: "/0-1--5-.1587627053.6613.webp",
-      heading: "Engineering",
-      body: `At Arkiwood, engineering makes sure that every design is based on accuracy, security, and clever functioning. We provide the technological foundation for every exquisite place, from structural integrity to seamless systems.`,
-      nav: [
-        "Structural planning",
-        "Electrical layout & execution",
-        "Plumbing systems",
-        "HVAC integration",
-      ],
-    },
-    {
-      name: "/francesca-tosolini-6japTIjUQoI-unsplash.jpg",
-      heading: "MEP Drawings",
-      body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
-      nav: [
-        "HVAC and Ducting Systems",
-        "Electrical & Power Layouts",
-        "Plumbing & Drainage Design",
-        "Fire Protection & Coordination Drawings",
-      ],
-    },
-    {
-      name: "/photo-1600607687939-ce8a6c25118c.jpg",
-      heading: "Interior Design",
-      body: `Bring life and function into your spaces with creative and client-centric interiors. We blend style with comfort to create environments that speak to you.`,
-      nav: [
-        "Space Planning & Concepts",
-        "Material and Finish Selection",
-        "Lighting & Furniture Design",
-      ],
-    },
-    {
-      name: "/home-2486092_1280.jpg",
-      heading: "Civil & Interior Fit out",
-      body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution. From partitions to finishes, we build with precision.`,
-      nav: [
-        "Partitioning & False Ceilings",
-        "Flooring & Wall Finishes",
-        "Electrical & HVAC Installations",
-        "Plumbing & Sanitary Works",
-      ],
-    },
-    {
-      name: "/0-1--5-.1587627053.6613.webp",
-      heading: "Joinery",
-      body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
-      nav: [
-        "Custom Furniture Fabrication",
-        "Doors, Frames & Cladding",
-        "Shelving & Storage Units",
-        "Finishing & Polishing Works",
-      ],
-    },
-    {
-      name: "/photo-1600566753190-17f0baa2a6c3.jpg",
-      heading: "Authorities",
-      body: `Navigating approval processes is a crucial part of any interior or fit-out project. We assist clients in securing all necessary approvals from relevant authorities and building managements.`,
-      nav: [
-        "Civil Defense Authorities",
-        "Electricity & Water Authorities",
-        "Environmental & Sustainability Authorities",
-        "Free Zones & Special Authorities",
-      ],
-    },
-    {
-      name: "/33-1100x733.jpg",
-      heading: "Approvals",
-      body: `We specialize in delivering carpentry and joinery works that fully comply with local authority regulations and building management standards across the UAE.`,
-      nav: [
-        "Food & Beverage Sector Approvals",
-        "Building Management & Developer Approvals",
-        "Building Owner/Landlord NOC",
-        "Mall Management Approval (For retail spaces)",
-      ],
-    },
-    {
-      name: "/e10c68fd076d4591ad9389d155d29555.jpg",
-      heading: "Landscaping",
-      body: `Transform outdoor spaces into stunning, functional environments. From lush gardens to modern hardscapes, we design landscapes that harmonize with architecture and nature.`,
-      nav: [
-        "Garden Design",
-        "Landscape Architecture",
-        "Landscaping for Climate",
-        "Sustainable Landscaping",
-      ],
-    },
-  ]);
+  // const [services] = useState<ServiceItem[]>([
+  //   {
+  //     name: "/todd-kent-178j8tJrNlc-unsplash.jpg",
+  //     heading: "Architectural Design",
+  //     body: `Innovative and practical architectural solutions tailored to your vision. From concept to construction, we ensure designs that inspire and perform.`,
+  //     nav: [
+  //       "Architectural Design Projects",
+  //       "3D Rendering and Visualization",
+  //       "Project Management",
+  //       "Sustainable and Green Building Practices",
+  //     ],
+  //   },
+  //   {
+  //     name: "/0-1--5-.1587627053.6613.webp",
+  //     heading: "Engineering",
+  //     body: `At Arkiwood, engineering makes sure that every design is based on accuracy, security, and clever functioning. We provide the technological foundation for every exquisite place, from structural integrity to seamless systems.`,
+  //     nav: [
+  //       "Structural planning",
+  //       "Electrical layout & execution",
+  //       "Plumbing systems",
+  //       "HVAC integration",
+  //     ],
+  //   },
+  //   {
+  //     name: "/francesca-tosolini-6japTIjUQoI-unsplash.jpg",
+  //     heading: "MEP Drawings",
+  //     body: `Integrated mechanical, electrical, and plumbing systems for optimized performance. We ensure safety, functionality, and compliance in every build.`,
+  //     nav: [
+  //       "HVAC and Ducting Systems",
+  //       "Electrical & Power Layouts",
+  //       "Plumbing & Drainage Design",
+  //       "Fire Protection & Coordination Drawings",
+  //     ],
+  //   },
+  //   {
+  //     name: "/photo-1600607687939-ce8a6c25118c.jpg",
+  //     heading: "Interior Design",
+  //     body: `Bring life and function into your spaces with creative and client-centric interiors. We blend style with comfort to create environments that speak to you.`,
+  //     nav: [
+  //       "Space Planning & Concepts",
+  //       "Material and Finish Selection",
+  //       "Lighting & Furniture Design",
+  //     ],
+  //   },
+  //   {
+  //     name: "/home-2486092_1280.jpg",
+  //     heading: "Civil & Interior Fit out",
+  //     body: `End-to-end civil and fit-out solutions that ensure quality and detail in execution. From partitions to finishes, we build with precision.`,
+  //     nav: [
+  //       "Partitioning & False Ceilings",
+  //       "Flooring & Wall Finishes",
+  //       "Electrical & HVAC Installations",
+  //       "Plumbing & Sanitary Works",
+  //     ],
+  //   },
+  //   {
+  //     name: "/0-1--5-.1587627053.6613.webp",
+  //     heading: "Joinery",
+  //     body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
+  //     nav: [
+  //       "Custom Furniture Fabrication",
+  //       "Doors, Frames & Cladding",
+  //       "Shelving & Storage Units",
+  //       "Finishing & Polishing Works",
+  //     ],
+  //   },
+  //   {
+  //     name: "/photo-1600566753190-17f0baa2a6c3.jpg",
+  //     heading: "Authorities",
+  //     body: `Navigating approval processes is a crucial part of any interior or fit-out project. We assist clients in securing all necessary approvals from relevant authorities and building managements.`,
+  //     nav: [
+  //       "Civil Defense Authorities",
+  //       "Electricity & Water Authorities",
+  //       "Environmental & Sustainability Authorities",
+  //       "Free Zones & Special Authorities",
+  //     ],
+  //   },
+  //   {
+  //     name: "/33-1100x733.jpg",
+  //     heading: "Approvals",
+  //     body: `We specialize in delivering carpentry and joinery works that fully comply with local authority regulations and building management standards across the UAE.`,
+  //     nav: [
+  //       "Food & Beverage Sector Approvals",
+  //       "Building Management & Developer Approvals",
+  //       "Building Owner/Landlord NOC",
+  //       "Mall Management Approval (For retail spaces)",
+  //     ],
+  //   },
+  //   {
+  //     name: "/e10c68fd076d4591ad9389d155d29555.jpg",
+  //     heading: "Landscaping",
+  //     body: `Transform outdoor spaces into stunning, functional environments. From lush gardens to modern hardscapes, we design landscapes that harmonize with architecture and nature.`,
+  //     nav: [
+  //       "Garden Design",
+  //       "Landscape Architecture",
+  //       "Landscaping for Climate",
+  //       "Sustainable Landscaping",
+  //     ],
+  //   },
+  // ]);
 
   // Clear interval function
   const clearAutoPlay = useCallback((): void => {
@@ -137,20 +136,20 @@ export default function Service(): JSX.Element {
     clearAutoPlay();
     if (!isDragging) {
       intervalRef.current = setInterval(() => {
-        setcIndex((prevIndex: number) => (prevIndex + 1) % textData.length);
+        setcIndex((prevIndex: number) => (prevIndex + 1) % services.length);
       }, 6000);
     }
-  }, [isDragging, textData.length, clearAutoPlay]);
+  }, [isDragging, services.length, clearAutoPlay]);
 
   const goNext = useCallback((): void => {
-    setcIndex((prevIndex: number) => (prevIndex + 1) % textData.length);
-  }, [textData.length]);
+    setcIndex((prevIndex: number) => (prevIndex + 1) % services.length);
+  }, [services.length]);
 
   const goPrev = useCallback((): void => {
     setcIndex((prevIndex: number) =>
-      prevIndex === 0 ? textData.length - 1 : prevIndex - 1
+      prevIndex === 0 ? services.length - 1 : prevIndex - 1
     );
-  }, [textData.length]);
+  }, [services.length]);
 
   const goToSlide = useCallback(
     (index: number): void => {
@@ -167,11 +166,11 @@ export default function Service(): JSX.Element {
       if (!hasDragged) {
         e.stopPropagation();
         router.push(
-          `/ourservices/${encodeURIComponent(textData[cindex].heading)}`
+          `/ourservices/${encodeURIComponent(services[cindex].service_name)}`
         );
       }
     },
-    [hasDragged, textData, cindex, router]
+    [hasDragged, services, cindex, router]
   );
 
   const handleStart = useCallback(
@@ -225,7 +224,7 @@ export default function Service(): JSX.Element {
         setDragDistance(0);
       }
     },
-    [isDragging, startX, startY] 
+    [isDragging, startX, startY]
   );
 
   const handleEnd = useCallback((): void => {
@@ -377,10 +376,10 @@ export default function Service(): JSX.Element {
                 >
                   <Image
                     key={cindex}
-                    src={textData[cindex].name}
+                    src={services[cindex].cover_image?.image_url || ""}
                     fill
                     className="object-cover pointer-events-none"
-                    alt={textData[cindex].heading}
+                    alt={services[cindex].service_name}
                     priority
                   />
                 </motion.div>
@@ -491,7 +490,7 @@ export default function Service(): JSX.Element {
 
         {/* Enhanced Progress Indicators */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
-          {textData.map((_, index: number) => (
+          {services.map((_, index: number) => (
             <motion.button
               key={index}
               onClick={() => goToSlide(index)}
@@ -532,12 +531,12 @@ export default function Service(): JSX.Element {
               transition={{ duration: 1, delay: 0.3 }}
             >
               <h3 className="text-xl font-extrabold text-amber-800 mb-3">
-                {textData[cindex].heading}
+                {services[cindex].service_name}
               </h3>
 
               <div className="space-y-1">
-                {textData[cindex].nav &&
-                  textData[cindex].nav.map((item: string, idx: number) => (
+                {services[cindex].sub_services &&
+                  services[cindex].sub_services.map((item, idx: number) => (
                     <div key={idx} className="flex items-center gap-2 text-sm">
                       <svg
                         className="w-3 h-3 text-amber-700 flex-shrink-0"
@@ -552,7 +551,7 @@ export default function Service(): JSX.Element {
                           d="M9 5l7 7-7 7"
                         />
                       </svg>
-                      <p className="text-gray-700">{item}</p>
+                      <p className="text-gray-700">{item.sub_service_name}</p>
                     </div>
                   ))}
               </div>

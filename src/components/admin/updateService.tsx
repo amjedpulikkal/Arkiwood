@@ -646,9 +646,8 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
                   <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 group">
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 relative bg-[#7F6456]/20 rounded-lg flex items-center justify-center">
-                        <Image
-                          // @ts-expect-error : ignore
-                          src={formData.cover_image?.image_url}
+                        <Image   
+                          src={formData.cover_image instanceof File? (URL.createObjectURL(formData.cover_image) || "") : (formData.cover_image?.image_url || "")}
                           alt={`Cover-${formData.cover_image}`}
                           fill
                         />

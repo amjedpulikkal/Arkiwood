@@ -63,6 +63,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
     { icon: Users, label: "Service", href: "/admin/dashboard/services" },
     { icon: FolderOpen, label: "Project", href: "/admin/dashboard/projects" },
     { icon: Star, label: "Review", href: "/admin/dashboard/review" },
+    { icon: Settings, label: "Settings", href: "/admin/dashboard/banner" },
     { icon: Settings, label: "Settings", href: "/admin/dashboard/settings" },
   ];
 

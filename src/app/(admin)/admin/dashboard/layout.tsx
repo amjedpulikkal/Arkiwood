@@ -20,7 +20,7 @@ export default async function DashboardLayout({
     console.error("Supabase error:", error.message);
   }
   const { data, error:er } = await supabaseServer.auth.getUser();
-  console.log(data,er)
+  
   if (er || !data?.user) {
     redirect("/admin/login");
   }

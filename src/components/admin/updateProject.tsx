@@ -1087,7 +1087,6 @@ export default function UpdateProjectProjectConfiguration({
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        
         className="w-full h-full flex-col flex items-center justify-center"
       >
         <div className="w-full backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
@@ -1230,9 +1229,9 @@ export default function UpdateProjectProjectConfiguration({
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#7F6456] focus:border-transparent"
                     >
-                      {statuses.map((status) => (
+                      {statuses.map((status, index) => (
                         <option
-                          key={status}
+                          key={status + index}
                           value={status}
                           className="bg-gray-800"
                         >
@@ -1500,7 +1499,7 @@ export default function UpdateProjectProjectConfiguration({
                 <div className="grid grid-cols-2 gap-4">
                   {formData.project_gallery.map((item, index) => (
                     <div
-                      key={index}
+                      key={index + "images"}
                       className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 group"
                     >
                       <div className="flex items-center space-x-3">

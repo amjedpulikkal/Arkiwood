@@ -4,61 +4,58 @@ import ContactCom from "@/components/contact";
 
 import OurClients from "@/components/ourClients";
 
-
-
 import { Banner } from "@/components/banner";
 import WhyChooseArkiwood from "@/components/whyChooseArkiwood";
 import AflterAndBeforImage from "@/components/aflterAndBeforImage";
-import AutoScrollSection from "@/components/autoScrollSection";
 
 import Service from "@/components/service";
 import Image from "next/image";
+import { supabase } from "@/lib/supabaseClient";
 
-// import OurCertifications from "@/components/ourCertifications";
-// import Review from "@/components/review";
-
-
-export default function Home() {
+export default async function Home() {
+  const { data: services } = await supabase
+    .from("services")
+    .select("*,sub_services(*)");
   return (
     <>
       <Banner />
 
       <main className="  w-full  overflow-hidden">
-        <AutoScrollSection>
-          <div className="mt-10" id="about">
-            <div className=" w-full sm:flex  h-[500px]  ">
-              <div className="sm:w-[600px] hidden sm:block w-full">
-                <div className="relative">
-                  <Image
-                    width={500}
-                    height={500}
-                    src={"/Group 2259 (2).png"}
-                    alt={"Group 2259 (2).png"}
-                  />
-                </div>
+        {/* <AutoScrollSection> */}
+        <div className="mt-10" id="about">
+          <div className=" w-full sm:flex  h-[500px]  ">
+            <div className="sm:w-[600px] hidden sm:block w-full">
+              <div className="relative">
+                <Image
+                  width={500}
+                  height={500}
+                  src={"/Group 2259 (2).png"}
+                  alt={"Group 2259 (2).png"}
+                />
               </div>
-              <div className="flex justify-center items-center sm:mt-0  sm:w-3/5 px-6 sm:pr-10">
-                <div>
-                  <p className=" nasalization hover-underline-animation center text-4xl  text-[#7F6456]">
-                    About Us
-                  </p>
-                  <p className="text-[#704e3c]">
-                    At ARKIWOOD, we specialize in end-to-end solutions for
-                    transforming spaces across the UAE. From innovative interior
-                    design concepts to precise architectural drawings, MEP
-                    plans, and everything in between, we ensure every detail is
-                    meticulously covered. Our expert team navigates all
-                    regulatory approvals, ensuring smooth, hassle-free project
-                    execution from start to finish. Whether it’s residential,
-                    commercial, or industrial, we bring your vision to life with
-                    unmatched precision, creativity, and professionalism. From
-                    securing authority approvals to handing over the keys, we
-                    oversee every step of your interior journey, crafting spaces
-                    that are not only functional but also ready to
-                    inspire—whether for work or living.
-                  </p>
+            </div>
+            <div className="flex justify-center items-center sm:mt-0  sm:w-3/5 px-6 sm:pr-10">
+              <div>
+                <p className=" nasalization hover-underline-animation center text-4xl  text-[#7F6456]">
+                  About Us
+                </p>
+                <p className="text-[#704e3c]">
+                  At ARKIWOOD, we specialize in end-to-end solutions for
+                  transforming spaces across the UAE. From innovative interior
+                  design concepts to precise architectural drawings, MEP plans,
+                  and everything in between, we ensure every detail is
+                  meticulously covered. Our expert team navigates all regulatory
+                  approvals, ensuring smooth, hassle-free project execution from
+                  start to finish. Whether it’s residential, commercial, or
+                  industrial, we bring your vision to life with unmatched
+                  precision, creativity, and professionalism. From securing
+                  authority approvals to handing over the keys, we oversee every
+                  step of your interior journey, crafting spaces that are not
+                  only functional but also ready to inspire—whether for work or
+                  living.
+                </p>
 
-                  {/* <div className="flex flex-wrap justify-evenly mt-4 ">
+                {/* <div className="flex flex-wrap justify-evenly mt-4 ">
                   {[
                     {
                       src: "/1746855302712-4fd7fa1e-68d2-4134-b764-a3980b730908_1.jpg",
@@ -87,31 +84,29 @@ export default function Home() {
                     </div>
                   ))}
                 </div> */}
-                </div>
               </div>
             </div>
           </div>
-        </AutoScrollSection>
+        </div>
+        {/* </AutoScrollSection> */}
 
-        <Service />
+        <Service services={services!} />
 
         {/* <AutoScrollSection> */}
-          <WhyChooseArkiwood />
+        <WhyChooseArkiwood />
         {/* </AutoScrollSection> */}
 
         {/* <AutoScrollSection> */}
-          <AflterAndBeforImage />
+        <AflterAndBeforImage />
         {/* </AutoScrollSection> */}
 
         {/* <AutoScrollSection> */}
-          <OurClients />
+        <OurClients />
         {/* </AutoScrollSection> */}
 
         {/* <AutoScrollSection> */}
-          <ContactCom />
+        <ContactCom />
         {/* </AutoScrollSection> */}
-
-       
       </main>
     </>
   );

@@ -284,9 +284,9 @@ export const ProjectManagementPanel: React.FC<Props> = ({
               }
               className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500/50 backdrop-blur-sm"
             >
-              {statuses.map((status) => (
+              {statuses.map((status,index) => (
                 <option
-                  key={status}
+                  key={status+index}
                   value={status.toLowerCase() === "all" ? "all" : status}
                 >
                   {status}
