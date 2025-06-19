@@ -25,10 +25,11 @@ const imgAnimation3 = {
   },
 };
 
-export default function CallCpmponent() {
+export default function CallCpmponent({data}:{data:{phone_number:string,whatsApp_number:string}}) {
   const sendMessage = () => {
-    const phoneNumber = "+971509472658"; // Replace with actual number (with country code)
-    const message = "Hello! I'm interested in your service."; // Customize message
+    // const phoneNumber = "+971509472658"; 
+    const phoneNumber = data.whatsApp_number;
+    const message = "Hello! I'm interested in your service."; 
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;
@@ -37,7 +38,8 @@ export default function CallCpmponent() {
   };
 
   const handleCall = () => {
-    window.location.href = `tel:+971588636991`;
+    // window.location.href = `tel:+971588636991`;
+    window.location.href = `tel:${data.phone_number}`;
   };
   return (
     <div className="fixed right-0 bottom-0 z-[9999]">

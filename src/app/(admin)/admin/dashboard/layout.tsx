@@ -26,8 +26,8 @@ export default async function DashboardLayout({
   }
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-      <div className="min-h-screen lg:pl-64 bg-gradient-to-br from-[#2C2C2C] via-[#3D3D3D] to-[#1A1A1A]  text-white">
-        <DashboardNavbar initialData={{ count: count ?? 0 }} />
+      <div className="min-h-screen  bg-gradient-to-br from-[#2C2C2C] via-[#3D3D3D] to-[#1A1A1A]  text-white">
+        <DashboardNavbar initialData={{ count: count ?? 0 }}  />
         {children}
       </div>
     </ThemeProvider>

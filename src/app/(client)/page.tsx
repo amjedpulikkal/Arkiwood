@@ -105,7 +105,7 @@ export default async function Home() {
         {/* </AutoScrollSection> */}
 
         {/* <AutoScrollSection> */}
-        <ContactCom />
+        <ContactCom  />
         {/* </AutoScrollSection> */}
       </main>
     </>
