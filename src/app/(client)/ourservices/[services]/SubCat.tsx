@@ -48,9 +48,9 @@ const SubCat: React.FC<Props> = ({ data }) => {
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {data.sub_services.map((sub_service,index) => (
+        {data.sub_services.map((sub_service, index) => (
           <div
-            key={index+"subservice"}
+            key={index + "subservice"}
             className="group relative transform hover:scale-105 transition-all duration-500 ease-out"
           >
             {/* Card Container */}
@@ -84,7 +84,7 @@ const SubCat: React.FC<Props> = ({ data }) => {
                         (!isMobile &&
                           "group-hover:scale-110 group-hover:blur-sm group-hover:brightness-50")
                       }`}
-                  src={`/${data.images[index]}`}
+                  src={sub_service.image?.image_url || ""}
                   alt={`${data.service_name} service image`}
                 />
 
@@ -107,21 +107,23 @@ const SubCat: React.FC<Props> = ({ data }) => {
                         className="space-y-2 text-sm"
                         style={{ color: "#7F6456" }}
                       >
-                        {sub_service.features?.map((topic: string, i: number) => (
-                          <li
-                            key={i+"topic"}
-                            className="flex items-center space-x-2 animate-fade-in"
-                          >
-                            <div
-                              className="w-2  h-2 rounded-full flex-shrink-0"
-                              style={{
-                                background:
-                                  "linear-gradient(135deg, #7F6456 0%, #9B7B63 100%)",
-                              }}
-                            ></div>
-                            <span className="text-left">{topic}</span>
-                          </li>
-                        ))}
+                        {sub_service.features?.map(
+                          (topic: string, i: number) => (
+                            <li
+                              key={i + "topic"}
+                              className="flex items-center space-x-2 animate-fade-in"
+                            >
+                              <div
+                                className="w-2  h-2 rounded-full flex-shrink-0"
+                                style={{
+                                  background:
+                                    "linear-gradient(135deg, #7F6456 0%, #9B7B63 100%)",
+                                }}
+                              ></div>
+                              <span className="text-left">{topic}</span>
+                            </li>
+                          )
+                        )}
                       </ul>
                     </div>
 

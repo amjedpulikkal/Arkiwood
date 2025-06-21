@@ -19,7 +19,7 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { toast } from "sonner";
-import { SubService, Image as Imagetype, Service } from "@/types/type";
+import { Image as Imagetype, Service } from "@/types/type";
 import { supabase } from "@/lib/supabaseClient";
 import { nanoid } from "nanoid";
 
@@ -30,7 +30,14 @@ interface Props {
   callBack: () => void;
   data: Service;
 }
-
+type SubService = {
+  id?: number;
+  sub_service_name?: string;
+  service_id?: number;
+  created_at?: string;
+  features: string[];
+  image?: Imagetype | File;
+};
 interface FormDataState {
   service_name: string;
   services?: Record<string, string[]>; // category → list of sub‐services
@@ -71,6 +78,7 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
   const [updatedSub_services, setUpdatedSub_services] = useState<
     SubService[] | []
   >([]);
+
 
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -159,8 +167,7 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
         ...targetSubService,
         features: [...(targetSubService.features ?? []), newSubService.trim()],
       };
-      console.log("updatedSubService", updatedSub_services);
-      console.log("updatedSccccubService", updatedSubService);
+
       setUpdatedSub_services((prev) => {
         const isThere = prev.findIndex(
           (data) => data.id === updatedSubService.id
@@ -230,7 +237,7 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
       console.log(index);
       const newData = [...updatedSub_services];
 
-      newData[index] = newSub
+      newData[index] = newSub;
 
       console.log(newData);
       setUpdatedSub_services(newData);
@@ -240,7 +247,7 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
 
     setFormData((prev) => {
       const updatedSubServices = [...(prev.sub_services || [])];
-      
+
       updatedSubServices[serviceIndex] = newSub;
       return {
         ...prev,
@@ -275,6 +282,63 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
           // @ts-expect-error : ignore
           images: [...prev.images, ...valid],
         }));
+      }
+    };
+
+    input.click();
+  };
+  const addSubImage = (updatedSubService: SubService, sIndex: number) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.multiple = false;
+
+    input.onchange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (!target.files) return;
+
+      const files = Array.from(target.files);
+      const { valid, invalidNames } = validateAndFilterFiles(files);
+
+      if (invalidNames.length > 0) {
+        invalidNames.forEach((name) =>
+          toast.error(`"${name}" exceeds 10MB and was skipped.`)
+        );
+      }
+
+      if (valid.length > 0) {
+        setUpdatedSub_services((prev) => {
+          const isThere = prev.findIndex(
+            (data) => data.id === updatedSubService.id
+          );
+          console.log("isThere", isThere);
+          if (isThere >= 0) {
+            const newArray = [...prev];
+
+            newArray[isThere] = {
+              ...updatedSubService,
+              image: valid[0],
+            };
+            return newArray;
+          }
+          return [...prev, { ...updatedSubService, image: valid[0] }];
+        });
+
+        const newdSubServices = [...(formData.sub_services ?? [])];
+
+        const targetSubService = newdSubServices[sIndex!];
+
+        newdSubServices[sIndex!] = {
+          ...targetSubService,
+          image: valid[0],
+        };
+
+        setFormData((prev) => {
+          return {
+            ...prev,
+            sub_services: newdSubServices,
+          };
+        });
       }
     };
 
@@ -347,12 +411,21 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
       payload.append("id", formData.id);
       payload.append("service_name", formData.service_name.trim());
       payload.append("description", formData.description!);
-      payload.append("sub_services", JSON.stringify(formData.sub_services));
-      payload.append(
-        "updatedSub_services",
-        JSON.stringify(updatedSub_services)
-      );
-      console.log("updatedSub_services",updatedSub_services);
+
+      const newSubService = [];
+      for (const element of updatedSub_services) {
+        if (element.image instanceof File) {
+          const image = await uploadImage(formData.service_name, element.image);
+          newSubService.push({
+            ...element,
+            image,
+          });
+        }
+      }
+
+      payload.append("updatedSub_services", JSON.stringify(newSubService));
+
+      console.log("updatedSub_services", updatedSub_services);
       if (formData.cover_image instanceof File) {
         const data = await uploadImage(
           formData.service_name,
@@ -364,7 +437,7 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
         typeof formData.cover_image === "object" &&
         formData.cover_image?.path
       ) {
-        payload.append("cover_image", formData.cover_image.path!);
+        payload.append("cover_image",  JSON.stringify(formData.cover_image));
       }
 
       const existingPaths = [] as unknown as [
@@ -558,7 +631,36 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
                             <Trash2 size={16} />
                           </button>
                         </div>
-
+                        <div className="space-y-2 mb-3 relative">
+                          {subServices.image && (
+                            <Image
+                              // onClick={() => addSubImage(service)}
+                              className="object-cover rounded-2xl"
+                              fill
+                              src={
+                                subServices.image instanceof File
+                                  ? URL.createObjectURL(subServices.image)
+                                  : subServices.image?.image_url || ""
+                              }
+                              alt={`images+${sIndex}`}
+                            />
+                          )}
+                          <button
+                            onClick={() => addSubImage(subServices, sIndex)}
+                            className="w-full p-8 border-2 border-dashed border-white/30 rounded-2xl hover:border-[#7F6456] hover:bg-[#7F6456]/10 transition-all duration-300 text-center group"
+                          >
+                            <Upload
+                              className="mx-auto mb-4 text-gray-400 group-hover:text-[#7F6456]"
+                              size={32}
+                            />
+                            <p className="text-gray-400 group-hover:text-white">
+                              Click to upload image
+                            </p>
+                            <p className="text-gray-500 text-sm mt-1">
+                              PNG, JPG, JPEG up to 10MB
+                            </p>
+                          </button>
+                        </div>
                         <div className="space-y-2 mb-3">
                           {subServices.features?.map((service, index) => (
                             <motion.div
@@ -646,8 +748,12 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
                   <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 group">
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 relative bg-[#7F6456]/20 rounded-lg flex items-center justify-center">
-                        <Image   
-                          src={formData.cover_image instanceof File? (URL.createObjectURL(formData.cover_image) || "") : (formData.cover_image?.image_url || "")}
+                        <Image
+                          src={
+                            formData.cover_image instanceof File
+                              ? URL.createObjectURL(formData.cover_image) || ""
+                              : formData.cover_image?.image_url || ""
+                          }
                           alt={`Cover-${formData.cover_image}`}
                           fill
                         />

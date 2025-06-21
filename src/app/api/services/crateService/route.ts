@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import { Image } from "@/types/type";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -7,14 +8,19 @@ export async function POST(req: Request) {
 
     const serviceObj = JSON.parse(formData.get("services") as string);
 
-    const serviceArray = Object.entries(serviceObj).map(([key, value]) => ({
-      name: key,
-      subServices: value,
-    }));
+    // const serviceArray = Object.entries(serviceObj).map(([key, value]) => ({
+    //   name: key,
+    //   subServices: value,
+    // }));
     const coverImage = JSON.parse(formData.get("coverImages") as string) as {
       path: string;
       image_url: string;
     };
+    const subServiceImages = JSON.parse(
+      formData.get("subServiceImages") as string
+    ) as Record<string, Image>;
+    
+    console.log(subServiceImages);
     // const path = `service/${formData.get("serviceName")}/${Date.now()}-${
     //   coverImage.name
     // }`;
@@ -68,11 +74,14 @@ export async function POST(req: Request) {
     if (error) throw error;
     const serviceId = serviceData[0].id;
 
-    const subServicePayload = serviceArray.map((data) => ({
-      sub_service_name: data.name,
-      service_id: serviceId,
-      features: data.subServices,
-    }));
+    const subServicePayload = Object.entries(serviceObj).map(
+      ([key, value]) => ({
+        image: subServiceImages[key],
+        sub_service_name: key,
+        service_id: serviceId,
+        features: value,
+      })
+    );
 
     const { data: subServicesData, error: subInsertError } = await supabase
       .from("sub_services")

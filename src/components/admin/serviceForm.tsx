@@ -21,6 +21,8 @@ import Image from "next/image";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabaseClient";
 import { nanoid } from "nanoid";
+import ServiceINput from "./serviceINput";
+import { Image as TypeImage } from "@/types/type";
 
 //
 // --- TYPE DEFINITIONS ---
@@ -65,8 +67,10 @@ export default function ServiceModal({ open, callBack }: Props) {
   });
 
   const [newService, setNewService] = useState<string>("");
-  const [newSubService, setNewSubService] = useState<string>("");
-  const [selectedService, setSelectedService] = useState<string>("");
+
+  const [subServiceImage, setSubServiceImage] = useState<
+    Record<string, { image: File }>
+  >({});
 
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -103,6 +107,7 @@ export default function ServiceModal({ open, callBack }: Props) {
   };
 
   // Handle file size validation
+
   const validateAndFilterFiles = (
     files: File[]
   ): { valid: File[]; invalidNames: string[] } => {
@@ -145,7 +150,7 @@ export default function ServiceModal({ open, callBack }: Props) {
   };
 
   // Add a new sub‐service under selected category
-  const addSubService = () => {
+  const addSubService = (newSubService: string, selectedService: string) => {
     if (newSubService.trim() && selectedService) {
       setFormData((prev) => ({
         ...prev,
@@ -157,12 +162,15 @@ export default function ServiceModal({ open, callBack }: Props) {
           ],
         },
       }));
-      setNewSubService("");
     }
   };
 
   // Remove a service category entirely
   const removeService = (service: string) => {
+    const newObj = { ...subServiceImage };
+    delete newObj[service];
+
+    setSubServiceImage(newObj);
     setFormData((prev) => {
       const newServices = { ...prev.services };
       delete newServices[service];
@@ -211,6 +219,35 @@ export default function ServiceModal({ open, callBack }: Props) {
           ...prev,
           images: [...prev.images, ...valid],
         }));
+      }
+    };
+
+    input.click();
+  };
+  const addSubImage = (subService_name: string) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.multiple = true;
+
+    input.onchange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (!target.files) return;
+
+      const files = Array.from(target.files);
+      const { valid, invalidNames } = validateAndFilterFiles(files);
+
+      if (invalidNames.length > 0) {
+        invalidNames.forEach((name) =>
+          toast.error(`"${name}" exceeds 10MB and was skipped.`)
+        );
+      }
+
+      if (valid.length > 0) {
+        const newObj = { ...subServiceImage };
+        newObj[subService_name] = { image: valid[0] };
+
+        setSubServiceImage(newObj);
       }
     };
 
@@ -297,7 +334,15 @@ export default function ServiceModal({ open, callBack }: Props) {
         const data = await uploadImage(formData.serviceName, coverImg);
         payload.append("coverImages", JSON.stringify(data));
       });
+      const newsubServiceImage: Record<string, TypeImage> = {};
 
+      for (const [key, value] of Object.entries(subServiceImage)) {
+        newsubServiceImage[key] = await uploadImage(
+          formData.serviceName,
+          value.image
+        );
+      }
+      payload.append("subServiceImages", JSON.stringify(newsubServiceImage));
       // Append gallery images
       if (formData.images.length > 0) {
         const data = await Promise.all(
@@ -470,7 +515,34 @@ export default function ServiceModal({ open, callBack }: Props) {
                               <Trash2 size={16} />
                             </button>
                           </div>
-
+                          <div className="space-y-2 mb-3 relative">
+                            {subServiceImage[service] && (
+                              <Image
+                                onClick={() => addSubImage(service)}
+                                className="object-cover rounded-2xl"
+                                fill
+                                src={URL.createObjectURL(
+                                  subServiceImage[service]?.image
+                                )}
+                                alt={`images+${service}`}
+                              />
+                            )}
+                            <button
+                              onClick={() => addSubImage(service)}
+                              className="w-full p-8 border-2 border-dashed border-white/30 rounded-2xl hover:border-[#7F6456] hover:bg-[#7F6456]/10 transition-all duration-300 text-center group"
+                            >
+                              <Upload
+                                className="mx-auto mb-4 text-gray-400 group-hover:text-[#7F6456]"
+                                size={32}
+                              />
+                              <p className="text-gray-400 group-hover:text-white">
+                                Click to upload image
+                              </p>
+                              <p className="text-gray-500 text-sm mt-1">
+                                PNG, JPG, JPEG up to 10MB
+                              </p>
+                            </button>
+                          </div>
                           {/* Sub‐services List */}
                           <div className="space-y-2 mb-3">
                             {subServices.map((subService, index) => (
@@ -499,27 +571,10 @@ export default function ServiceModal({ open, callBack }: Props) {
 
                           {/* Add a Sub‐service */}
                           <div className="flex space-x-2">
-                            <input
-                              type="text"
-                              value={
-                                selectedService === service ? newSubService : ""
-                              }
-                              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                setSelectedService(service);
-                                setNewSubService(e.target.value);
-                              }}
-                              placeholder="Add sub-service"
-                              className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-1 focus:ring-[#7F6456]"
+                            <ServiceINput
+                              addSubService={addSubService}
+                              service={service}
                             />
-                            <button
-                              onClick={() => {
-                                setSelectedService(service);
-                                addSubService();
-                              }}
-                              className="px-3 py-2 bg-[#7F6456]/30 hover:bg-[#7F6456]/50 rounded-lg text-[#7F6456] text-sm font-medium transition-colors"
-                            >
-                              <Plus size={14} />
-                            </button>
                           </div>
                         </motion.div>
                       )

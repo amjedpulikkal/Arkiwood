@@ -33,6 +33,7 @@ export type SubService = {
   service_id?: number;
   created_at?: string;
   features: string[];
+  image?:Image
 };
 
 export type Image = {

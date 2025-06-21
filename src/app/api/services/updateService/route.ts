@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
-import { Image, SubService } from "@/types/type";
+import { Image } from "@/types/type";
 
 export async function POST(req: Request) {
   const formData = await req.formData();
@@ -20,18 +20,13 @@ export async function POST(req: Request) {
     const service_name = formData.get("service_name") as string;
 
     const description = formData.get("description") as string;
-    const raw = formData.get("sub_services");
-
-    const servicesJson = (
-      raw ? JSON.parse(raw.toString()) : null
-    ) as SubService[];
 
     const raw_updatedSub_services = formData.get(
       "updatedSub_services"
     ) as string;
-    const updatedSub_services = JSON.parse(raw_updatedSub_services) as
-      | [{ id: number }]
-      | [{ sub_service_name: string; features: string[] }];
+    const updatedSub_services = JSON.parse(raw_updatedSub_services) as [
+      { sub_service_name: string; features: string[]; image: Image }
+    ];
 
     const cover_image = JSON.parse(
       formData.get("cover_image") as string
@@ -75,9 +70,6 @@ export async function POST(req: Request) {
 
     if (!service_name) throw new Error("serviceName is required");
     if (!description) throw new Error("description is required");
-    if (!servicesJson) throw new Error("services JSON is required");
-
-    
 
     if (old_cover_image_path) {
       const { error } = await supabase.storage
@@ -122,11 +114,11 @@ export async function POST(req: Request) {
       } else {
         const subServicePayload = [
           {
-            // @ts-expect-error : ignore
             sub_service_name: sub.sub_service_name,
             service_id: idRaw,
-            // @ts-expect-error : ignore
+
             features: sub.features || [],
+            image: sub.image,
           },
         ];
 
@@ -139,7 +131,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (err) {
-    // console.error("[SERVICE UPDATE ERROR]", err.message);
+    console.error("[SERVICE UPDATE ERROR]", err);
     return NextResponse.json({ error: err }, { status: 500 });
   }
 }
