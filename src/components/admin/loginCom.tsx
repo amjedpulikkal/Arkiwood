@@ -1,4 +1,3 @@
-
 "use client";
 import Image from "next/image";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
@@ -13,7 +12,6 @@ interface FormErrors {
 }
 
 export default function LoginPage() {
-  
   const [captchaToken, setCaptchaToken] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -100,6 +98,7 @@ export default function LoginPage() {
         });
       }
     } catch (error) {
+      console.log(error)
       setErrors({
         general: "Network error. Please check your connection and try again.",
       });
@@ -248,166 +247,173 @@ export default function LoginPage() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        <motion.div className="group mb-6" variants={itemVariants}>
-          <label
-            htmlFor="email"
-            className="block text-[#D4C4B0] font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#7F6456]"
-          >
-            Email
-          </label>
-          <motion.input
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={formData.email}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-            className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${
-              errors.email
-                ? "border-red-500 focus:border-red-500"
-                : "border-white/30 focus:border-[#7F6456]"
-            }`}
-            placeholder="Enter your email"
-            disabled={isLoading}
-            whileFocus={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          />
-          <AnimatePresence>
-            {errors.email && (
-              <motion.p
-                className="mt-1 text-red-400 text-sm"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}
+        {!showSuccess && (
+          <>
+            <motion.div className="group mb-6" variants={itemVariants}>
+              <label
+                htmlFor="email"
+                className="block text-[#D4C4B0] font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#7F6456]"
               >
-                {errors.email}
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
-        <motion.div className="group mb-6" variants={itemVariants}>
-          <label
-            htmlFor="password"
-            className="block text-[#D4C4B0] font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#7F6456]"
-          >
-            Password
-          </label>
-          <motion.input
-            id="password"
-            name="password"
-            type="password"
-            required
-            value={formData.password}
-            onChange={(e) => handleInputChange("password", e.target.value)}
-            className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${
-              errors.password
-                ? "border-red-500 focus:border-red-500"
-                : "border-white/30 focus:border-[#7F6456]"
-            }`}
-            placeholder="Enter your password"
-            disabled={isLoading}
-            whileFocus={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          />
-          <AnimatePresence>
-            {errors.password && (
-              <motion.p
-                className="mt-1 text-red-400 text-sm"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}
-              >
-                {errors.password}
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </motion.div>
-
-        <motion.div
-          className="flex justify-center mt-6"
-          variants={itemVariants}
-        >
-          <HCaptcha
-            sitekey={"5b709758-01c8-42cc-b5c6-ac0a15eadb74"}
-            theme="dark"
-            onVerify={(token) => {
-              setCaptchaToken(token);
-              if (errors.captcha) {
-                setErrors((prev) => ({ ...prev, captcha: undefined }));
-              }
-            }}
-            onExpire={() => {
-              setCaptchaToken("");
-            }}
-            onError={() => {
-              setCaptchaToken("");
-              setErrors((prev) => ({
-                ...prev,
-                captcha: "Captcha verification failed",
-              }));
-            }}
-          />
-        </motion.div>
-
-        <AnimatePresence>
-          {errors.captcha && (
-            <motion.p
-              className="mt-2 text-red-400 text-sm text-center"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-            >
-              {errors.captcha}
-            </motion.p>
-          )}
-        </AnimatePresence>
-
-        {isLoading ? (
-          <motion.button
-            disabled={isLoading}
-            className="px-6 py-3 mt-8 w-full bg-[#7F6456]/20 backdrop-blur-xl border border-[#7F6456]/30 rounded-lg text-amber-100 font-semibold hover:bg-[#7F6456]/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 relative overflow-hidden"
-            variants={itemVariants}
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          >
-            <motion.div
-              className="flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className="animate-spin rounded-full h-5 w-5 border-b-2 border-amber-100 mr-2"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                Email
+              </label>
+              <motion.input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={formData.email}
+                onChange={(e) => handleInputChange("email", e.target.value)}
+                className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${
+                  errors.email
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-white/30 focus:border-[#7F6456]"
+                }`}
+                placeholder="Enter your email"
+                disabled={isLoading}
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               />
-              Signing In...
+              <AnimatePresence>
+                {errors.email && (
+                  <motion.p
+                    className="mt-1 text-red-400 text-sm"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {errors.email}
+                  </motion.p>
+                )}
+              </AnimatePresence>
             </motion.div>
-          </motion.button>
-        ) : (
-          <motion.button
-            formAction={handleSubmit}
-            disabled={isLoading}
-            className="px-6 py-3 mt-8 w-full bg-[#7F6456]/20 backdrop-blur-xl border border-[#7F6456]/30 rounded-lg text-amber-100 font-semibold hover:bg-[#7F6456]/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 relative overflow-hidden"
-            variants={itemVariants}
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          >
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+
+            <motion.div className="group mb-6" variants={itemVariants}>
+              <label
+                htmlFor="password"
+                className="block text-[#D4C4B0] font-medium mb-2 transition-colors duration-300 group-focus-within:text-[#7F6456]"
+              >
+                Password
+              </label>
+              <motion.input
+                id="password"
+                name="password"
+                type="password"
+                required
+                value={formData.password}
+                onChange={(e) => handleInputChange("password", e.target.value)}
+                className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${
+                  errors.password
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-white/30 focus:border-[#7F6456]"
+                }`}
+                placeholder="Enter your password"
+                disabled={isLoading}
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              />
+              <AnimatePresence>
+                {errors.password && (
+                  <motion.p
+                    className="mt-1 text-red-400 text-sm"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {errors.password}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.div
+              className="flex justify-center mt-6"
+              variants={itemVariants}
             >
-              Login
-            </motion.span>
-          </motion.button>
+              <HCaptcha
+                sitekey={"5b709758-01c8-42cc-b5c6-ac0a15eadb74"}
+                theme="dark"
+                onVerify={(token) => {
+                  setCaptchaToken(token);
+                  if (errors.captcha) {
+                    setErrors((prev) => ({ ...prev, captcha: undefined }));
+                  }
+                }}
+                onExpire={() => {
+                  setCaptchaToken("");
+                }}
+                onError={() => {
+                  setCaptchaToken("");
+                  setErrors((prev) => ({
+                    ...prev,
+                    captcha: "Captcha verification failed",
+                  }));
+                }}
+              />
+            </motion.div>
+
+            <AnimatePresence>
+              {errors.captcha && (
+                <motion.p
+                  className="mt-2 text-red-400 text-sm text-center"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {errors.captcha}
+                </motion.p>
+              )}
+            </AnimatePresence>
+
+            {isLoading ? (
+              <motion.button
+                disabled={isLoading}
+                className="px-6 py-3 mt-8 w-full bg-[#7F6456]/20 backdrop-blur-xl border border-[#7F6456]/30 rounded-lg text-amber-100 font-semibold hover:bg-[#7F6456]/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 relative overflow-hidden"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                <motion.div
+                  className="flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="animate-spin rounded-full h-5 w-5 border-b-2 border-amber-100 mr-2"
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                  Signing In...
+                </motion.div>
+              </motion.button>
+            ) : (
+              <motion.button
+                formAction={handleSubmit}
+                disabled={isLoading}
+                className="px-6 py-3 mt-8 w-full bg-[#7F6456]/20 backdrop-blur-xl border border-[#7F6456]/30 rounded-lg text-amber-100 font-semibold hover:bg-[#7F6456]/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 relative overflow-hidden"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Login
+                </motion.span>
+              </motion.button>
+            )}
+          </>
         )}
       </motion.form>
     </div>

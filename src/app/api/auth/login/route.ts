@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       captchaToken: string;
     };
 
-    console.log(data);
+ 
     const supabase = await createClient();
 
     const { data: allUserData, error: errorData } =
@@ -20,13 +20,13 @@ export async function POST(req: Request) {
     const user = allUserData.users.find((user) => user.email === data.email);
 
     //  const da= await supabase.auth.admin.updateUserById(
-    //     "fd6508a3-3a48-4ffc-b2c0-f20580d19e46",
+    //     "07205405-04b5-4b38-8932-33a52572056f",
     //     {
     //       user_metadata: {
-    //         first_name: "John",
-    //         last_name: "Doe",
+    //         first_name: "amjed",
+    //         last_name: "pulikkal",
     //         role: "premium_user",
-    //         password: (await bcrypt.hash(data.password, saltRounds)),
+    //         password: (await bcrypt.hash("admin@123", 10)),
     //       },
     //     }
     //   );
