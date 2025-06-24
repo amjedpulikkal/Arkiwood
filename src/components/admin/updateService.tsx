@@ -8,7 +8,6 @@ import {
   Upload,
   Image as ImageIcon,
   Save,
-  Eye,
   Trash2,
   FileText,
   Layers,

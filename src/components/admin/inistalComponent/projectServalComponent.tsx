@@ -2,7 +2,7 @@
 import ProjectConfiguration from "@/components/admin/newProject";
 import ProjectManagementPanel from "@/components/admin/projectManagementPanel";
 import React, { useState } from "react";
-import { toast } from "sonner";
+
 import UpdateProjectProjectConfiguration from "../updateProject";
 import { Project } from "@/types/type";
 

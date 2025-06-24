@@ -738,7 +738,6 @@ import {
   ArrowLeft,
   MapPin,
   Calendar,
-  Users,
   Layers,
   Target,
   ToggleLeft,

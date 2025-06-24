@@ -7,7 +7,6 @@ import {
   Upload,
   Image as ImageIc,
   Save,
-  Eye,
   Trash2,
   FileText,
   Layers,
