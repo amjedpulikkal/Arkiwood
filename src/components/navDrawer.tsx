@@ -120,7 +120,7 @@ export function DrawerNav() {
                   {[
                     { name: "Home", href: "/" },
                     { name: "Services", href: "/ourservices" },
-                    { name: "Blogs", href: "/#blogs" },
+                    // { name: "Blogs", href: "/#blogs" },
                     { name: "Projects", href: "/projects" },
                     { name: "About", href: "/#about" },
                     { name: "Contact", href: "/contact" },

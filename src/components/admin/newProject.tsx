@@ -53,11 +53,12 @@ interface FormDataType {
 
 interface Props {
   open: React.Dispatch<React.SetStateAction<boolean>>;
-  promiseToast: (promise: () => Promise<unknown>) => void;
+
+  fetchData: () => Promise<void>;
 }
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
-export default function ProjectConfiguration({ open, promiseToast }: Props) {
+export default function ProjectConfiguration({ open, fetchData }: Props) {
   // Initial form state
   const [formData, setFormData] = useState<FormDataType>({
     title: "",
@@ -88,7 +89,7 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
   // For adding features/materials
   const [newFeature, setNewFeature] = useState<string>("");
   const [newMaterial, setNewMaterial] = useState<string>("");
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const categories = [
     "Interior Design",
     "Architecture",
@@ -102,35 +103,31 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
   const validateForm = (): boolean => {
     const tempErrors: Record<string, string> = {};
 
-    // Required: title
-    if (!formData.title.trim()) {
-      tempErrors.title = "Project title is required.";
-    }
-
-    // Required: location
-    if (!formData.location.trim()) {
+    if (!formData.title.trim()) tempErrors.title = "Project title is required.";
+    if (!formData.location.trim())
       tempErrors.location = "Location is required.";
-    }
-
-    // Required: category
-    if (!formData.category) {
-      tempErrors.category = "Please select a category.";
-    }
-
-    // Required: description
-    if (!formData.description.trim()) {
+    if (!formData.category) tempErrors.category = "Please select a category.";
+    if (!formData.description.trim())
       tempErrors.description = "Description cannot be empty.";
+
+    // Year validation
+    // // if (formData.year < 2020 ) {
+    //   tempErrors.year = "Year must be between 2020 and 2030.";
+    // }
+
+    // Main image validation
+    if (!formData.main_image) {
+      tempErrors.main_image = "Main image is required.";
     }
 
-    // Year range between 2020 and 2030
-    if (formData.year < 2020 || formData.year > 2030) {
-      tempErrors.year = "Year must be between 2020 and 2030.";
+    // Images validation
+    if (formData.images.length === 0) {
+      tempErrors.images = "At least one project image is required.";
     }
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
-
   // Add a feature
   const addFeature = () => {
     if (newFeature.trim()) {
@@ -294,9 +291,11 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
   const handleSubmit = async () => {
     // 1. Validate
     if (!validateForm()) {
+      toast.error("Please fix the errors in the form");
+
       return;
     }
-
+    setIsSubmitting(true);
     // 2. Build FormData
     const payload = new FormData();
     payload.append("title", formData.title);
@@ -341,7 +340,19 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
         method: "POST",
         body: payload,
       });
-    promiseToast(responsePromise);
+    toast.promise(responsePromise, {
+      loading: "Loading...",
+      success: () => {
+        open(false);
+        fetchData();
+        return `New project successfully added `;
+      },
+      error: () => {
+        setIsSubmitting(false);
+
+        return "Error";
+      },
+    });
   };
 
   // Tab definitions
@@ -515,9 +526,9 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#7F6456] focus:border-transparent"
                     >
-                      {statuses.map((status,index) => (
+                      {statuses.map((status, index) => (
                         <option
-                          key={status+index}
+                          key={status + index}
                           value={status}
                           className="bg-gray-800"
                         >
@@ -736,7 +747,11 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
                     PNG, JPG, JPEG up to 10MB
                   </p>
                 </button>
-
+                {errors.main_image && (
+                  <p className="text-red-400 text-sm mt-1">
+                    {errors.main_image}
+                  </p>
+                )}
                 {/* Main Image Preview */}
                 <div className="grid grid-cols-2 gap-4">
                   {formData.main_image && (
@@ -780,12 +795,14 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
                     PNG, JPG, JPEG up to 10MB
                   </p>
                 </button>
-
+                {errors.images && (
+                  <p className="text-red-400 text-sm mt-1">{errors.images}</p>
+                )}
                 {/* Additional Images Preview */}
                 <div className="grid grid-cols-2 gap-4">
                   {formData.images.map((image, index) => (
                     <div
-                      key={index+"images"}
+                      key={index + "images"}
                       className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 group"
                     >
                       <div className="flex items-center space-x-3">
@@ -865,22 +882,25 @@ export default function ProjectConfiguration({ open, promiseToast }: Props) {
           </div>
 
           {/* Footer Buttons */}
-          <div className="flex items-center justify-between p-6 border-t border-white/20">
-            <button className="px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 transition-colors">
-              Cancel
-            </button>
+          <div className="flex items-center justify-end p-6 border-t border-white/20">
             <div className="flex space-x-3">
-              <button className="flex items-center space-x-2 px-6 py-3 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 hover:bg-blue-500/30 transition-colors">
-                <Eye size={18} />
-                <span>Preview</span>
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
-              >
-                <Save size={18} />
-                <span>Save Project</span>
-              </button>
+              {isSubmitting ? (
+                <button
+                  
+                  className="flex items-center space-x-2 px-15 py-6 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
+                >
+                  <span className="loader -mt-10"></span>
+                  {/* <span>Save Project</span> */}
+                </button>
+              ) : (
+                <button
+                  onClick={handleSubmit}
+                  className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
+                >
+                  <Save size={18} />
+                  <span>Save Project</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -73,12 +73,12 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
   const [selectedService, setSelectedService] = useState<number | null>(0);
   const [removeSubServices, setRemoveSubServices] = useState<number[] | []>([]);
   const [removeImages, setRemoveImages] = useState<Imagetype[] | []>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // @ts-expect-error : ignore
   const [coverImages] = useState<Imagetype | null>(formData.cover_image);
   const [updatedSub_services, setUpdatedSub_services] = useState<
     SubService[] | []
   >([]);
-
 
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -406,6 +406,7 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
     }
 
     try {
+      setIsSubmitting(true);
       const payload = new FormData();
       // @ts-expect-error : ignore
       payload.append("id", formData.id);
@@ -437,7 +438,7 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
         typeof formData.cover_image === "object" &&
         formData.cover_image?.path
       ) {
-        payload.append("cover_image",  JSON.stringify(formData.cover_image));
+        payload.append("cover_image", JSON.stringify(formData.cover_image));
       }
 
       const existingPaths = [] as unknown as [
@@ -480,7 +481,10 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
           callBack();
           return "Service successfully added.";
         },
-        error: "Error saving service.",
+        error: () => {
+          setIsSubmitting (false);
+          return "Error saving service.";
+        },
       });
     } catch (error) {
       console.error("Error saving service:", error);
@@ -875,17 +879,19 @@ export default function UpdateServiceModal({ data, callBack }: Props) {
               Cancel
             </button>
             <div className="flex space-x-3">
-              <button className="flex items-center space-x-2 px-6 py-3 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 hover:bg-blue-500/30 transition-colors">
-                <Eye size={18} />
-                <span>Preview</span>
-              </button>
-              <button
-                onClick={handleSave}
-                className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
-              >
-                <Save size={18} />
-                <span>Save Service</span>
-              </button>
+              {isSubmitting ? (
+                <button className="flex items-center space-x-2 px-15 py-6 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg">
+                  <span className="loader -mt-10"></span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleSave}
+                  className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
+                >
+                  <Save size={18} />
+                  <span>Update Service</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

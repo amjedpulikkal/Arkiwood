@@ -78,7 +78,7 @@ export default function Service({
   //     ],
   //   },
   //   {
-  //     name: "/0-1--5-.1587627053.6613.webp",
+  //     name: "/ ",
   //     heading: "Joinery",
   //     body: `Custom woodwork crafted with detail, elegance, and function. We design and fabricate furniture and fixtures that elevate your space.`,
   //     nav: [

@@ -26,17 +26,6 @@ export default function ProjectServalComponent({
     fetchData();
   };
 
-  const promiseToast = (promise: () => Promise<unknown>) => {
-    toast.promise(promise, {
-      loading: "Loading...",
-      success: () => {
-        setCurrentModal(false);
-        fetchData();
-        return `New project successfully added `;
-      },
-      error: "Error",
-    });
-  };
 
   return (
     <>
@@ -51,7 +40,8 @@ export default function ProjectServalComponent({
       {!selectProjects && currentModal && (
         <ProjectConfiguration
           open={setCurrentModal}
-          promiseToast={promiseToast}
+          
+          fetchData={fetchData}
         />
       )}
       {selectProjects && (

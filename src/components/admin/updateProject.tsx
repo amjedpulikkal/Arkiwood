@@ -812,7 +812,7 @@ export default function UpdateProjectProjectConfiguration({
   const [newMaterial, setNewMaterial] = useState<string>("");
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [removeImages, setRemoveImages] = useState<string[]>([]);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const categories = [
     "Interior Design",
     "Architecture",
@@ -1011,6 +1011,7 @@ export default function UpdateProjectProjectConfiguration({
       toast.error("Please fix validation errors.");
       return;
     }
+    setIsSubmitting(true);
     const form = new FormData();
     form.append("title", formData.title);
     form.append("location", formData.location);
@@ -1062,13 +1063,17 @@ export default function UpdateProjectProjectConfiguration({
       method: "POST",
       body: form,
     });
+
     toast.promise(response, {
       loading: "Updating project...",
       success: () => {
         open();
         return `Project updated successfully`;
       },
-      error: "Error updating project",
+      error: () => {
+        setIsSubmitting(false);
+        return "Error updating project";
+      },
     });
   };
 
@@ -1592,22 +1597,25 @@ export default function UpdateProjectProjectConfiguration({
             )}
           </div>
 
-          <div className="flex items-center justify-between p-6 border-t border-white/20">
-            <button className="px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 transition-colors">
-              Cancel
-            </button>
+          <div className="flex items-center justify-end p-6 border-t border-white/20">
             <div className="flex space-x-3">
-              <button className="flex items-center space-x-2 px-6 py-3 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 hover:bg-blue-500/30 transition-colors">
-                <Users size={18} />
-                <span>Preview</span>
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
-              >
-                <Save size={18} />
-                <span>Save Project</span>
-              </button>
+              {isSubmitting ? (
+                <button
+               
+                  className="flex items-center space-x-2 px-15 py-6 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
+                >
+                  <span className="loader -mt-10"></span>
+                  {/* <span>Save Project</span> */}
+                </button>
+              ) : (
+                <button
+                  onClick={handleSubmit}
+                  className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
+                >
+                  <Save size={18} />
+                  <span>Save Project</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

@@ -73,7 +73,7 @@ export default function ServiceModal({ open, callBack }: Props) {
   >({});
 
   const [errors, setErrors] = useState<FormErrors>({});
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   //
   // --- HELPERS & VALIDATION ---
   //
@@ -324,6 +324,7 @@ export default function ServiceModal({ open, callBack }: Props) {
     }
 
     try {
+      setIsSubmitting(true);
       const payload = new FormData();
       payload.append("serviceName", formData.serviceName.trim());
       payload.append("description", formData.body.trim());
@@ -362,7 +363,10 @@ export default function ServiceModal({ open, callBack }: Props) {
           callBack();
           return "Service successfully added.";
         },
-        error: "Error saving service.",
+        error: () => {
+          setIsSubmitting(false);
+          return "Error saving service.";
+        },
       });
     } catch (error) {
       console.error("Error saving service:", error);
@@ -733,17 +737,19 @@ export default function ServiceModal({ open, callBack }: Props) {
               Cancel
             </button>
             <div className="flex space-x-3">
-              <button className="flex items-center space-x-2 px-6 py-3 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 hover:bg-blue-500/30 transition-colors">
-                <Eye size={18} />
-                <span>Preview</span>
-              </button>
-              <button
-                onClick={handleSave}
-                className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
-              >
-                <Save size={18} />
-                <span>Save Service</span>
-              </button>
+              {isSubmitting ? (
+                <button className="flex items-center space-x-2 px-15 py-6 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg">
+                  <span className="loader -mt-10"></span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleSave}
+                  className="flex items-center space-x-2 px-6 py-3 bg-[#7F6456] hover:bg-[#8D7164] rounded-xl text-white font-semibold transition-colors shadow-lg"
+                >
+                  <Save size={18} />
+                  <span>Save Service</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
