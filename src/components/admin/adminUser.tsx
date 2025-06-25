@@ -22,7 +22,7 @@ const AdminUsersDashboard = ({ userData: data }: { userData: User[] }) => {
   };
 
   const fetchUser = async () => {
-    const res = await fetch("/api/adminDashboard/deleteUser");
+    const res = await fetch("/api/adminDashboard/getuser");
     const data = await res.json();
     setUserData(data);
   };
@@ -34,20 +34,16 @@ const AdminUsersDashboard = ({ userData: data }: { userData: User[] }) => {
     });
 
     toast.promise(res, {
-      loading: "Loading...",
+      loading: "Deleting user...",
       success: () => {
-        fetchUser()
-        return `user deleted `;
+        fetchUser(); 
+        return "User deleted successfully ";
       },
-      error: () => {
-        return `error`;
-      },
+      error: "Failed to delete user ",
     });
   };
 
   const handleSubmit = async () => {
-    
-
     setIsModalOpen(false);
     setFormData({ name: "", email: "", role: "Admin" });
 
@@ -56,16 +52,13 @@ const AdminUsersDashboard = ({ userData: data }: { userData: User[] }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
-
     toast.promise(res, {
-      loading: "Loading...",
+      loading: "Inviting user...",
       success: () => {
-        fetchUser()
-        return ``;
+        fetchUser();
+        return "User invited successfully ";
       },
-      error: () => {
-        return `error`;
-      },
+      error: "Something went wrong ",
     });
   };
 
@@ -132,8 +125,7 @@ const AdminUsersDashboard = ({ userData: data }: { userData: User[] }) => {
                   </div>
                   <div>
                     <h3 className="text-white font-semibold text-lg">
-                      {user.user_metadata?.first_name +
-                        user.user_metadata?.last_name}
+                      {user.user_metadata?.name}
                     </h3>
                     <span
                       className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getRoleColor(

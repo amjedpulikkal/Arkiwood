@@ -8,7 +8,7 @@ export default async function page() {
   const supabaseServer = await createClient();
 
   const { data } = await supabaseServer.auth.getUser();
-  console.log(data);
+  
   if (data?.user) {
     redirect("/admin/dashboard");
   }
