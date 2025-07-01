@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { Project } from "@/types/type";
 import React from "react";
 
+
 export default async function page() {
   const { data } = await supabase
     .from("projects")

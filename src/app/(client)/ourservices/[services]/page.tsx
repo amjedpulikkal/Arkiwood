@@ -19,8 +19,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-
-
 import Imagecom from "./imagecom";
 import SubCat from "./SubCat";
 import { notFound } from "next/navigation";
@@ -29,6 +27,40 @@ import { Service } from "@/types/type";
 import { PostgrestResponse } from "@supabase/supabase-js";
 
 type tParams = Promise<{ services: string }>;
+
+export async function generateMetadata({ params }: { params: tParams }) {
+  const serviceName = decodeURIComponent((await params)?.services || "");
+
+  const { data, error } = await supabase
+    .from("services")
+    .select("*")
+    .eq("service_name", serviceName)
+    .single();
+
+  if (error || !data) return notFound();
+
+  const imageUrl = data.cover_image?.image_url || "/default-og.jpg";
+
+  return {
+    title: `${data.service_name} – Arkiwood UAE`,
+    description:
+      data.description ||
+      `Explore ${data.service_name} services by Arkiwood in the UAE.`,
+    openGraph: {
+      title: `${data.service_name} – Arkiwood UAE`,
+      description: data.description,
+      url: `https://arkiwooduae.com/services/${serviceName}`,   
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: data.service_name,
+        },
+      ],
+    },
+  };
+}
 export default async function page({ params }: { params: tParams }) {
   const services = decodeURIComponent((await params)?.services || "");
   const { data, error } = (await supabase
@@ -36,7 +68,7 @@ export default async function page({ params }: { params: tParams }) {
     .select("*,sub_services(*),reviews(*)")
     .eq("service_name", services)
     .eq("reviews.showOnLanding", true)) as PostgrestResponse<Service>;
-  console.log(data);
+
   if (error || !data) {
     notFound();
   }
