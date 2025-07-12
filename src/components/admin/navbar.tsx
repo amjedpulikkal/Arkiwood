@@ -40,6 +40,8 @@ interface DashboardNavbarProps {
 // }
 
 import { motion, AnimatePresence } from "framer-motion";
+import LogoutModal from "../LogoutModal";
+import { handleLogout } from "./logutServarside";
 
 interface SidebarItem {
   icon: React.ComponentType<{ size: number; className?: string }>;
@@ -58,6 +60,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
   const pathname = usePathname();
   const [messageCount, setMessageCount] = useState<number>(initialData.count);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [logoutOpen, setLogoutOpen] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -117,7 +120,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
     setSidebarOpen(false);
     router.push(href);
   };
-
+  
   const handleSidebarToggle = (): void => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -130,9 +133,8 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
   };
 
   const getButtonClasses = (href: string): string => {
-    return `w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 hover:bg-white/10 ${
-      isActiveRoute(href) ? "bg-[#7F6456]/20 border border-[#7F6456]/30" : ""
-    }`;
+    return `w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 hover:bg-white/10 ${isActiveRoute(href) ? "bg-[#7F6456]/20 border border-[#7F6456]/30" : ""
+      }`;
   };
 
   const getTextClasses = (href: string): string => {
@@ -430,7 +432,8 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
                 aria-label="Logout"
                 onClick={() => {
                   // Add logout logic here
-                  console.log("Logout clicked");
+                  // console.log("Logout clicked");
+                  setLogoutOpen(true)
                 }}
                 whileHover={{
                   scale: 1.02,
@@ -452,6 +455,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ initialData }) => {
           </div>
         </motion.div>
       </AnimatePresence>
+      <LogoutModal open={logoutOpen} onClose={setLogoutOpen} onLogout={handleLogout} />
     </>
   );
 };
