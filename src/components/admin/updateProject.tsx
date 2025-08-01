@@ -1094,7 +1094,7 @@ export default function UpdateProjectProjectConfiguration({
         className="w-full h-full flex-col flex items-center justify-center"
       >
         <div className="w-full backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
-          <div className="flex items-center justify-between p-6 border-b border-white/20">
+          <div className="md:flex items-center justify-between p-6 border-b border-white/20">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-[#7F6456] rounded-xl flex items-center justify-center">
                 <Palette className="text-white" size={20} />
@@ -1339,7 +1339,7 @@ export default function UpdateProjectProjectConfiguration({
                       value={newFeature}
                       onChange={(e) => setNewFeature(e.target.value)}
                       placeholder="Feature description"
-                      className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F6456]"
+                      className="flex-1 md:px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F6456]"
                     />
                     <button
                       onClick={addFeature}
@@ -1387,7 +1387,7 @@ export default function UpdateProjectProjectConfiguration({
                       value={newMaterial}
                       onChange={(e) => setNewMaterial(e.target.value)}
                       placeholder="Material name"
-                      className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F6456]"
+                      className="flex-1 md:px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F6456]"
                     />
                     <button
                       onClick={addMaterial}

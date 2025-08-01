@@ -98,7 +98,7 @@ const ServicesAdminPanel: React.FC<ServicesAdminPanelProps> = ({
               </p>
             </div>
 
-            <div className="flex gap-3">
+            <div className="md:flex gap-3">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <input
@@ -110,7 +110,7 @@ const ServicesAdminPanel: React.FC<ServicesAdminPanelProps> = ({
                 />
               </div>
 
-              <div className="flex bg-white/10 rounded-lg border border-white/20 p-1">
+              <div className="flex  md:block hidden bg-white/10 rounded-lg border border-white/20 p-1">
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`px-3 py-1 rounded text-sm transition-colors ${viewMode === "grid"
@@ -133,7 +133,7 @@ const ServicesAdminPanel: React.FC<ServicesAdminPanelProps> = ({
 
               <button
                 onClick={() => open(true)}
-                className="group relative px-6 py-2 cursor-pointer bg-[#7F6456]/20 backdrop-blur-xl border border-[#7F6456]/30 rounded-lg text-amber-100 font-semibold hover:bg-[#7F6456]/30 hover:scale-105 transition-all duration-300 shadow-lg flex items-center gap-2"
+                className="group md:mt-0 mt-3 relative px-6 py-2 cursor-pointer bg-[#7F6456]/20 backdrop-blur-xl border border-[#7F6456]/30 rounded-lg text-amber-100 font-semibold hover:bg-[#7F6456]/30 hover:scale-105 transition-all duration-300 shadow-lg flex items-center gap-2"
               >
                 <Plus className="w-4 h-4" />
                 Add Service

@@ -184,7 +184,7 @@ const MessageAdminPanel: React.FC<MessageAdminPanelProps> = ({
             </div>
 
             {/* Search and Filter */}
-            <div className="flex gap-3">
+            <div className="md:flex gap-3">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <input
@@ -198,7 +198,7 @@ const MessageAdminPanel: React.FC<MessageAdminPanelProps> = ({
                 />
               </div>
 
-              <div className="relative">
+              <div className="relative md:mt-0 mt-3 ">
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <select
                   value={filterStatus}

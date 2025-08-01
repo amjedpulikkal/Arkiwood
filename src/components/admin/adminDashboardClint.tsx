@@ -205,7 +205,7 @@ const AdminDashboard = ({
             </div>
 
             {/* Time/Date Info */}
-            <div className="text-right">
+            <div className="text-right md:block hidden">
               <div className="flex items-center gap-2 text-gray-300 mb-1">
                 <Clock size={16} />
                 <span className="text-sm">

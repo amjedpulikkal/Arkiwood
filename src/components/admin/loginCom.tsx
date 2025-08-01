@@ -14,6 +14,8 @@ interface FormErrors {
 export default function LoginPage() {
   const [captchaToken, setCaptchaToken] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [formData, setFormData] = useState({
@@ -59,6 +61,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: FormData): Promise<void> => {
     setIsLoading(true);
+    // console.log(isLoading)
     setErrors({});
     setShowSuccess(false);
 
@@ -69,7 +72,7 @@ export default function LoginPage() {
     const validationErrors = validateForm(email, password);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setIsLoading(false);
+      // setIsLoading(false);
       return;
     }
 
@@ -90,22 +93,28 @@ export default function LoginPage() {
         // Reset form after success
         setFormData({ email: "", password: "" });
         setCaptchaToken("");
+        // setIsLoading(false);
+
       } else {
         const errorData = await res.json();
         setErrors({
           general:
             errorData.message || "Login failed. Please check your credentials.",
+
         });
+        setIsLoading(false);
+
       }
     } catch (error) {
       console.log(error)
       setErrors({
         general: "Network error. Please check your connection and try again.",
       });
-    } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
+
+
     }
-  };
+  }
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -152,7 +161,7 @@ export default function LoginPage() {
   return (
     <div className="bg-gradient-to-br from-[#2C2C2C] via-[#3D3D3D] to-[#1A1A1A] w-screen h-screen flex justify-center items-center flex-col">
       <motion.div
-        className="relative w-[25%] bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-2xl"
+        className="relative md:w-[25%] bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-2xl"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -198,7 +207,7 @@ export default function LoginPage() {
       </motion.div>
 
       <motion.form
-        className="p-4 w-[25%]"
+        className="p-4 md:w-[25%]"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -263,11 +272,10 @@ export default function LoginPage() {
                 required
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
-                className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${
-                  errors.email
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-white/30 focus:border-[#7F6456]"
-                }`}
+                className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${errors.email
+                  ? "border-red-500 focus:border-red-500"
+                  : "border-white/30 focus:border-[#7F6456]"
+                  }`}
                 placeholder="Enter your email"
                 disabled={isLoading}
                 whileFocus={{ scale: 1.02 }}
@@ -302,11 +310,10 @@ export default function LoginPage() {
                 required
                 value={formData.password}
                 onChange={(e) => handleInputChange("password", e.target.value)}
-                className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${
-                  errors.password
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-white/30 focus:border-[#7F6456]"
-                }`}
+                className={`w-full bg-transparent border-b-2 pb-3 text-white text-lg placeholder:text-white/50 focus:outline-none transition-all duration-300 ${errors.password
+                  ? "border-red-500 focus:border-red-500"
+                  : "border-white/30 focus:border-[#7F6456]"
+                  }`}
                 placeholder="Enter your password"
                 disabled={isLoading}
                 whileFocus={{ scale: 1.02 }}
@@ -415,6 +422,9 @@ export default function LoginPage() {
             )}
           </>
         )}
+        {/* <div>
+          isLoading {isLoading ? "true" : "false"}
+        </div> */}
       </motion.form>
     </div>
   );

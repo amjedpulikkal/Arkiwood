@@ -432,7 +432,7 @@ export default function ServiceModal({ open, callBack }: Props) {
           </div>
 
           {/* Tabs */}
-          <div className="flex border-b border-white/20">
+          <div className="flex border-b border-white/20 overflow-auto">
             {[
               { id: "services", label: "Services", icon: Layers },
               { id: "images", label: "Images", icon: ImageIcon },
@@ -473,7 +473,7 @@ export default function ServiceModal({ open, callBack }: Props) {
                         setNewService(e.target.value)
                       }
                       placeholder="Service category name"
-                      className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F6456]"
+                      className="flex-1 md:px-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F6456]"
                     />
                     <button
                       onClick={addService}

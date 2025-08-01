@@ -15,14 +15,14 @@ export default async function page() {
 
   return (
     <>
-      <AdminSettings inistalData={data![0]} />
-      <ChangePassword inistalData={{
-        phone_number: "",
-        whatsApp_number: ""
-      }}/>
-      {user.user?.user_metadata.role === "Super Admin" && (
-        <AdminUsersDashboard userData={usersData} />
-      )}
+      <div className="px-4">
+
+        <AdminSettings inistalData={data![0]} />
+        <ChangePassword />
+        {user.user?.user_metadata.role === "Super Admin" && (
+          <AdminUsersDashboard userData={usersData} />
+        )}
+      </div>
     </>
   );
 }
