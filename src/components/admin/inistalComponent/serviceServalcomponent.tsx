@@ -24,6 +24,7 @@ export default function ServiceServalcomponent({ inistalData }:{inistalData: Ser
           setSelectServices={setSelectServices}
           services={services}
           open={setCurrentModal}
+          fetchData={fetchData}
         />
       )}
       {!selectServices && currentModal && (
