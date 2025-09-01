@@ -4,6 +4,7 @@ import BackToTopButton from "@/components/BackToTopButton";
 import CallCpmponent from "@/components/callCpmponent";
 import Footer from "@/components/footer";
 import { createClient } from "@/lib/supabaseServar";
+import { createFeatureFlag } from "../../../flags";
 
 
 export const metadata = {
@@ -52,9 +53,15 @@ export default async function ClientLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+
+  const enabled = await createFeatureFlag("my_feature_flag")();
+
   const supabaseServar = await createClient();
   const { data } = await supabaseServar.from("admin_dashboard").select("*");
-
+  if (enabled) {
+    return <h1 style={{ textAlign: "center", marginTop: "20%" }}>🚧  Site Under Maintenance. Please check back soon.</h1>
+  }
   return (
     <>
       <Navbar />
