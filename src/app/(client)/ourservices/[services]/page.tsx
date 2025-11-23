@@ -31,6 +31,15 @@ type tParams = Promise<{ services: string }>;
 export async function generateMetadata({ params }: { params: tParams }) {
   const serviceName = decodeURIComponent((await params)?.services || "");
 
+  // Special case for MEP Drawings
+  if (serviceName.toLowerCase().includes("mep") || serviceName.toLowerCase() === "mep drawings") {
+    return {
+      title: "Top MEP Companies in Dubai | Design & Drawings in UAE",
+      description:
+        "Arkiwood is one of the top MEP companies in Dubai offering professional MEP drawings in UAE with high-quality design, engineering, and project management services.",
+    };
+  }
+
   const { data, error } = await supabase
     .from("services")
     .select("*")

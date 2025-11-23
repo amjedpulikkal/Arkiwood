@@ -11,6 +11,13 @@ import AflterAndBeforImage from "@/components/aflterAndBeforImage";
 import Service from "@/components/service";
 import Image from "next/image";
 import { supabase } from "@/lib/supabaseClient";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Best Interior Design Companies in Dubai | Arkiwood UAE",
+  description:
+    "Discover why Arkiwood UAE ranks among the best interior design companies in Dubai. We create elegant, functional interiors for homes, offices, and villas.",
+};
 
 export default async function Home() {
   const { data: services } = await supabase
