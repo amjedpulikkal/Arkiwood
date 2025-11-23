@@ -34,7 +34,7 @@ export default function AboutPage() {
                 and everything in between, we ensure every detail is
                 meticulously covered. Our expert team navigates all regulatory
                 approvals, ensuring smooth, hassle-free project execution from
-                start to finish. Whether it's residential, commercial, or
+                start to finish. Whether it&apos;s residential, commercial, or
                 industrial, we bring your vision to life with unmatched
                 precision, creativity, and professionalism. From securing
                 authority approvals to handing over the keys, we oversee every
@@ -49,4 +49,5 @@ export default function AboutPage() {
     </main>
   );
 }
+
 
