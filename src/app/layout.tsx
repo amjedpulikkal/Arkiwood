@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "Arkiwood",
   description:
     "Discover top-quality services and solutions tailored to your needs. Stay ahead with our innovative platform and expert insights.",
+  
+  verification: {
+    google: "QoPHiL7DLNUwfkqLtV7Muo3CMHkNMy4VEX1ccDibz_k", 
+  },
 };
 
 export default function RootLayout({
