@@ -55,12 +55,10 @@ export default function WhyChooseArkiwood() {
             </h1>
           </div>
           <p className="pt-10">
-            At <samp className="nasalization">Arkiwood</samp> we believe that
-            exceptional interiors begin with thoughtful craftsmanship, quality
-            materials, and a commitment to customer satisfaction. we don’t just
-            design interiors, we craft stories through detail, quality, and
-            care. What makes us different is what makes your space
-            unforgettable. Here’s what sets us apart.
+            At <samp className="nasalization">Arkiwood</samp> we believe that exceptional interiors 
+            begin with thoughtful craftsmanship, premium quality materials, and a strong commitment to customer satisfaction.
+            As one of the best interior design companies in Dubai, we don’t just design interiors—we craft stories through detail, 
+            quality, and care. What makes us different is what makes your space truly unforgettable. Here’s what sets us apart.
           </p>
           <div className="flex justify-evenly pt-8">
             {logos.map((data, index) => (
