@@ -48,7 +48,7 @@ export default async function Home() {
                 </p>
                 <p className="text-[#704e3c]">
                   At ARKIWOOD, we specialize in end-to-end solutions for
-                  transforming spaces across the UAE. From innovative interior
+                  transforming spaces across the UAE. we are on of the best Interior companies in uae. From innovative interior
                   design concepts to precise architectural drawings, MEP plans,
                   and everything in between, we ensure every detail is
                   meticulously covered. Our expert team navigates all regulatory
